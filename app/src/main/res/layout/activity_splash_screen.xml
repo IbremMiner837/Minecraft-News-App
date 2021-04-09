@@ -18,7 +18,6 @@
         android:layout_below="@+id/logo_id"
         android:layout_centerHorizontal="true"
         android:text="Splash Screen"
-        android:textSize="30dp"
-        android:textColor="@color/white"/>
+        android:textSize="30dp" />
 
 </RelativeLayout>

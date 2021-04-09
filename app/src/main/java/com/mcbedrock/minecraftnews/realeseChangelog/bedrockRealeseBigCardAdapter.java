@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.webkit.CookieManager;
 import android.webkit.URLUtil;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,14 +28,14 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.mcbedrock.minecraftnews.R;
 
-public class realeseAdapterBC extends FirebaseRecyclerAdapter<RealeseChangelogModel, realeseAdapterBC.myviewholder> {
+public class bedrockRealeseBigCardAdapter extends FirebaseRecyclerAdapter<RealeseChangelogModel, bedrockRealeseBigCardAdapter.myviewholder> {
 
     //КАРТОЧКА + ДЕЙСТВИЯ ПРИ КЛИКЕ
 
     ImageView imageView;
     Dialog dialog;
 
-    public realeseAdapterBC(@NonNull FirebaseRecyclerOptions<RealeseChangelogModel> options) {
+    public bedrockRealeseBigCardAdapter(@NonNull FirebaseRecyclerOptions<RealeseChangelogModel> options) {
         super(options);
     }
 

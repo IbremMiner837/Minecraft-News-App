@@ -1,6 +1,5 @@
 package com.mcbedrock.minecraftnews.betaChangelog;
 
-import android.graphics.Path;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mcbedrock.minecraftnews.realeseChangelog.RealeseChangelogModel;
 import com.mcbedrock.minecraftnews.R;
-import com.mcbedrock.minecraftnews.realeseChangelog.realeseAdapter;
+import com.mcbedrock.minecraftnews.realeseChangelog.bedrockRealeseAdapter;
 
 public class betaRecyclerViewFragment extends Fragment {
 
@@ -26,7 +25,7 @@ public class betaRecyclerViewFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     RecyclerView recview;
-    realeseAdapter adapter;
+    bedrockRealeseAdapter adapter;
 
     public betaRecyclerViewFragment() {
     }
@@ -64,7 +63,7 @@ public class betaRecyclerViewFragment extends Fragment {
                 .build();
 
 
-        adapter = new realeseAdapter(options);
+        adapter = new bedrockRealeseAdapter(options);
         recview.setAdapter(adapter);
 
         return view;

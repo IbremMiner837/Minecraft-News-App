@@ -10,18 +10,14 @@ import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.webkit.CookieManager;
 import android.webkit.URLUtil;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -32,14 +28,14 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.mcbedrock.minecraftnews.R;
 
-public class realeseAdapter extends FirebaseRecyclerAdapter<RealeseChangelogModel, realeseAdapter.myviewholder> {
+public class bedrockRealeseAdapter extends FirebaseRecyclerAdapter<RealeseChangelogModel, bedrockRealeseAdapter.myviewholder> {
 
     //КАРТОЧКА + ДЕЙСТВИЯ ПРИ КЛИКЕ
 
     ImageView imageView;
     Dialog dialog;
 
-    public realeseAdapter(@NonNull FirebaseRecyclerOptions<RealeseChangelogModel> options) {
+    public bedrockRealeseAdapter(@NonNull FirebaseRecyclerOptions<RealeseChangelogModel> options) {
         super(options);
     }
 

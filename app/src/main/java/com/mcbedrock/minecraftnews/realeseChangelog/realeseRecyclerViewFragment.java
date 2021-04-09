@@ -1,8 +1,5 @@
 package com.mcbedrock.minecraftnews.realeseChangelog;
 
-import android.app.Activity;
-import android.app.Service;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -14,15 +11,10 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
-import android.widget.CheckBox;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mcbedrock.minecraftnews.R;
-import com.mcbedrock.minecraftnews.SettingsActivity;
 
 public class realeseRecyclerViewFragment extends Fragment {
 
@@ -34,8 +26,8 @@ public class realeseRecyclerViewFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     RecyclerView recview;
-    realeseAdapter adapter;
-    realeseAdapterBC adapterBC;
+    bedrockRealeseAdapter adapter;
+    bedrockRealeseBigCardAdapter adapterBC;
 
     private Boolean card_size;
 
@@ -78,10 +70,10 @@ public class realeseRecyclerViewFragment extends Fragment {
                 .build();
 
         if (card_size) {
-            adapter = new realeseAdapter(options);
+            adapter = new bedrockRealeseAdapter(options);
             recview.setAdapter(adapter);
         } else {
-            adapterBC = new realeseAdapterBC(options);
+            adapterBC = new bedrockRealeseBigCardAdapter(options);
             recview.setAdapter(adapterBC);
         }
         return view;

@@ -74,14 +74,16 @@
             android:layout_width="156dp"
             android:layout_height="48dp"
             android:text="@string/changelog"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false"
+            android:layout_marginEnd="8dp"/>
 
         <Button
             android:id="@+id/dialog_download_btn"
             android:layout_width="156dp"
             android:layout_height="48dp"
             android:text="@string/download"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false"
+            android:layout_marginStart="8dp"/>
 
     </LinearLayout>
 

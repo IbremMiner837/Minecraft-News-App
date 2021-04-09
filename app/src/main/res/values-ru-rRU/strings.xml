@@ -26,4 +26,5 @@
     <string name="small_size">Маленький размер</string>
     <string name="big_size">Большой размер</string>
     <string name="select_card_size">Выбрать размер карточки</string>
+    <string name="select_changelog">Выбрать Чейнджлог</string>
 </resources>

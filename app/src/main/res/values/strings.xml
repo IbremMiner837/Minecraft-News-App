@@ -20,12 +20,19 @@
     <string name="check_update">Check Update</string>
     <string name="function_not_available">Function not available</string>
     <string name="desing">Desing</string>
-    <string name="select">Select</string>
     <string name="selected">Selected</string>
-    <string name="small_size">Small size</string>
-    <string name="big_size">Big size</string>
-    <string name="select_card_size">Select card size</string>
+    <string name="select">Select</string>
 
     <!--Settings-->
+    <string name="select_card_size">Select card size</string>
+    <string name="small_size">Small size</string>
+    <string name="big_size">Big size</string>
+
+    <!--Array-->
+    <string-array name="realese_changelog">Realese Changelog</string-array>
+    <string-array name="beta_changelog">Beta Changelog</string-array>
+    <string-array name="snapshot_changelog">Snapshot Changelog</string-array>
+    <string name="select_changelog">Select Changelog</string>
+
 
 </resources>
