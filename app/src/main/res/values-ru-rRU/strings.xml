@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="open_in_vk">Группа ВК</string>
+    <string name="release_changelog">Релизы</string>
+    <string name="beta_changelog">Бета Версии</string>
+    <string name="snapshot_changelog">Снапшоты</string>
+    <string name="app_name">Майнкрафт Новости</string>
+    <string name="loading">Загрузка...</string>
+    <string name="changelogs">Чейнджлоги</string>
+    <string name="version">Версия:</string>
+    <string name="minecraft">Майнкрафт</string>
+    <string name="changelog">Чейнджлог</string>
+    <string name="download">Скачать</string>
+    <string name="downloading_file">Скачивание Файла пожалуйста подождите...</string>
+    <string name="about">О приложении</string>
+    <string name="settings">Настройки</string>
+    <string name="sort">Сортировка</string>
+    <string name="newest">Новые</string>
+    <string name="oldest">Старые</string>
+    <string name="sort_by">Сортировать по</string>
+    <string name="check_update">Проверить обновление</string>
+    <string name="function_not_available">Функция недоступна</string>
+    <string name="desing">Дизайн</string>
+    <string name="select">Выбрать</string>
+    <string name="selected">Выбрано</string>
+    <string name="small_size">Маленький размер</string>
+    <string name="big_size">Большой размер</string>
+    <string name="select_card_size">Выбрать размер карточки</string>
+</resources>
