@@ -30,13 +30,9 @@ public class SettingsActivity extends AppCompatActivity {
         if (card_size == true) {
             set_smallcard.setChecked(true);
             set_bigcard.setChecked(false);
-            Toast toast = Toast.makeText(this, R.string.selected, Toast.LENGTH_LONG);
-            toast.show();
         } else if (card_size == false) {
             set_bigcard.setChecked(true);
             set_smallcard.setChecked(false);
-            Toast toast = Toast.makeText(this, R.string.selected, Toast.LENGTH_LONG);
-            toast.show();
         }
     }
 
@@ -78,12 +74,16 @@ public class SettingsActivity extends AppCompatActivity {
                 set_smallcard.setChecked(true);
                 set_bigcard.setChecked(false);
                 SavePrefs("card_smallsize", true);
+                Toast toast = Toast.makeText(this, R.string.selected, Toast.LENGTH_LONG);
+                toast.show();
                 break;
             }
             case R.id.set_bigcard_checkBox: {
                 set_bigcard.setChecked(true);
                 set_smallcard.setChecked(false);
                 SavePrefs("card_smallsize", false);
+                Toast toast = Toast.makeText(this, R.string.selected, Toast.LENGTH_LONG);
+                toast.show();
                 break;
             }
         }

@@ -27,12 +27,25 @@
     <string name="select_card_size">Select card size</string>
     <string name="small_size">Small size</string>
     <string name="big_size">Big size</string>
+    
+    <!--admin pan-->
+    <string name="image">Image</string>
+    <string name="enter_imgage_link">Enter a link to the image</string>
+    <string name="enter_changelog_link">Enter a link to the changelog</string>
+    <string name="enter_game_version">Enter the game version</string>
+    <string name="publich_changelog">Publish Changelog</string>
+    <string name="empty_fields">Please fill in all fields</string>
+    <string name="changelog_published">Чейнджлог опубликован</string>
+
 
     <!--Array-->
-    <string-array name="realese_changelog">Realese Changelog</string-array>
-    <string-array name="beta_changelog">Beta Changelog</string-array>
-    <string-array name="snapshot_changelog">Snapshot Changelog</string-array>
+    <string-array name="changelog_type">
+        <item>Bedrock Realese Changelog</item>
+        <item>Java Edition Realese Changelog</item>
+        <item>Beta Changelog</item>
+        <item>Snapshot Changelog</item>
+    </string-array>
+    <string name="not_Chosen">Not Chosen</string>
     <string name="select_changelog">Select Changelog</string>
-
 
 </resources>

@@ -1,6 +1,8 @@
 package com.mcbedrock.minecraftnews.betaChangelog;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.mcbedrock.minecraftnews.realeseChangelog.RealeseChangelogModel;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.realeseChangelog.bedrockRealeseAdapter;
+import com.mcbedrock.minecraftnews.realeseChangelog.bedrockRealeseBigCardAdapter;
 
 public class betaRecyclerViewFragment extends Fragment {
 
@@ -25,7 +28,10 @@ public class betaRecyclerViewFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     RecyclerView recview;
-    bedrockRealeseAdapter adapter;
+    betaAdapter adapter;
+    betaBigCardAdapter adapterBC;
+
+    private Boolean card_size;
 
     public betaRecyclerViewFragment() {
     }
@@ -47,6 +53,8 @@ public class betaRecyclerViewFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        LoadPrefs();
     }
 
     @Override
@@ -57,28 +65,45 @@ public class betaRecyclerViewFragment extends Fragment {
         recview = (RecyclerView) view.findViewById(R.id.recview);
         recview.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        FirebaseRecyclerOptions<RealeseChangelogModel> options =
-                new FirebaseRecyclerOptions.Builder<RealeseChangelogModel>()
-                .setQuery(FirebaseDatabase.getInstance().getReference().child("beta_changelogs"), RealeseChangelogModel.class)
+        FirebaseRecyclerOptions<BetaChangelogModel> options =
+                new FirebaseRecyclerOptions.Builder<BetaChangelogModel>()
+                .setQuery(FirebaseDatabase.getInstance().getReference().child("beta_changelogs"), BetaChangelogModel.class)
                 .build();
 
 
-        adapter = new bedrockRealeseAdapter(options);
-        recview.setAdapter(adapter);
-
+        if (card_size) {
+            adapter = new betaAdapter(options);
+            recview.setAdapter(adapter);
+        } else {
+            adapterBC = new betaBigCardAdapter(options);
+            recview.setAdapter(adapterBC);
+        }
         return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        adapter.startListening();
+        if (card_size) {
+            adapter.startListening();
+        } else {
+            adapterBC.startListening();
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        adapter.stopListening();
+        if (card_size) {
+            adapter.startListening();
+        } else {
+            adapterBC.startListening();
+        }
+    }
+
+    private void LoadPrefs() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        card_size = sharedPreferences.getBoolean("card_smallsize", true);
     }
 
 }

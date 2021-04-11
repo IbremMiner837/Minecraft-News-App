@@ -19,20 +19,78 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
 
         <AutoCompleteTextView
-            android:id="@+id/autoCompleteText"
+            android:id="@+id/select_changelog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/not_Chosen"
             android:enabled="false"
             android:inputType="none"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:drawableStart="@drawable/ic_action_update"
         android:hint="@string/version"
-        android:inputType="numberSigned"
-        android:padding="16dp"/>
+        android:padding="16dp"
+        app:helperText="@string/enter_game_version"
+        app:startIconDrawable="@drawable/ic_action_update"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
+        <EditText
+            android:id="@+id/version_input_adminpan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_action_update"
+            android:enabled="true"
+            android:inputType="numberDecimal"
+            android:digits="0123456789.WAabc"
+            android:padding="16dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/image"
+        android:padding="16dp"
+        app:helperText="@string/enter_imgage_link"
+        app:startIconDrawable="@drawable/ic_action_view_image"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <EditText
+            android:id="@+id/changelog_img_link_adminpan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_action_view_image"
+            android:enabled="true"
+            android:inputType="textUri"
+            android:padding="16dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/changelog"
+        android:padding="16dp"
+        app:helperText="@string/enter_changelog_link"
+        app:startIconDrawable="@drawable/ic_action_view_link"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <EditText
+            android:id="@+id/changelog_link_adminpan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_action_view_link"
+            android:enabled="true"
+            android:inputType="textUri"
+            android:padding="16dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/push_changelog_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/publich_changelog"
+        android:textAllCaps="false"/>
 </LinearLayout>

@@ -1,6 +1,8 @@
 package com.mcbedrock.minecraftnews.snapshotChangelog;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mcbedrock.minecraftnews.R;
+import com.mcbedrock.minecraftnews.realeseChangelog.bedrockRealeseAdapter;
+import com.mcbedrock.minecraftnews.realeseChangelog.bedrockRealeseBigCardAdapter;
 
 public class snapshotRecyclerViewFragment extends Fragment {
 
@@ -24,6 +28,9 @@ public class snapshotRecyclerViewFragment extends Fragment {
     private String mParam2;
     RecyclerView recview;
     snapshotAdapter adapter;
+    snapshotBigCardAdapter adapterBC;
+
+    private Boolean card_size;
 
     public snapshotRecyclerViewFragment() {
     }
@@ -45,6 +52,8 @@ public class snapshotRecyclerViewFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        LoadPrefs();
     }
 
     @Override
@@ -60,8 +69,13 @@ public class snapshotRecyclerViewFragment extends Fragment {
                 .setQuery(FirebaseDatabase.getInstance().getReference().child("snapshot_changelogs"), SnapshotChangelogModel.class)
                 .build();
 
-        adapter = new snapshotAdapter(options);
-        recview.setAdapter(adapter);
+        if (card_size) {
+            adapter = new snapshotAdapter(options);
+            recview.setAdapter(adapter);
+        } else {
+            adapterBC = new snapshotBigCardAdapter(options);
+            recview.setAdapter(adapterBC);
+        }
 
         return view;
     }
@@ -69,13 +83,26 @@ public class snapshotRecyclerViewFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        adapter.startListening();
+        if (card_size) {
+            adapter.startListening();
+        } else {
+            adapterBC.startListening();
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        adapter.stopListening();
+        if (card_size) {
+            adapter.startListening();
+        } else {
+            adapterBC.startListening();
+        }
+    }
+
+    private void LoadPrefs() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        card_size = sharedPreferences.getBoolean("card_smallsize", true);
     }
 
 }

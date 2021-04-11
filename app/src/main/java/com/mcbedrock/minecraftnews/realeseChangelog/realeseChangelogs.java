@@ -32,6 +32,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+import com.mcbedrock.minecraftnews.AdminPanel;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.SettingsActivity;
 import com.mcbedrock.minecraftnews.ViewPagerAdapter;
@@ -105,8 +106,8 @@ public class realeseChangelogs extends AppCompatActivity {
         }
 
         if(id == R.id.action_about) {
-            Toast toast = Toast.makeText(this,R.string.function_not_available, Toast.LENGTH_LONG);
-            toast.show();
+            Intent intent=new Intent(realeseChangelogs.this, AdminPanel.class);
+            startActivity(intent);
         }
 
         /*if(id == R.id.action_sort){

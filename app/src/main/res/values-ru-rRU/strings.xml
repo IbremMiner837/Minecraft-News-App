@@ -23,8 +23,27 @@
     <string name="desing">Дизайн</string>
     <string name="select">Выбрать</string>
     <string name="selected">Выбрано</string>
+
+    <!--Settings-->
+    <string name="select_card_size">Выбрать размер карточки</string>
     <string name="small_size">Маленький размер</string>
     <string name="big_size">Большой размер</string>
-    <string name="select_card_size">Выбрать размер карточки</string>
+
+    <!--admin pan-->
+    <string name="image">Изображение</string>
+    <string name="enter_imgage_link">Введите ссылку на изображение</string>
+    <string name="enter_changelog_link">Введите ссылку на чейнджлог</string>
+    <string name="enter_game_version">Введите версию игры</string>
+    <string name="publich_changelog">Опубликовать Чейнджлог</string>
+    <string name="empty_fields">Пожалуйста, заполните все поля</string>
+    <string name="changelog_published">Чейнджлог опубликован</string>
+
+    <!--Array--><string-array name="changelog_type">
+    <item>Bedrock Релиз Чейнджлог</item>
+    <item>Java Edition Релиз Чейнджлог</item>
+    <item>Бета Чейнджлог</item>
+    <item>Снапшот Чейнджлог</item>
+</string-array>
+    <string name="not_Chosen">Не Выбрано</string>
     <string name="select_changelog">Выбрать Чейнджлог</string>
 </resources>
