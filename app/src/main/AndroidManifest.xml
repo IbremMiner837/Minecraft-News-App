@@ -12,9 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MinecraftNews">
-        <activity android:name=".AdminPanel"></activity>
+        <activity android:name=".desingSettingsActivity"></activity>
+        <activity android:name=".AdminPanel" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".SettingsActivity" />
+        <activity android:name=".cardSizeSettingsActivity" />
         <!--
         meta-data
             android:name="com.google.android.gms.ads.com.mcbedrock.minecraftnews"

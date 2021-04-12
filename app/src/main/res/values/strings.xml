@@ -23,11 +23,20 @@
     <string name="selected">Selected</string>
     <string name="select">Select</string>
 
-    <!--Settings-->
+    <!--Desing Settings-->
+    <string name="card_size">Card size</string>
+    <string name="theme">Theme</string>
+    <string name="auto">Auto</string>
+    <string name="system_theme">System Theme</string>
+    <string name="light_theme">Light Theme</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="system_theme_desc">The appearance of the application will change depending on the theme of the Android</string>
+
+    <!--Card size Settings-->
     <string name="select_card_size">Select card size</string>
     <string name="small_size">Small size</string>
     <string name="big_size">Big size</string>
-    
+
     <!--admin pan-->
     <string name="image">Image</string>
     <string name="enter_imgage_link">Enter a link to the image</string>

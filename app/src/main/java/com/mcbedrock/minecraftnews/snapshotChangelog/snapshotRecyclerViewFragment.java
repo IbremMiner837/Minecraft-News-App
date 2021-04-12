@@ -104,5 +104,4 @@ public class snapshotRecyclerViewFragment extends Fragment {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         card_size = sharedPreferences.getBoolean("card_smallsize", true);
     }
-
 }

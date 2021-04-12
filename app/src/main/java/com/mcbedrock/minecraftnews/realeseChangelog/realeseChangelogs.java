@@ -2,45 +2,25 @@ package com.mcbedrock.minecraftnews.realeseChangelog;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
-import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.mcbedrock.minecraftnews.AdminPanel;
 import com.mcbedrock.minecraftnews.R;
-import com.mcbedrock.minecraftnews.SettingsActivity;
+import com.mcbedrock.minecraftnews.cardSizeSettingsActivity;
 import com.mcbedrock.minecraftnews.ViewPagerAdapter;
 import com.mcbedrock.minecraftnews.betaChangelog.betaRecyclerViewFragment;
+import com.mcbedrock.minecraftnews.desingSettingsActivity;
 import com.mcbedrock.minecraftnews.snapshotChangelog.snapshotRecyclerViewFragment;
-import com.mcbedrock.minecraftnews.splashScreen;
-
-import java.util.HashMap;
 
 public class realeseChangelogs extends AppCompatActivity {
 
@@ -100,7 +80,7 @@ public class realeseChangelogs extends AppCompatActivity {
             toast.show();        }
 
         if(id == R.id.action_settings) {
-            Intent intent=new Intent(realeseChangelogs.this, SettingsActivity.class);
+            Intent intent=new Intent(realeseChangelogs.this, desingSettingsActivity.class);
             startActivity(intent);
             finish();
         }

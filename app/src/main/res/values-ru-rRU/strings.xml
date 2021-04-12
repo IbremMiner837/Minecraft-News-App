@@ -24,7 +24,16 @@
     <string name="select">Выбрать</string>
     <string name="selected">Выбрано</string>
 
-    <!--Settings-->
+    <!--Desing Settings-->
+    <string name="card_size">Размер карточек</string>
+    <string name="theme">Темы</string>
+    <string name="auto">Auto</string>
+    <string name="system_theme">Системная тема</string>
+    <string name="light_theme">Светлая тема</string>
+    <string name="dark_theme">Темная тема</string>
+    <string name="system_theme_desc">Внешний вид приложения будет меняться в зависимости от темя Android</string>
+
+    <!--Card size Settings-->
     <string name="select_card_size">Выбрать размер карточки</string>
     <string name="small_size">Маленький размер</string>
     <string name="big_size">Большой размер</string>

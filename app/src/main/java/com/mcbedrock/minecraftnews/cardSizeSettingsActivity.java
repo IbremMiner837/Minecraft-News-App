@@ -7,21 +7,19 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mcbedrock.minecraftnews.realeseChangelog.realeseChangelogs;
 
-public class SettingsActivity extends AppCompatActivity {
+public class cardSizeSettingsActivity extends AppCompatActivity {
 
     private Boolean card_size;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_card_size_settings);
         CheckBox set_smallcard = (CheckBox) findViewById(R.id.set_smallcard_checkBox);
         CheckBox set_bigcard = (CheckBox) findViewById(R.id.set_bigcard_checkBox);
 
@@ -39,7 +37,7 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        Intent intent = new Intent(SettingsActivity.this, realeseChangelogs.class);
+        Intent intent = new Intent(cardSizeSettingsActivity.this, realeseChangelogs.class);
         startActivity(intent);
         finish();
         super.onBackPressed();  // optional depending on your needs
