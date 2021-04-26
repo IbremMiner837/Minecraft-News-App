@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,14 +32,16 @@ public class AdminPanel extends AppCompatActivity {
     ActivityAdminPanelBinding binding;
 
     private String name;
-    private EditText version_input_adminpan, changelog_img_link_adminpan, changelog_link_adminpan;
+    private EditText version_input_adminpan, snapshot_version_input_adminpan, changelog_img_link_adminpan, changelog_link_adminpan;
     private Button push_changelog_btn;
     private String PostID;
 
+    TextInputLayout snapshot_version_adminpan, version_adminpan;
+
     private int changelogType = 0;
 
-    FirebaseDatabase realeseChangelogFD, betaChangelogFD, snapshotChangelogFD;
-    DatabaseReference realeseChangelogDR, betaChangelogDR, snapshotChangelogDR;
+    FirebaseDatabase realeseChangelogFD, javaRealeseChangelogFD, betaChangelogFD, snapshotChangelogFD;
+    DatabaseReference realeseChangelogDR, javaRealeseChangelogDR, betaChangelogDR, snapshotChangelogDR;
 
     changelogModel changelogModel;
 
@@ -47,19 +50,31 @@ public class AdminPanel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAdminPanelBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        binding.versionInputAdminpan.setKeyListener(DigitsKeyListener.getInstance("0123456789.WAabc"));
+        binding.versionInputAdminpan.setKeyListener(DigitsKeyListener.getInstance("0123456789."));
+        binding.snapshotVersionInputAdminpan.setKeyListener(DigitsKeyListener.getInstance("0123456789.WAabc"));
+
+        getSupportActionBar().setTitle(R.string.admin_panel);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         AutoCompleteTextView set_changelog_type = (AutoCompleteTextView) findViewById(R.id.select_changelog);
-        name = "";
+
+        //Init TextInputLayout
+        snapshot_version_adminpan = findViewById(R.id.snapshot_version_adminpan);
+        version_adminpan = findViewById(R.id.version_adminpan);
+
+        name = "Bedrock Edition";
         version_input_adminpan = findViewById(R.id.version_input_adminpan);
+        snapshot_version_input_adminpan = findViewById(R.id.snapshot_version_input_adminpan);
         changelog_img_link_adminpan = findViewById(R.id.changelog_img_link_adminpan);
         changelog_link_adminpan = findViewById(R.id.changelog_link_adminpan);
 
         realeseChangelogFD = FirebaseDatabase.getInstance();
+        javaRealeseChangelogFD = FirebaseDatabase.getInstance();
         betaChangelogFD = FirebaseDatabase.getInstance();
         snapshotChangelogFD = FirebaseDatabase.getInstance();
 
         realeseChangelogDR = realeseChangelogFD.getReference("realese_changelogs");
+        javaRealeseChangelogDR = javaRealeseChangelogFD.getReference("javaRealese_changelogs");
         betaChangelogDR = betaChangelogFD.getReference("beta_changelogs");
         snapshotChangelogDR = betaChangelogFD.getReference("snapshot_changelogs");
 
@@ -74,16 +89,20 @@ public class AdminPanel extends AppCompatActivity {
                 String img_link = changelog_img_link_adminpan.getText().toString();
                 String changelog_link = changelog_link_adminpan.getText().toString();
                 String version = version_input_adminpan.getText().toString();
+                String snapshot_version = snapshot_version_input_adminpan.getText().toString();
 
-                if (TextUtils.isEmpty(version) && TextUtils.isEmpty(img_link) && TextUtils.isEmpty(changelog_link)) {
+                if (TextUtils.isEmpty(version) && TextUtils.isEmpty(img_link) && TextUtils.isEmpty(changelog_link) ||
+                        TextUtils.isEmpty(img_link) && TextUtils.isEmpty(changelog_link) && TextUtils.isEmpty(snapshot_version)) {
                     Toast.makeText(AdminPanel.this, R.string.empty_fields, Toast.LENGTH_SHORT).show();
                 } else {
                     if (changelogType == 0) {
                         addRealeseChangelog(img_link, changelog_link, changelog_type, version);
+                    } else if (changelogType == 1) {
+                        addJavaRealeseChangelog(img_link, changelog_link, changelog_type, version);
                     } else if (changelogType == 2) {
                         addBetaChangelog(img_link, changelog_link, changelog_type, version);
                     } else if (changelogType == 3) {
-                        addSnapshotChangelog(img_link, changelog_link, changelog_type, version);
+                        addSnapshotChangelog(img_link, changelog_link, changelog_type, snapshot_version);
                     }
                 }
             }
@@ -102,27 +121,32 @@ public class AdminPanel extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0: {
-                        name = "Bedrock";
+                        name = "Bedrock Edition";
                         changelogType = 0;
-                        //binding.versionInputAdminpan.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                        version_adminpan.setVisibility(View.VISIBLE);
+                        snapshot_version_adminpan.setVisibility(View.GONE);
                         break;
                     }
                     case 1: {
                         name = "Java Edition";
                         changelogType = 1;
-                        //binding.versionInputAdminpan.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                        version_adminpan.setVisibility(View.VISIBLE);
+                        snapshot_version_adminpan.setVisibility(View.GONE);
                         break;
                     }
                     case 2: {
                         name = "Beta";
                         changelogType = 2;
-                        //binding.versionInputAdminpan.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                        version_adminpan.setVisibility(View.VISIBLE);
+                        snapshot_version_adminpan.setVisibility(View.GONE);
                         break;
                     }
                     case 3: {
                         name = "Snapshot";
                         changelogType = 3;
-                        //version_input_adminpan.setInputType(InputType.TYPE_CLASS_TEXT);
+                        snapshot_version_input_adminpan.setInputType(InputType.TYPE_CLASS_TEXT);
+                        version_adminpan.setVisibility(View.GONE);
+                        snapshot_version_adminpan.setVisibility(View.VISIBLE);
                         break;
                     }
                 }
@@ -162,13 +186,33 @@ public class AdminPanel extends AppCompatActivity {
         });
     }
 
+    private void addJavaRealeseChangelog(String img, String link, String name, String version) {
+        changelogModel.setImg(img);
+        changelogModel.setLink(link);
+        changelogModel.setName(name);
+        changelogModel.setVersion(version);
+        javaRealeseChangelogDR.child(version.replace(".", "-")).setValue(changelogModel);
+
+        realeseChangelogDR.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Toast.makeText(AdminPanel.this, R.string.changelog_published, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(AdminPanel.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     //Add Beta Changelog to Firebase Database
     private void addBetaChangelog(String img, String link, String name, String version) {
         changelogModel.setImg(img);
         changelogModel.setLink(link);
         changelogModel.setName(name);
         changelogModel.setVersion(version);
-        betaChangelogDR.child("version").setValue(changelogModel);
+        betaChangelogDR.child(version.replace(".", "-")).setValue(changelogModel);
 
         betaChangelogDR.addValueEventListener(new ValueEventListener() {
             @Override
@@ -184,12 +228,12 @@ public class AdminPanel extends AppCompatActivity {
     }
 
     //Add Snapshot Changelog to Firebase Database
-    private void addSnapshotChangelog(String img, String link, String name, String version) {
+    private void addSnapshotChangelog(String img, String link, String name, String snapshot_version) {
         changelogModel.setImg(img);
         changelogModel.setLink(link);
         changelogModel.setName(name);
-        changelogModel.setVersion(version);
-        snapshotChangelogDR.child("version").setValue(changelogModel);
+        changelogModel.setVersion(snapshot_version);
+        snapshotChangelogDR.child(snapshot_version).setValue(changelogModel);
 
         snapshotChangelogDR.addValueEventListener(new ValueEventListener() {
             @Override

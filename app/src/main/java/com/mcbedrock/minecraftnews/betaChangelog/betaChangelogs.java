@@ -1,13 +1,12 @@
 package com.mcbedrock.minecraftnews.betaChangelog;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mcbedrock.minecraftnews.R;
-import com.mcbedrock.minecraftnews.realeseChangelog.realeseRecyclerViewFragment;
+import com.mcbedrock.minecraftnews.bedrockRealeseChangelog.realeseRecyclerViewFragment;
 
 public class betaChangelogs extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.mcbedrock.minecraftnews.realeseChangelog;
+package com.mcbedrock.minecraftnews.bedrockRealeseChangelog;
 
 public class RealeseChangelogModel {
 

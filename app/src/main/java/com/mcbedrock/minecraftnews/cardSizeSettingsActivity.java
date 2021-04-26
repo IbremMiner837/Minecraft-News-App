@@ -1,20 +1,25 @@
 package com.mcbedrock.minecraftnews;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
-import com.mcbedrock.minecraftnews.realeseChangelog.realeseChangelogs;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.mcbedrock.minecraftnews.bedrockRealeseChangelog.realeseChangelogs;
 
 public class cardSizeSettingsActivity extends AppCompatActivity {
 
     private Boolean card_size;
+    private int theme = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +28,18 @@ public class cardSizeSettingsActivity extends AppCompatActivity {
         CheckBox set_smallcard = (CheckBox) findViewById(R.id.set_smallcard_checkBox);
         CheckBox set_bigcard = (CheckBox) findViewById(R.id.set_bigcard_checkBox);
 
+        getSupportActionBar().setTitle(R.string.card_size);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         LoadPrefs();
+
+        if (theme == 0) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        } else if (theme == 1) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        } else if (theme == 2) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
 
         if (card_size == true) {
             set_smallcard.setChecked(true);
@@ -35,9 +51,22 @@ public class cardSizeSettingsActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // API 5+ solution
+                onBackPressed();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     public void onBackPressed()
     {
-        Intent intent = new Intent(cardSizeSettingsActivity.this, realeseChangelogs.class);
+        Intent intent = new Intent(cardSizeSettingsActivity.this, desingSettingsActivity.class);
         startActivity(intent);
         finish();
         super.onBackPressed();  // optional depending on your needs
@@ -46,6 +75,7 @@ public class cardSizeSettingsActivity extends AppCompatActivity {
     private void LoadPrefs() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         card_size = sharedPreferences.getBoolean("card_smallsize", true);
+        theme = sharedPreferences.getInt("theme", 1);
     }
 
     private void SavePrefs(String key, boolean value) {

@@ -1,4 +1,4 @@
-package com.mcbedrock.minecraftnews.realeseChangelog;
+package com.mcbedrock.minecraftnews.bedrockRealeseChangelog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
@@ -28,17 +29,16 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.mcbedrock.minecraftnews.R;
 
-public class bedrockRealeseBigCardAdapter extends FirebaseRecyclerAdapter<RealeseChangelogModel, bedrockRealeseBigCardAdapter.myviewholder> {
+public class bedrockRealeseAdapter extends FirebaseRecyclerAdapter<RealeseChangelogModel, bedrockRealeseAdapter.myviewholder> {
 
     //КАРТОЧКА + ДЕЙСТВИЯ ПРИ КЛИКЕ
 
     ImageView imageView;
     Dialog dialog;
 
-    public bedrockRealeseBigCardAdapter(@NonNull FirebaseRecyclerOptions<RealeseChangelogModel> options) {
+    public bedrockRealeseAdapter(@NonNull FirebaseRecyclerOptions<RealeseChangelogModel> options) {
         super(options);
     }
-
 
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull RealeseChangelogModel model) {
@@ -125,7 +125,7 @@ public class bedrockRealeseBigCardAdapter extends FirebaseRecyclerAdapter<Reales
     @NonNull
     @Override
     public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.singlerowdesing_big, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.singlerowdesing_small, parent, false);
         return  new myviewholder(view);
     }
 
@@ -133,9 +133,10 @@ public class bedrockRealeseBigCardAdapter extends FirebaseRecyclerAdapter<Reales
     {
         ImageView img;
         TextView name_text, version_text, link_text;
+        //RelativeLayout cardView;
         public myviewholder(@NonNull View itemView) {
             super(itemView);
-
+            //cardView = itemView.findViewById(R.id.cardView);
             img = itemView.findViewById(R.id.img);
             name_text = itemView.findViewById(R.id.name_text);
             version_text = itemView.findViewById(R.id.version_text);
@@ -143,5 +144,4 @@ public class bedrockRealeseBigCardAdapter extends FirebaseRecyclerAdapter<Reales
 
         }
     }
-
 }

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mcbedrock.minecraftnews">
+    package="com.mcbedrock.minecraftnews"
+    android:versionCode="1"
+    android:versionName="1.0.0 beta">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -12,9 +14,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MinecraftNews">
-        <activity android:name=".desingSettingsActivity"></activity>
-        <activity android:name=".AdminPanel" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".LicenseActivity"></activity>
+        <activity
+            android:name=".BottomNavBar"
+            android:label="@string/title_activity_bottom_nav_bar" />
+        <activity android:name=".minecraftBedrockDownload.MinecraftDownloadActivity" />
+        <activity android:name=".AboutActivity" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity android:name=".desingSettingsActivity" />
+        <activity
+            android:name=".AdminPanel"
+            android:parentActivityName=".bedrockRealeseChangelog.realeseChangelogs" />
         <activity android:name=".cardSizeSettingsActivity" />
         <!--
         meta-data
@@ -28,7 +40,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".realeseChangelog.realeseChangelogs" />
+        <activity android:name=".bedrockRealeseChangelog.realeseChangelogs" />
     </application>
 
 </manifest>

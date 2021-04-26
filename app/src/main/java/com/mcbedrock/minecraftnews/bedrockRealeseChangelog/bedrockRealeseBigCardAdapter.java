@@ -1,4 +1,4 @@
-package com.mcbedrock.minecraftnews.realeseChangelog;
+package com.mcbedrock.minecraftnews.bedrockRealeseChangelog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -28,14 +28,14 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.mcbedrock.minecraftnews.R;
 
-public class bedrockRealeseAdapter extends FirebaseRecyclerAdapter<RealeseChangelogModel, bedrockRealeseAdapter.myviewholder> {
+public class bedrockRealeseBigCardAdapter extends FirebaseRecyclerAdapter<RealeseChangelogModel, bedrockRealeseBigCardAdapter.myviewholder> {
 
     //КАРТОЧКА + ДЕЙСТВИЯ ПРИ КЛИКЕ
 
     ImageView imageView;
     Dialog dialog;
 
-    public bedrockRealeseAdapter(@NonNull FirebaseRecyclerOptions<RealeseChangelogModel> options) {
+    public bedrockRealeseBigCardAdapter(@NonNull FirebaseRecyclerOptions<RealeseChangelogModel> options) {
         super(options);
     }
 
@@ -125,7 +125,7 @@ public class bedrockRealeseAdapter extends FirebaseRecyclerAdapter<RealeseChange
     @NonNull
     @Override
     public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.singlerowdesing_small, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.singlerowdesing_big, parent, false);
         return  new myviewholder(view);
     }
 
@@ -133,10 +133,9 @@ public class bedrockRealeseAdapter extends FirebaseRecyclerAdapter<RealeseChange
     {
         ImageView img;
         TextView name_text, version_text, link_text;
-        //RelativeLayout cardView;
         public myviewholder(@NonNull View itemView) {
             super(itemView);
-            //cardView = itemView.findViewById(R.id.cardView);
+
             img = itemView.findViewById(R.id.img);
             name_text = itemView.findViewById(R.id.name_text);
             version_text = itemView.findViewById(R.id.version_text);

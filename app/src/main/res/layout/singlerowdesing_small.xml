@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -64,13 +64,12 @@
             android:text="https://feedback.minecraft.com/6554345665_Bedrock_Realese_1.16.220.05"
             android:textSize="16sp"
             android:textColor="#4986CC"
-            android:maxLines="1"
-            android:layout_toRightOf="@id/img"
+            android:layout_toEndOf="@id/img"
             android:layout_below="@id/ll"
-            android:layout_marginLeft="10dp"
-            android:clickable="true"
-            android:focusable="true" />
+            android:layout_marginStart="10dp"
+            android:singleLine="true"
+            android:scrollHorizontally="true"/>
 
     </RelativeLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

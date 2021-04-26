@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
     <!--Teal-->
     <color name="teal_50">#E0F2F1</color>
     <color name="teal_100">#B2DFDB</color>
-    <color name="teal_200">#80CBC4</color>
+    <color name="teal_2000">#80CBC4</color>
     <color name="teal_300">#4DB6AC</color>
     <color name="teal_400">#26A69A</color>
     <color name="teal_500">#009688</color>
     <color name="teal_600">#00897B</color>
-    <color name="teal_700">#00796B</color>
+    <color name="teal_7000">#00796B</color>
     <color name="teal_800">#00695C</color>
     <color name="teal_900">#004D40</color>
     <color name="teal_a100">#A7FFEB</color>
@@ -27,9 +36,12 @@
     <color name="gray_700">#616161</color>
     <color name="gray_800">#424242</color>
     <color name="gray_900">#212121</color>
+    <color name="gray_1000">#121212</color>
 
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="primaryColor">#546e7a</color>
+    <color name="primaryLightColor">#819ca9</color>
+    <color name="primaryDarkColor">#29434e</color>
+    <color name="primaryTextColor">#ffffff</color>
 
     <color name="green">#FF55FF55</color>
     <color name="dark_green">#FF00AA00</color>

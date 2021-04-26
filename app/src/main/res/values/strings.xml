@@ -1,12 +1,14 @@
 <resources>
-    <string name="app_name">Minecraft News</string>
+    <string name="app_name" translatable="false">Minecraft News</string>
     <string name="open_in_vk">VK Group</string>
-    <string name="release_changelog">Release Changelog</string>
+    <string name="bedrock_release_changelog">Bedrock Release Changelog</string>
+    <string name="java_realese_changelog">Java Edition Realese Changelog</string>
     <string name="beta_changelog">Beta Changelog</string>
     <string name="snapshot_changelog">Snapshot Changelog</string>
     <string name="loading">Loading...</string>
     <string name="changelogs">Changelogs</string>
-    <string name="version">Version:</string>
+    <string name="versionn">Version:</string>
+    <string name="version">Version</string>
     <string name="minecraft">Minecraft</string>
     <string name="changelog">Changelog</string>
     <string name="download">Download</string>
@@ -22,6 +24,7 @@
     <string name="desing">Desing</string>
     <string name="selected">Selected</string>
     <string name="select">Select</string>
+    <string name="file_size">File Size</string>
 
     <!--Desing Settings-->
     <string name="card_size">Card size</string>
@@ -38,6 +41,7 @@
     <string name="big_size">Big size</string>
 
     <!--admin pan-->
+    <string name="admin_panel">Admin Panel</string>
     <string name="image">Image</string>
     <string name="enter_imgage_link">Enter a link to the image</string>
     <string name="enter_changelog_link">Enter a link to the changelog</string>
@@ -45,6 +49,12 @@
     <string name="publich_changelog">Publish Changelog</string>
     <string name="empty_fields">Please fill in all fields</string>
     <string name="changelog_published">Чейнджлог опубликован</string>
+
+    <string name="authorization">Authorization</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="email">E-Mail</string>
+    <string name="password">Password</string>
 
 
     <!--Array-->
@@ -56,5 +66,25 @@
     </string-array>
     <string name="not_Chosen">Not Chosen</string>
     <string name="select_changelog">Select Changelog</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="title_activity_bottom_nav_bar">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 
 </resources>

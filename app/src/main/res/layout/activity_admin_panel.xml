@@ -28,6 +28,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/version_adminpan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/version"
@@ -43,6 +44,28 @@
             android:drawableStart="@drawable/ic_action_update"
             android:enabled="true"
             android:inputType="numberDecimal"
+            android:digits="0123456789.WAabc"
+            android:padding="16dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/snapshot_version_adminpan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:hint="@string/version"
+        android:padding="16dp"
+        app:helperText="@string/enter_game_version"
+        app:startIconDrawable="@drawable/ic_action_update"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <EditText
+            android:id="@+id/snapshot_version_input_adminpan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_action_update"
+            android:enabled="true"
+            android:inputType="text"
             android:digits="0123456789.WAabc"
             android:padding="16dp"/>
     </com.google.android.material.textfield.TextInputLayout>

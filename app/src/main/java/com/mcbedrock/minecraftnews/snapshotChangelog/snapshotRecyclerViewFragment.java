@@ -14,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mcbedrock.minecraftnews.R;
-import com.mcbedrock.minecraftnews.realeseChangelog.bedrockRealeseAdapter;
-import com.mcbedrock.minecraftnews.realeseChangelog.bedrockRealeseBigCardAdapter;
 
 public class snapshotRecyclerViewFragment extends Fragment {
 

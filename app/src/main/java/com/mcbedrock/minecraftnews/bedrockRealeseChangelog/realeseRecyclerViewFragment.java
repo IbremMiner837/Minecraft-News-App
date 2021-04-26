@@ -1,4 +1,4 @@
-package com.mcbedrock.minecraftnews.realeseChangelog;
+package com.mcbedrock.minecraftnews.bedrockRealeseChangelog;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
@@ -28,6 +29,8 @@ public class realeseRecyclerViewFragment extends Fragment {
     RecyclerView recview;
     bedrockRealeseAdapter adapter;
     bedrockRealeseBigCardAdapter adapterBC;
+
+    TextView link_text;
 
     private Boolean card_size;
 
@@ -52,7 +55,6 @@ public class realeseRecyclerViewFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
         LoadPrefs();
     }
 
@@ -60,6 +62,12 @@ public class realeseRecyclerViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_realese_recview, container, false);
+        /*View card_view = inflater.inflate(R.layout.singlerowdesing_small, container, false);
+        View card_view1 = inflater.inflate(R.layout.singlerowdesing_small, container, false);
+
+        TextView link_text = (TextView) card_view.findViewById(R.id.link_text);
+        link_text.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+        link_text.setSelected(true);*/
 
         recview = (RecyclerView) view.findViewById(R.id.recview);
         recview.setLayoutManager(new LinearLayoutManager(getContext()));

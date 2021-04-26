@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="8dp"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="12dp"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="15dp">
+        android:padding="16dp">
 
         <ImageView
             android:id="@+id/img"
@@ -26,10 +26,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Minecraft Bedrock"
+            android:paddingTop="8dp"
             android:textStyle="bold"
             android:textSize="26sp"
-            android:maxLines="1"
-            android:layout_alignBottom="@id/img"/>
+            android:maxLines="1" />
 
         <LinearLayout
             android:id="@+id/ll"
@@ -60,9 +60,8 @@
             android:text="https://feedback.minecraft.com/6554345665_Bedrock_Realese_1.16.220.05"
             android:textSize="16sp"
             android:textColor="#4986CC"
-            android:maxLines="1"
-            android:clickable="true"
-            android:focusable="true" />
+            android:singleLine="true"
+            android:scrollHorizontally="true"/>
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

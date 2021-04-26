@@ -57,7 +57,7 @@ public class betaBigCardAdapter extends FirebaseRecyclerAdapter<BetaChangelogMod
                 //toast.show();
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getRootView().getContext());
-                View dialogView = LayoutInflater.from(view.getRootView().getContext()).inflate(R.layout.dialog_snapshotchangelog_info, null);
+                View dialogView = LayoutInflater.from(view.getRootView().getContext()).inflate(R.layout.dialog_changelog_info, null);
                 ImageView dialog_changelog_img;
                 TextView dialog_changelog_name;
                 TextView dialog_changelog_version;

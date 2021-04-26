@@ -1,42 +1,39 @@
 package com.mcbedrock.minecraftnews;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.lifecycle.Lifecycle;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.mcbedrock.minecraftnews.betaChangelog.betaRecyclerViewFragment;
+import com.mcbedrock.minecraftnews.bedrockRealeseChangelog.realeseRecyclerViewFragment;
+import com.mcbedrock.minecraftnews.javaRealeseChangelog.javaRecyclerViewFragment;
+import com.mcbedrock.minecraftnews.snapshotChangelog.snapshotRecyclerViewFragment;
 
-public class ViewPagerAdapter extends FragmentPagerAdapter {
+public class ViewPagerAdapter extends FragmentStateAdapter {
 
-    private final List<Fragment> listTabFragment = new ArrayList<>();
-    private final List<String> listTabTitles = new ArrayList<>();
+    public ViewPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+        super(fragmentManager, lifecycle);
+    }
 
+    @NonNull
+    @Override
+    public Fragment createFragment(int position) {
+        switch (position) {
+            case 1:
+                return new javaRecyclerViewFragment();
+            case 2:
+                return new betaRecyclerViewFragment();
+            case 3:
+                return new snapshotRecyclerViewFragment();
+        }
 
-
-    public ViewPagerAdapter(FragmentManager fm) {
-        super(fm);
+        return new realeseRecyclerViewFragment();
     }
 
     @Override
-    public Fragment getItem(int position) {
-        return listTabFragment.get(position);
-    }
-
-    @Override
-    public int getCount() {
-        return listTabTitles.size();
-    }
-
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return (CharSequence) listTabTitles.get(position);
-    }
-
-    public void AddFragment (Fragment fragment, String title) {
-        listTabFragment.add(fragment);
-        listTabTitles.add(title);
+    public int getItemCount() {
+        return 4;
     }
 }

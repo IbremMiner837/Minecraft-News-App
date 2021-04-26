@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="open_in_vk">Группа ВК</string>
-    <string name="release_changelog">Релизы</string>
+    <string name="bedrock_release_changelog">Bedrock Релиз</string>
+    <string name="java_realese_changelog">Java Edition Релиз</string>
     <string name="beta_changelog">Бета Версии</string>
     <string name="snapshot_changelog">Снапшоты</string>
-    <string name="app_name">Майнкрафт Новости</string>
     <string name="loading">Загрузка...</string>
     <string name="changelogs">Чейнджлоги</string>
-    <string name="version">Версия:</string>
+    <string name="versionn">Версия:</string>
+    <string name="version">Версия</string>
     <string name="minecraft">Майнкрафт</string>
     <string name="changelog">Чейнджлог</string>
     <string name="download">Скачать</string>
@@ -23,6 +24,7 @@
     <string name="desing">Дизайн</string>
     <string name="select">Выбрать</string>
     <string name="selected">Выбрано</string>
+    <string name="file_size">File Size</string>
 
     <!--Desing Settings-->
     <string name="card_size">Размер карточек</string>
@@ -39,6 +41,7 @@
     <string name="big_size">Большой размер</string>
 
     <!--admin pan-->
+    <string name="admin_panel">Админ Панель</string>
     <string name="image">Изображение</string>
     <string name="enter_imgage_link">Введите ссылку на изображение</string>
     <string name="enter_changelog_link">Введите ссылку на чейнджлог</string>
@@ -46,6 +49,12 @@
     <string name="publich_changelog">Опубликовать Чейнджлог</string>
     <string name="empty_fields">Пожалуйста, заполните все поля</string>
     <string name="changelog_published">Чейнджлог опубликован</string>
+
+    <string name="authorization">Авторизация</string>
+    <string name="enter_your_email">Введите свою почту</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="email">Почта</string>
+    <string name="password">Пароль</string>
 
     <!--Array--><string-array name="changelog_type">
     <item>Bedrock Релиз Чейнджлог</item>

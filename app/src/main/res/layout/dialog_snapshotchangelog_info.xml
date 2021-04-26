@@ -32,8 +32,8 @@
             android:id="@+id/dialog_changelog_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:singleLine="true"
             android:layout_margin="5dp"
-            android:text="@string/release_changelog"
             android:textSize="24sp"
             android:textStyle="bold"/>
 
