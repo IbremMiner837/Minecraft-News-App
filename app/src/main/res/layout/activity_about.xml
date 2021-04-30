@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:scrollbars="vertical"
+    tools:context=".AboutActivity">
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        tools:ignore="MissingConstraints">
+
+        <!--View
+            android:id="@+id/line"
+            android:layout_width="320dp"
+            android:layout_height="1dp"
+            android:padding="8dp"
+            android:background="@color/primaryColor"/-->
+
+        <ImageView
+            android:id="@+id/about_img"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:src="@drawable/logo_512"
+            android:layout_marginTop="64dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="8dp"
+            android:layout_marginTop="-18dp">
+
+            <TextView
+                android:id="@+id/about_version_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="@string/version"
+                android:textSize="21sp"/>
+
+            <TextView
+                android:id="@+id/version_name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text=""
+                android:textSize="21sp"/>
+
+            <TextView
+                android:id="@+id/version_code_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text=""
+                android:textSize="21sp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="320dp"
+            android:layout_height="1dp"
+            android:background="@color/primaryColor"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:padding="8dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/vk_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                app:icon="@drawable/ic_action_view_vk"
+                app:iconSize="32sp"
+                app:iconPadding="8dp"
+                app:iconTint="#2787F5"
+                android:textAllCaps="false"
+                android:text="Мы в ВКонтакте"
+                android:textSize="21sp"
+                android:textColor="#2787F5"
+                android:textStyle="bold"
+                android:textAlignment="textStart"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/tiktok_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                app:icon="@drawable/ic_action_view_tiktok"
+                app:iconSize="32sp"
+                app:iconPadding="8dp"
+                android:textAllCaps="false"
+                android:text="Мы в TikTok"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:longClickable="true"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/discord_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                app:icon="@drawable/ic_action_view_discord"
+                app:iconSize="32sp"
+                app:iconPadding="8dp"
+                app:iconTint="#7289DA"
+                android:textAllCaps="false"
+                android:text="Мы в Discord"
+                android:textSize="21sp"
+                android:textColor="#7289DA"
+                android:textStyle="bold"
+                android:textAlignment="textStart"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="320dp"
+            android:layout_height="1dp"
+            android:background="@color/primaryColor"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="© MCBedrock"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+        android:id="@+id/build_type_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Realese"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="28dp"
+        android:elevation="2dp"
+        android:background="@drawable/bottom_nav"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+</androidx.constraintlayout.widget.ConstraintLayout>

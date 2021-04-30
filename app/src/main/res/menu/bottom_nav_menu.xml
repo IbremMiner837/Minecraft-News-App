@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_minecraft_download"
+        android:icon="@drawable/ic_baseline_arrow_circle_down_24"
+        android:title="Download" />
+
+    <item
+        android:id="@+id/navigation_changelogs"
+        android:icon="@drawable/ic_baseline_view_list_24"
+        android:title="Changeloges"
+        />
+
+    <item
+        android:id="@+id/navigation_about"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="Settings" />
+</menu>

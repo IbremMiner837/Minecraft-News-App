@@ -1,0 +1,31 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="@string/card_size"
+        app:icon="@drawable/ic_baseline_view_list_24">
+
+        <ListPreference
+            app:defaultValue="reply"
+            app:entries="@array/reply_entries"
+            app:entryValues="@array/reply_values"
+            app:key="reply"
+            app:title="@string/reply_title"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/theme"
+        app:icon="@drawable/ic_action_view_dark_light">
+
+        <CheckBoxPreference
+            android:title="@string/system_theme"/>
+
+        <CheckBoxPreference
+            android:title="@string/dark_theme"/>
+
+        <CheckBoxPreference
+            android:title="@string/light_theme"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
