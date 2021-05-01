@@ -25,7 +25,7 @@ import com.mcbedrock.minecraftnews.R;
 
 public class snapshotBigCardAdapter extends FirestoreRecyclerAdapter<SnapshotChangelogModel, snapshotBigCardAdapter.myviewholder> {
 
-    //КАРТОЧКА + ДЕЙСТВИЯ ПРИ КЛИКЕ
+    //КАРТОЧКА + ДЕЙСТВИЯ ПРИ КЛИК
 
     ImageView imageView;
     Dialog dialog;
