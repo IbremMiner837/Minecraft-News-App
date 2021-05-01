@@ -1,33 +1,33 @@
 package com.mcbedrock.minecraftnews.minecraftBedrockDownload;
 
 public class minecraftDownloadModel {
-    String img, name, version, download_link, file_size;
+    String img_link, name_title, version, download_link, file_size;
 
     public minecraftDownloadModel() {
     }
 
-    public minecraftDownloadModel(String img, String name, String version, String download_link, String file_size) {
-        this.img = img;
-        this.name = name;
+    public minecraftDownloadModel(String img_link, String name_title, String version, String download_link, String file_size) {
+        this.img_link = img_link;
+        this.name_title = name_title;
         this.version = version;
         this.download_link = download_link;
         this.file_size = file_size;
     }
 
-    public String getImg() {
-        return img;
+    public String getImg_link() {
+        return img_link;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setImg_link(String img_link) {
+        this.img_link = img_link;
     }
 
-    public String getName() {
-        return name;
+    public String getName_title() {
+        return name_title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName_title(String name_title) {
+        this.name_title = name_title;
     }
 
     public String getVersion() {

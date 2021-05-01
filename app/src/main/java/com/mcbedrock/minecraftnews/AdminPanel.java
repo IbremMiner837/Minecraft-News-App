@@ -18,18 +18,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.mcbedrock.minecraftnews.databinding.ActivityAdminPanelBinding;
 
 import java.lang.reflect.Array;
 
 public class AdminPanel extends AppCompatActivity {
 
-    ActivityAdminPanelBinding binding;
+    /*ActivityAdminPanelBinding binding;
 
     private String name;
     private EditText version_input_adminpan, snapshot_version_input_adminpan, changelog_img_link_adminpan, changelog_link_adminpan;
@@ -166,7 +161,7 @@ public class AdminPanel extends AppCompatActivity {
     }*/
 
     //Add Realese Changelog to Firebase Database
-    private void addRealeseChangelog(String img, String link, String name, String version) {
+    /*private void addRealeseChangelog(String img, String link, String name, String version) {
         changelogModel.setImg(img);
         changelogModel.setLink(link);
         changelogModel.setName(name);
@@ -246,5 +241,5 @@ public class AdminPanel extends AppCompatActivity {
                 Toast.makeText(AdminPanel.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
             }
         });
-    }
+    }*/
 }

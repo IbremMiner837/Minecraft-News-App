@@ -25,19 +25,19 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.minecraftBedrockDownload.minecraftDownloadModel;
 
-public class minecraftDownloadAdapter extends FirebaseRecyclerAdapter<minecraftDownloadModel, minecraftDownloadAdapter.myviewholder> {
+public class minecraftDownloadAdapter extends FirestoreRecyclerAdapter<minecraftDownloadModel, minecraftDownloadAdapter.myviewholder> {
 
     //КАРТОЧКА + ДЕЙСТВИЯ ПРИ КЛИКЕ
 
     ImageView imageView;
     Dialog dialog;
 
-    public minecraftDownloadAdapter(@NonNull FirebaseRecyclerOptions<minecraftDownloadModel> options) {
+    public minecraftDownloadAdapter(@NonNull FirestoreRecyclerOptions<minecraftDownloadModel> options) {
         super(options);
     }
 
@@ -45,11 +45,11 @@ public class minecraftDownloadAdapter extends FirebaseRecyclerAdapter<minecraftD
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull minecraftDownloadModel model) {
         RequestOptions requestOptions = new RequestOptions();
         requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(16));
-        holder.name_text.setText(model.getName());
+        holder.name_text.setText(model.getName_title());
         holder.version_text.setText(model.getVersion());
         holder.file_size.setText(model.getFile_size() + "MB");
         Glide.with(holder.img.getContext())
-                .load(model.getImg())
+                .load(model.getImg_link())
                 .apply(requestOptions)
                 .into(holder.img);
 

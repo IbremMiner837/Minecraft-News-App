@@ -11,9 +11,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.FirebaseDatabase;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.mcbedrock.minecraftnews.R;
+import com.mcbedrock.minecraftnews.bedrockRealeseChangelog.RealeseChangelogModel;
 
 public class betaRecyclerViewFragment extends Fragment {
 
@@ -62,9 +64,12 @@ public class betaRecyclerViewFragment extends Fragment {
         recview = (RecyclerView) view.findViewById(R.id.recview);
         recview.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        FirebaseRecyclerOptions<BetaChangelogModel> options =
-                new FirebaseRecyclerOptions.Builder<BetaChangelogModel>()
-                .setQuery(FirebaseDatabase.getInstance().getReference().child("beta_changelogs"), BetaChangelogModel.class)
+        Query query = FirebaseFirestore.getInstance()
+                .collection("bedrock_beta_changeloges")
+                .limit(50);
+
+        FirestoreRecyclerOptions<BetaChangelogModel> options = new FirestoreRecyclerOptions.Builder<BetaChangelogModel>()
+                .setQuery(query, BetaChangelogModel.class)
                 .build();
 
 

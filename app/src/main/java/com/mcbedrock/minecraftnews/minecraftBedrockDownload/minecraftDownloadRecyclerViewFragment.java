@@ -12,8 +12,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.FirebaseDatabase;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.minecraftBedrockDownload.minecraftDownloadModel;
 import com.mcbedrock.minecraftnews.minecraftBedrockDownload.minecraftDownloadAdapter;
@@ -67,9 +69,12 @@ public class minecraftDownloadRecyclerViewFragment extends Fragment {
         recview = (RecyclerView) view.findViewById(R.id.recview);
         recview.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        FirebaseRecyclerOptions<minecraftDownloadModel> options =
-                new FirebaseRecyclerOptions.Builder<minecraftDownloadModel>()
-                .setQuery(FirebaseDatabase.getInstance().getReference().child("minecraft_download"), minecraftDownloadModel.class)
+        Query query = FirebaseFirestore.getInstance()
+                .collection("minecraft_bedrock_realese_download")
+                .limit(50);
+
+        FirestoreRecyclerOptions<minecraftDownloadModel> options = new FirestoreRecyclerOptions.Builder<minecraftDownloadModel>()
+                .setQuery(query, minecraftDownloadModel.class)
                 .build();
 
             adapter = new minecraftDownloadAdapter(options);

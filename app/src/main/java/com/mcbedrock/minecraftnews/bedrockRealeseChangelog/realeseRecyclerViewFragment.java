@@ -13,9 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.FirebaseDatabase;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.mcbedrock.minecraftnews.R;
+import com.mcbedrock.minecraftnews.minecraftBedrockDownload.minecraftDownloadModel;
 
 public class realeseRecyclerViewFragment extends Fragment {
 
@@ -72,9 +74,12 @@ public class realeseRecyclerViewFragment extends Fragment {
         recview = (RecyclerView) view.findViewById(R.id.recview);
         recview.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        FirebaseRecyclerOptions<RealeseChangelogModel> options =
-                new FirebaseRecyclerOptions.Builder<RealeseChangelogModel>()
-                .setQuery(FirebaseDatabase.getInstance().getReference().child("realese_changelogs"), RealeseChangelogModel.class)
+        Query query = FirebaseFirestore.getInstance()
+                .collection("bedrock_realese_changeloges")
+                .limit(50);
+
+        FirestoreRecyclerOptions<RealeseChangelogModel> options = new FirestoreRecyclerOptions.Builder<RealeseChangelogModel>()
+                .setQuery(query, RealeseChangelogModel.class)
                 .build();
 
         if (card_size) {

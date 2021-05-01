@@ -19,18 +19,18 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.mcbedrock.minecraftnews.R;
 
-public class betaAdapter extends FirebaseRecyclerAdapter<BetaChangelogModel, betaAdapter.myviewholder> {
+public class betaAdapter extends FirestoreRecyclerAdapter<BetaChangelogModel, betaAdapter.myviewholder> {
 
     //КАРТОЧКА + ДЕЙСТВИЯ ПРИ КЛИКЕ
 
     ImageView imageView;
     Dialog dialog;
 
-    public betaAdapter(@NonNull FirebaseRecyclerOptions<BetaChangelogModel> options) {
+    public betaAdapter(@NonNull FirestoreRecyclerOptions<BetaChangelogModel> options) {
         super(options);
     }
 
@@ -38,11 +38,11 @@ public class betaAdapter extends FirebaseRecyclerAdapter<BetaChangelogModel, bet
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull BetaChangelogModel betaChangelogModel) {
         RequestOptions requestOptions = new RequestOptions();
         requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(16));
-        holder.name_text.setText(betaChangelogModel.getName());
+        holder.name_text.setText(betaChangelogModel.getName_title());
         holder.version_text.setText(betaChangelogModel.getVersion());
-        holder.link_text.setText(betaChangelogModel.getLink());
+        holder.link_text.setText(betaChangelogModel.getChangelog_link());
         Glide.with(holder.img.getContext())
-                .load(betaChangelogModel.getImg())
+                .load(betaChangelogModel.getImg_link())
                 .apply(requestOptions)
                 .into(holder.img);
 
@@ -62,11 +62,9 @@ public class betaAdapter extends FirebaseRecyclerAdapter<BetaChangelogModel, bet
                 TextView dialog_changelog_name;
                 TextView dialog_changelog_version;
                 String dialog_changelog_link;
-                String dialog_download_link;
 
                 //btn open changelog and download
                 Button dialog_changelog_btn;
-                Button dialog_download_btn;
 
                 dialog_changelog_img = dialogView.findViewById(R.id.dialog_img);
                 dialog_changelog_name = dialogView.findViewById(R.id.dialog_changelog_name);
@@ -74,30 +72,11 @@ public class betaAdapter extends FirebaseRecyclerAdapter<BetaChangelogModel, bet
 
                 //btn open changelog and download
                 dialog_changelog_btn = dialogView.findViewById(R.id.dialog_changelog_btn);
-                //dialog_download_btn = dialogView.findViewById(R.id.dialog_download_btn);
 
-                Glide.with(dialogView.getContext()).load(betaChangelogModel.getImg()).into(dialog_changelog_img);
-                dialog_changelog_name.setText(betaChangelogModel.name);
+                Glide.with(dialogView.getContext()).load(betaChangelogModel.getImg_link()).into(dialog_changelog_img);
+                dialog_changelog_name.setText(betaChangelogModel.name_title);
                 dialog_changelog_version.setText(betaChangelogModel.version);
-                dialog_changelog_link = betaChangelogModel.link;
-                dialog_download_link = betaChangelogModel.download_link;
-
-                /*dialog_download_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(dialog_download_link));
-                        String title = URLUtil.guessFileName(dialog_download_link, null, null);
-                        request.setTitle(title);
-                        request.setDescription("Download...");
-                        String cookie = CookieManager.getInstance().getCookie(dialog_download_link);
-                        request.addRequestHeader("cookie", cookie);
-                        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, title);
-
-                        DownloadManager downloadManager = (DownloadManager) activity.getSystemService(Context.DOWNLOAD_SERVICE);
-                        downloadManager.enqueue(request);
-                    }
-                });*/
+                dialog_changelog_link = betaChangelogModel.changelog_link;
 
                 dialog_changelog_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
