@@ -31,10 +31,12 @@
                 android:textSize="24sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <View
+            android:layout_width="320dp"
             android:layout_height="1dp"
-            android:background="@drawable/line" />
+            android:layout_margin="16dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/primaryColor"/>
 
         <include layout="@layout/singlerowdesing_small"
             android:layout_width="match_parent"
@@ -75,15 +77,16 @@
                 android:textSize="21sp"/-->
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <View
+            android:layout_width="320dp"
             android:layout_height="1dp"
-            android:layout_marginTop="18dp"
-            android:background="@drawable/line"/>
+            android:layout_margin="16dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/primaryColor"/>
 
         <include layout="@layout/singlerowdesing_big"
             android:layout_width="match_parent"
-            android:layout_height="256dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="18dp"/>
 
         <RelativeLayout

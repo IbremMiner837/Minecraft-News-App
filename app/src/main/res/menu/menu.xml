@@ -11,16 +11,30 @@
         android:id="@+id/action_settings"
         android:title="@string/settings"
         android:icon="@drawable/ic_baseline_settings_24"
+        android:iconTint="@color/primaryColor"
         app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/action_about"
-        android:title="@string/about"
-        android:icon="@drawable/ic_action_info"
-        app:showAsAction="never" />
     <!--item
+        android:id="@+id/search"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="@string/search"
+        app:showAsAction="ifRoom"
+        android:actionViewClass="android.widget.SearchView"/-->
+
+    <item
         android:id="@+id/action_sort"
+        android:icon="@drawable/ic_baseline_sort_24"
         android:title="@string/sort"
-        app:showAsAction="never"
-        /-->
+        app:showAsAction="ifRoom">
+
+        <menu>
+            <item
+                android:id="@+id/sort_descending"
+                android:title="@string/newest"/>
+
+            <item
+                android:id="@+id/sort_ascending"
+                android:title="@string/oldest"/>
+        </menu>
+    </item>
 </menu>

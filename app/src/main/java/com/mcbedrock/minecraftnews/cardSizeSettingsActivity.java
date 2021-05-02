@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
@@ -25,6 +26,8 @@ public class cardSizeSettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_size_settings);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         CheckBox set_smallcard = (CheckBox) findViewById(R.id.set_smallcard_checkBox);
         CheckBox set_bigcard = (CheckBox) findViewById(R.id.set_bigcard_checkBox);
 
@@ -68,6 +71,8 @@ public class cardSizeSettingsActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(cardSizeSettingsActivity.this, desingSettingsActivity.class);
         startActivity(intent);
+        overridePendingTransition(0, 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         finish();
         super.onBackPressed();  // optional depending on your needs
     }

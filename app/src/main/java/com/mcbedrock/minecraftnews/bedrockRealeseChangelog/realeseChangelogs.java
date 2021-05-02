@@ -29,6 +29,9 @@ public class realeseChangelogs extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager2 pager2;
     ViewPagerAdapter viewPagerAdapter;
+    private int selectTabId = 0;
+
+    private Boolean sort_by_descending;
 
     private int theme = 0;
 
@@ -41,11 +44,14 @@ public class realeseChangelogs extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_realese_changelogs);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().setTitle(R.string.changelogs);
 
         //ActionBar actionBar = getSupportActionBar();
         //actionBar.setLogo(R.drawable.creeper_512);
         //actionBar.setDisplayUseLogoEnabled(true);
         //actionBar.setDisplayShowHomeEnabled(true);
+
+        selectTabId = 0;
 
         LoadPrefs();
 
@@ -88,7 +94,7 @@ public class realeseChangelogs extends AppCompatActivity {
         pager2 = findViewById(R.id.viewPager_id);
 
         FragmentManager fm = getSupportFragmentManager();
-        viewPagerAdapter = new ViewPagerAdapter(fm,getLifecycle());
+        viewPagerAdapter = new ViewPagerAdapter(fm, getLifecycle());
         pager2.setAdapter(viewPagerAdapter);
 
         tabLayout.addTab(tabLayout.newTab().setText(R.string.bedrock_release_changelog));
@@ -100,6 +106,31 @@ public class realeseChangelogs extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 pager2.setCurrentItem(tab.getPosition());
+
+                if (tab.getPosition() == 0) {
+                    Toast toast = Toast.makeText(realeseChangelogs.this, "0", Toast.LENGTH_SHORT);
+                    toast.show();
+
+                    selectTabId = 0;
+
+                } if (tab.getPosition() == 1) {
+                    Toast toast = Toast.makeText(realeseChangelogs.this, "1", Toast.LENGTH_SHORT);
+                    toast.show();
+
+                    selectTabId = 1;
+
+                } if (tab.getPosition() == 2) {
+                    Toast toast = Toast.makeText(realeseChangelogs.this, "2", Toast.LENGTH_SHORT);
+                    toast.show();
+
+                    selectTabId = 2;
+
+                } if (tab.getPosition() == 3) {
+                    Toast toast = Toast.makeText(realeseChangelogs.this, "3", Toast.LENGTH_SHORT);
+                    toast.show();
+
+                    selectTabId = 3;
+                }
             }
 
             @Override
@@ -138,29 +169,53 @@ public class realeseChangelogs extends AppCompatActivity {
 
         if(id == R.id.action_check_update) {
             Toast toast = Toast.makeText(this,R.string.function_not_available, Toast.LENGTH_LONG);
-            toast.show();        }
+            toast.show();
+        }
 
         if(id == R.id.action_settings) {
             Intent intent=new Intent(realeseChangelogs.this, desingSettingsActivity.class);
             startActivity(intent);
+            overridePendingTransition(0, 0);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             finish();
         }
 
-        if(id == R.id.action_about) {
-            Intent intent=new Intent(realeseChangelogs.this, AboutActivity.class);
+        if(id == R.id.sort_descending) {
+            //от новых
+            SavePrefs("sort_by_descending", true);
+            Intent intent = new Intent(realeseChangelogs.this, realeseChangelogs.class);
             startActivity(intent);
+            finish();
         }
 
-        /*if(id == R.id.action_sort){
-            //display alert dialog to choose sorting
-            //showSortDialog();
-            return true;
-        }*/
+        if(id == R.id.sort_ascending) {
+            SavePrefs("sort_by_descending", false);
+            Intent intent = new Intent(realeseChangelogs.this, realeseChangelogs.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            finish();
+        }
         return super.onOptionsItemSelected(item);
     }
 
     private void LoadPrefs() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         theme = sharedPreferences.getInt("theme", 1);
+        sort_by_descending = sharedPreferences.getBoolean("sort_by_descending",true);
+    }
+
+    private void SavePrefs(String key, boolean value) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(key, value);
+        editor.apply();
+    }
+
+    private void SavePrefs(String key, String value) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key, value);
+        editor.apply();
     }
 }

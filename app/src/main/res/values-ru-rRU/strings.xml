@@ -12,19 +12,21 @@
     <string name="minecraft">Майнкрафт</string>
     <string name="changelog">Чейнджлог</string>
     <string name="download">Скачать</string>
-    <string name="downloading_file">Скачивание Файла пожалуйста подождите...</string>
+    <string name="download_minecraft">Скачать Майнкрафт</string>
+    <string name="downloading_file">Скачивание Файла пожалуйста подождите…</string>
     <string name="about">О приложении</string>
     <string name="settings">Настройки</string>
     <string name="sort">Сортировка</string>
-    <string name="newest">Новые</string>
-    <string name="oldest">Старые</string>
-    <string name="sort_by">Сортировать по</string>
+    <string name="newest">От новых версий</string>
+    <string name="oldest">От старых версий</string>
+    <string name="sort_by">Сортировать начиная</string>
+    <string name="search">Поиск</string>
     <string name="check_update">Проверить обновление</string>
     <string name="function_not_available">Функция недоступна</string>
     <string name="desing">Дизайн</string>
     <string name="select">Выбрать</string>
     <string name="selected">Выбрано</string>
-    <string name="file_size">File Size</string>
+    <string name="file_size">Размер Файла</string>
 
     <!--Desing Settings-->
     <string name="card_size">Размер карточек</string>

@@ -26,10 +26,12 @@
 
         <ImageView
             android:id="@+id/about_img"
-            android:layout_width="128dp"
-            android:layout_height="128dp"
+            android:layout_width="156dp"
+            android:layout_height="156dp"
+            android:scaleY="1.2"
+            android:scaleX="1.2"
             android:src="@drawable/logo_512"
-            android:layout_marginTop="64dp"/>
+            android:layout_marginTop="56dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -140,8 +142,8 @@
         android:text="© MCBedrock"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"/>
+        android:layout_alignParentStart="true"
+        app:layout_constraintBottom_toTopOf="@id/nav_view"/>
 
     <TextView
         android:id="@+id/build_type_text"
@@ -151,18 +153,17 @@
         android:text="Realese"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/nav_view" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="28dp"
+        style="@style/Widget.MaterialComponents.BottomNavigationView.PrimarySurface"
         android:elevation="2dp"
-        android:background="@drawable/bottom_nav"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/bottom_nav_menu"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

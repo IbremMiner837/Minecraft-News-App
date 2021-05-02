@@ -31,6 +31,7 @@ public class betaRecyclerViewFragment extends Fragment {
     betaBigCardAdapter adapterBC;
 
     private Boolean card_size;
+    private Boolean sort_by_descending;
 
     public betaRecyclerViewFragment() {
     }
@@ -64,21 +65,44 @@ public class betaRecyclerViewFragment extends Fragment {
         recview = (RecyclerView) view.findViewById(R.id.recview);
         recview.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        Query query = FirebaseFirestore.getInstance()
-                .collection("bedrock_beta_changeloges")
-                .limit(50);
+        LoadPrefs();
 
-        FirestoreRecyclerOptions<BetaChangelogModel> options = new FirestoreRecyclerOptions.Builder<BetaChangelogModel>()
-                .setQuery(query, BetaChangelogModel.class)
-                .build();
+        if (sort_by_descending) {
+            Query query = FirebaseFirestore.getInstance()
+                    .collection("bedrock_beta_changeloges")
+                    .orderBy("version", Query.Direction.DESCENDING)//от новых
+                    .limit(50);
+
+            FirestoreRecyclerOptions<BetaChangelogModel> options = new FirestoreRecyclerOptions.Builder<BetaChangelogModel>()
+                    .setQuery(query, BetaChangelogModel.class)
+                    .build();
 
 
-        if (card_size) {
-            adapter = new betaAdapter(options);
-            recview.setAdapter(adapter);
+            if (card_size) {
+                adapter = new betaAdapter(options);
+                recview.setAdapter(adapter);
+            } else {
+                adapterBC = new betaBigCardAdapter(options);
+                recview.setAdapter(adapterBC);
+            }
         } else {
-            adapterBC = new betaBigCardAdapter(options);
-            recview.setAdapter(adapterBC);
+            Query query = FirebaseFirestore.getInstance()
+                    .collection("bedrock_beta_changeloges")
+                    .orderBy("version", Query.Direction.ASCENDING)//от новых
+                    .limit(50);
+
+            FirestoreRecyclerOptions<BetaChangelogModel> options = new FirestoreRecyclerOptions.Builder<BetaChangelogModel>()
+                    .setQuery(query, BetaChangelogModel.class)
+                    .build();
+
+
+            if (card_size) {
+                adapter = new betaAdapter(options);
+                recview.setAdapter(adapter);
+            } else {
+                adapterBC = new betaBigCardAdapter(options);
+                recview.setAdapter(adapterBC);
+            }
         }
         return view;
     }
@@ -86,6 +110,8 @@ public class betaRecyclerViewFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        LoadPrefs();
+
         if (card_size) {
             adapter.startListening();
         } else {
@@ -96,6 +122,8 @@ public class betaRecyclerViewFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
+        LoadPrefs();
+
         if (card_size) {
             adapter.startListening();
         } else {
@@ -106,6 +134,7 @@ public class betaRecyclerViewFragment extends Fragment {
     private void LoadPrefs() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         card_size = sharedPreferences.getBoolean("card_smallsize", true);
+        sort_by_descending = sharedPreferences.getBoolean("sort_by_descending",true);
     }
 
 }

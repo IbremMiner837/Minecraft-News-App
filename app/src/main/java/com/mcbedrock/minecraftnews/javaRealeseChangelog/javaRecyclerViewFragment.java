@@ -31,6 +31,7 @@ public class javaRecyclerViewFragment extends Fragment {
     javaBigCardAdapter adapterBC;
 
     private Boolean card_size;
+    private Boolean sort_by_descending;
 
     public javaRecyclerViewFragment() {
     }
@@ -63,21 +64,42 @@ public class javaRecyclerViewFragment extends Fragment {
 
         recview = (RecyclerView) view.findViewById(R.id.recview);
         recview.setLayoutManager(new LinearLayoutManager(getContext()));
+        LoadPrefs();
 
-        Query query = FirebaseFirestore.getInstance()
-                .collection("java_realese_changeloges")
-                .limit(50);
+        if (sort_by_descending) {
+            Query query = FirebaseFirestore.getInstance()
+                    .collection("java_realese_changeloges")
+                    .orderBy("version", Query.Direction.DESCENDING)//от новых
+                    .limit(50);
 
-        FirestoreRecyclerOptions<javaChangelogModel> options = new FirestoreRecyclerOptions.Builder<javaChangelogModel>()
-                .setQuery(query, javaChangelogModel.class)
-                .build();
+            FirestoreRecyclerOptions<javaChangelogModel> options = new FirestoreRecyclerOptions.Builder<javaChangelogModel>()
+                    .setQuery(query, javaChangelogModel.class)
+                    .build();
 
-        if (card_size) {
-            adapter = new javaAdapter(options);
-            recview.setAdapter(adapter);
+            if (card_size) {
+                adapter = new javaAdapter(options);
+                recview.setAdapter(adapter);
+            } else {
+                adapterBC = new javaBigCardAdapter(options);
+                recview.setAdapter(adapterBC);
+            }
         } else {
-            adapterBC = new javaBigCardAdapter(options);
-            recview.setAdapter(adapterBC);
+            Query query = FirebaseFirestore.getInstance()
+                    .collection("java_realese_changeloges")
+                    .orderBy("version", Query.Direction.ASCENDING)//от новых
+                    .limit(50);
+
+            FirestoreRecyclerOptions<javaChangelogModel> options = new FirestoreRecyclerOptions.Builder<javaChangelogModel>()
+                    .setQuery(query, javaChangelogModel.class)
+                    .build();
+
+            if (card_size) {
+                adapter = new javaAdapter(options);
+                recview.setAdapter(adapter);
+            } else {
+                adapterBC = new javaBigCardAdapter(options);
+                recview.setAdapter(adapterBC);
+            }
         }
 
         return view;
@@ -86,6 +108,7 @@ public class javaRecyclerViewFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        LoadPrefs();
         if (card_size) {
             adapter.startListening();
         } else {
@@ -96,6 +119,7 @@ public class javaRecyclerViewFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
+        LoadPrefs();
         if (card_size) {
             adapter.startListening();
         } else {
@@ -106,5 +130,6 @@ public class javaRecyclerViewFragment extends Fragment {
     private void LoadPrefs() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         card_size = sharedPreferences.getBoolean("card_smallsize", true);
+        sort_by_descending = sharedPreferences.getBoolean("sort_by_descending",true);
     }
 }

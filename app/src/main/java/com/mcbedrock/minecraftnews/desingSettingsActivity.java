@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ public class desingSettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desing_settings);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         getSupportActionBar().setTitle(R.string.settings);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -44,6 +46,8 @@ public class desingSettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(desingSettingsActivity.this, cardSizeSettingsActivity.class);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 finish();
             }
         });
@@ -167,6 +171,9 @@ public class desingSettingsActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(desingSettingsActivity.this, realeseChangelogs.class);
         startActivity(intent);
+        overridePendingTransition(0, 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        finish();
         super.onBackPressed();  // optional depending on your needs
     }
 }

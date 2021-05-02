@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,10 +35,12 @@ public class AboutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().setTitle(R.string.about);
 
         //set action bar title
-        getSupportActionBar().setTitle(R.string.about);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setTitle(R.string.about);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //For TikTok
         //Icons made by Freepik from https://www.flaticon.com
@@ -70,6 +73,8 @@ public class AboutActivity extends AppCompatActivity {
                 imgClick();
             }
         });
+
+
 
         vk_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,6 +144,9 @@ public class AboutActivity extends AppCompatActivity {
     public void imgClick() {
         Toast toast = Toast.makeText(this, "Boom ;)", Toast.LENGTH_LONG);
         toast.show();
+
+        Intent intent = new Intent(Intent.EXTRA_DONT_KILL_APP);
+        startActivity(intent);
     }
 
     private void LoadPrefs() {
@@ -146,6 +154,7 @@ public class AboutActivity extends AppCompatActivity {
         theme = sharedPreferences.getInt("theme", 1);
     }
 
+    /*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -157,13 +166,15 @@ public class AboutActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
+    }*/
 
     @Override
     public void onBackPressed()
     {
         Intent intent = new Intent(AboutActivity.this, realeseChangelogs.class);
         startActivity(intent);
+        overridePendingTransition(0, 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         super.onBackPressed();  // optional depending on your needs
     }
 }
