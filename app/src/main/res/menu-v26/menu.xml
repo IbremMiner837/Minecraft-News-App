@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_check_update"
+        android:title="@string/check_update"
+        android:icon="@drawable/ic_action_update"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/settings"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:iconTint="@color/primaryColor"
+        app:showAsAction="never"/>
+
+    <!--item
+        android:id="@+id/search"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="@string/search"
+        app:showAsAction="ifRoom"
+        android:actionViewClass="android.widget.SearchView"/-->
+
+    <item
+        android:id="@+id/action_sort"
+        android:icon="@drawable/ic_baseline_sort_24"
+        android:title="@string/sort"
+        app:showAsAction="ifRoom">
+
+        <menu>
+            <item
+                android:id="@+id/sort_descending"
+                android:title="@string/newest"/>
+
+            <item
+                android:id="@+id/sort_ascending"
+                android:title="@string/oldest"/>
+        </menu>
+    </item>
+</menu>
