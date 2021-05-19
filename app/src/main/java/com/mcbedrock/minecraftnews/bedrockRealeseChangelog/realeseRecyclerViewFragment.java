@@ -140,6 +140,8 @@ public class realeseRecyclerViewFragment extends Fragment {
         }
     }
 
+
+
     private void LoadPrefs() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         card_size = sharedPreferences.getBoolean("card_smallsize", true);

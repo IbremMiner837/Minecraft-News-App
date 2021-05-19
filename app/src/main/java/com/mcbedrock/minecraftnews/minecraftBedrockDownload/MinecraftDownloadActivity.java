@@ -3,27 +3,44 @@ package com.mcbedrock.minecraftnews.minecraftBedrockDownload;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.OnUserEarnedRewardListener;
+import com.google.android.gms.ads.RequestConfiguration;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.rewarded.RewardItem;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.mcbedrock.minecraftnews.AboutActivity;
 import com.mcbedrock.minecraftnews.R;
+import com.mcbedrock.minecraftnews.RewardAd;
 import com.mcbedrock.minecraftnews.bedrockRealeseChangelog.realeseChangelogs;
 import com.mcbedrock.minecraftnews.bedrockRealeseChangelog.realeseRecyclerViewFragment;
 import com.mcbedrock.minecraftnews.desingSettingsActivity;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MinecraftDownloadActivity extends AppCompatActivity {
 
     private Boolean sort_by_descending;
-
     private int theme = 0;
 
     public MinecraftDownloadActivity() {
@@ -41,6 +58,14 @@ public class MinecraftDownloadActivity extends AppCompatActivity {
         //textView.setText(R.string.file_size);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new minecraftDownloadRecyclerViewFragment()).commit();
+
+        /*final RewardAd rewardAd = new RewardAd(this);
+        rewardAd.AdsInit();
+
+        List<String> testDeviceIds = Arrays.asList("19F3304F67F5416E1C38CC303C6EF994");
+        RequestConfiguration configuration =
+                new RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build();
+        MobileAds.setRequestConfiguration(configuration);*/
 
         //Bottom Nav
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
@@ -66,8 +91,6 @@ public class MinecraftDownloadActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
     }
 
     @Override
@@ -82,23 +105,17 @@ public class MinecraftDownloadActivity extends AppCompatActivity {
 
         //handle other actionbar item clicks here
 
-        if(id == R.id.action_check_update) {
-            Toast toast = Toast.makeText(this,R.string.function_not_available, Toast.LENGTH_LONG);
-            toast.show();        }
-
-        if(id == R.id.action_settings) {
-            Intent intent=new Intent(MinecraftDownloadActivity.this, desingSettingsActivity.class);
-            startActivity(intent);
-            finish();
-        }
-
         if(id == R.id.sort_descending) {
             //от новых
-            SavePrefs("sort_by_descending", true);
+            //SavePrefs("sort_by_descending", true);
+            Toast toast = Toast.makeText(MinecraftDownloadActivity.this, R.string.function_not_available, Toast.LENGTH_SHORT);
+            toast.show();
         }
 
         if(id == R.id.sort_ascending) {
-            SavePrefs("sort_by_descending", false);
+            //SavePrefs("sort_by_descending", false);
+            Toast toast = Toast.makeText(MinecraftDownloadActivity.this, R.string.function_not_available, Toast.LENGTH_SHORT);
+            toast.show();
         }
         return super.onOptionsItemSelected(item);
     }

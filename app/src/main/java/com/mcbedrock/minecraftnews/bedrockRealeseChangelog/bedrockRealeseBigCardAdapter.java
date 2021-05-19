@@ -3,6 +3,8 @@ package com.mcbedrock.minecraftnews.bedrockRealeseChangelog;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DownloadManager;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -15,6 +17,7 @@ import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,8 +29,10 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.material.snackbar.Snackbar;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.minecraftBedrockDownload.minecraftDownloadModel;
+import com.ms.square.android.expandabletextview.ExpandableTextView;
 
 public class bedrockRealeseBigCardAdapter extends FirestoreRecyclerAdapter<RealeseChangelogModel, bedrockRealeseBigCardAdapter.myviewholder> {
 
@@ -64,15 +69,19 @@ public class bedrockRealeseBigCardAdapter extends FirestoreRecyclerAdapter<Reale
                 //toast.show();
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getRootView().getContext());
+                AlertDialog alertDialog = builder.create();
                 View dialogView = LayoutInflater.from(view.getRootView().getContext()).inflate(R.layout.dialog_changelog_info, null);
                 ImageView dialog_changelog_img;
                 TextView dialog_changelog_name;
                 TextView dialog_changelog_version;
                 String dialog_changelog_link;
 
+                ExpandableTextView expandableTextView;
+                expandableTextView = dialogView.findViewById(R.id.expand_text_view);
+
                 //btn open changelog and download
                 Button dialog_changelog_btn;
-                Button dialog_download_btn;
+                Button dialog_cancel_btn;
 
                 dialog_changelog_img = dialogView.findViewById(R.id.dialog_img);
                 dialog_changelog_name = dialogView.findViewById(R.id.dialog_changelog_name);
@@ -80,18 +89,19 @@ public class bedrockRealeseBigCardAdapter extends FirestoreRecyclerAdapter<Reale
 
                 //btn open changelog and download
                 dialog_changelog_btn = dialogView.findViewById(R.id.dialog_changelog_btn);
-                dialog_download_btn = dialogView.findViewById(R.id.dialog_download_btn);
+                dialog_cancel_btn = dialogView.findViewById(R.id.dialog_cancel_btn);
 
                 Glide.with(dialogView.getContext()).load(model.getImg_link()).into(dialog_changelog_img);
                 dialog_changelog_name.setText(model.name_title);
                 dialog_changelog_version.setText(model.version);
+                expandableTextView.setText(model.description.replaceAll("\\\\n", "\n"));
                 dialog_changelog_link = model.changelog_link;
 
-                dialog_download_btn.setOnClickListener(new View.OnClickListener() {
+                dialog_cancel_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //
-                    }
+                        alertDialog.cancel();
+                        alertDialog.dismiss();                    }
                 });
 
                 dialog_changelog_btn.setOnClickListener(new View.OnClickListener() {
@@ -103,10 +113,24 @@ public class bedrockRealeseBigCardAdapter extends FirestoreRecyclerAdapter<Reale
                     }
                 });
 
-                builder.setView(dialogView);
-                builder.setCancelable(true);
-                builder.show();
+                dialog_changelog_btn.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        ClipboardManager clipboard = (ClipboardManager) activity.getSystemService(Context.CLIPBOARD_SERVICE);
+                        ClipData clip = ClipData.newPlainText("label", model.changelog_link);
+                        clipboard.setPrimaryClip(clip);
 
+                        Toast toast = Toast.makeText(activity, R.string.link_copied, Toast.LENGTH_SHORT);
+                        toast.show();
+
+                        //snackbarAPI.BasicSnackbar(R.string.link_copied);
+                        return true;
+                    }
+                });
+
+                alertDialog.setView(dialogView);
+                alertDialog.setCancelable(true);
+                alertDialog.show();
             }
         });
     }

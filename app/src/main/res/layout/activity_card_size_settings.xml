@@ -5,123 +5,128 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".cardSizeSettingsActivity">
 
-    <LinearLayout
-        android:id="@+id/sv"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/sv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:src="@drawable/ic_baseline_view_list_24" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_baseline_view_list_24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="6dp"
+                    android:text="@string/select_card_size"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="320dp"
+                android:layout_height="1dp"
+                android:layout_margin="16dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/primaryColor"/>
+
+            <include layout="@layout/singlerowdesing_small"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="6dp"
-                android:text="@string/select_card_size"
-                android:textSize="24sp" />
+                android:layout_marginTop="8dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/small_size"
+                    android:textSize="21sp"
+                    android:textStyle="bold"/>
+
+                <CheckBox
+                    android:id="@+id/set_smallcard_checkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="16dp"
+                    android:onClick="onCheckboxClicked"/>
+
+                <!--Button
+                    android:id="@+id/set_smallcard_btn"
+                    android:layout_width="156dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/select"
+                    android:textAllCaps="false"
+                    android:textSize="21sp"/-->
+            </RelativeLayout>
+
+            <View
+                android:layout_width="320dp"
+                android:layout_height="1dp"
+                android:layout_margin="16dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/primaryColor"/>
+
+            <include layout="@layout/singlerowdesing_big"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/big_size"
+                    android:textSize="21sp"
+                    android:textStyle="bold"/>
+
+                <CheckBox
+                    android:id="@+id/set_bigcard_checkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="16dp"
+                    android:onClick="onCheckboxClicked"/>
+
+                <!--Button
+                    android:id="@+id/set_bigcard_btn"
+                    android:layout_width="156dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/select"
+                    android:textAllCaps="false"
+                    android:textSize="21sp"/-->
+            </RelativeLayout>
+
         </LinearLayout>
-
-        <View
-            android:layout_width="320dp"
-            android:layout_height="1dp"
-            android:layout_margin="16dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/primaryColor"/>
-
-        <include layout="@layout/singlerowdesing_small"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="16dp"
-                android:text="@string/small_size"
-                android:textSize="21sp"
-                android:textStyle="bold"/>
-
-            <CheckBox
-                android:id="@+id/set_smallcard_checkBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="16dp"
-                android:onClick="onCheckboxClicked"/>
-
-            <!--Button
-                android:id="@+id/set_smallcard_btn"
-                android:layout_width="156dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:text="@string/select"
-                android:textAllCaps="false"
-                android:textSize="21sp"/-->
-        </RelativeLayout>
-
-        <View
-            android:layout_width="320dp"
-            android:layout_height="1dp"
-            android:layout_margin="16dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/primaryColor"/>
-
-        <include layout="@layout/singlerowdesing_big"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="16dp"
-                android:text="@string/big_size"
-                android:textSize="21sp"
-                android:textStyle="bold"/>
-
-            <CheckBox
-                android:id="@+id/set_bigcard_checkBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="16dp"
-                android:onClick="onCheckboxClicked"/>
-
-            <!--Button
-                android:id="@+id/set_bigcard_btn"
-                android:layout_width="156dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:text="@string/select"
-                android:textAllCaps="false"
-                android:textSize="21sp"/-->
-        </RelativeLayout>
-
-    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

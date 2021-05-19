@@ -1,17 +1,18 @@
 package com.mcbedrock.minecraftnews.minecraftBedrockDownload;
 
 public class minecraftDownloadModel {
-    String img_link, name_title, version, download_link, file_size;
+    String img_link, name_title, version, download_link, file_size, modification;
 
     public minecraftDownloadModel() {
     }
 
-    public minecraftDownloadModel(String img_link, String name_title, String version, String download_link, String file_size) {
+    public minecraftDownloadModel(String img_link, String name_title, String version, String download_link, String file_size, String modification) {
         this.img_link = img_link;
         this.name_title = name_title;
         this.version = version;
         this.download_link = download_link;
         this.file_size = file_size;
+        this.modification = modification;
     }
 
     public String getImg_link() {
@@ -52,5 +53,13 @@ public class minecraftDownloadModel {
 
     public void setFile_size() {
         this.file_size = file_size;
+    }
+
+    public String getModification() {
+        return modification;
+    }
+
+    public void setModification() {
+        this.modification = modification;
     }
 }

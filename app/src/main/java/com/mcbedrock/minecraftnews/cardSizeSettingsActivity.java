@@ -36,13 +36,13 @@ public class cardSizeSettingsActivity extends AppCompatActivity {
 
         LoadPrefs();
 
-        if (theme == 0) {
+        /*if (theme == 0) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         } else if (theme == 1) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         } else if (theme == 2) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }
+        }*/
 
         if (card_size == true) {
             set_smallcard.setChecked(true);

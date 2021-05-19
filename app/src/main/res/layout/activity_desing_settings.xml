@@ -34,16 +34,17 @@
                 android:text="@string/card_size"
                 android:textSize="24sp" />
 
-            <TextView
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:id="@+id/select_card_size_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="46dp"
                 android:layout_toEndOf="@id/im"
-                android:focusable="true"
-                android:padding="12dp"
+                android:padding="8dp"
                 android:text="@string/select_card_size"
-                android:textSize="24sp" />
+                android:textSize="21sp"
+                android:textAllCaps="false"/>
         </RelativeLayout>
 
         <View

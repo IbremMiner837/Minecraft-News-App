@@ -14,6 +14,9 @@
     <string name="download">Download</string>
     <string name="download_minecraft">Download Minecraft</string>
     <string name="downloading_file">Downloading File please wait…</string>
+    <string name="signature_verification">Signature verification</string>
+    <string name="original">Original</string>
+    <string name="modification">Modification</string>
     <string name="about">About</string>
     <string name="settings">Settings</string>
     <string name="sort">Sort</string>
@@ -27,6 +30,19 @@
     <string name="selected">Selected</string>
     <string name="select">Select</string>
     <string name="file_size">File Size</string>
+    <string name="cancel">Cancel</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="link_copied">Link Copied</string>
+
+    <!--OnBoardingScreem-->
+    <string name="welcome">Welcome</string>
+    <string name="all_changeloges">All Changeloges</string>
+
+    <string name="welcome_desc">Welcome to our app for Minecraft lovers! I hope you will be satisfied with it.</string>
+    <string name="all_changeloges_desc">Here you can easily find a list of changelogs, for all versions of Minecraft, you no longer need to waste time looking for the desired list of changelogs on the site.</string>
+    <string name="minecraft_download_desc">And also you can easily download Minecraft directly from our program, is it convenient right?</string>
+    <string name="lets_go">"Let's go!"</string>
 
     <!--Desing Settings-->
     <string name="card_size">Card size</string>
@@ -88,5 +104,11 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_activity_main">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="menu">Menu</string>
 
 </resources>

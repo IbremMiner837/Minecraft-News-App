@@ -11,8 +11,8 @@ android {
         applicationId "com.mcbedrock.minecraftnews"
         minSdkVersion 22
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0.0 beta"
+        versionCode 3
+        versionName "1.0.2 beta"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -31,6 +31,9 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
     }
 }
 
@@ -57,7 +60,16 @@ dependencies {
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'com.google.firebase:firebase-firestore:22.1.2'
     implementation 'com.firebaseui:firebase-ui-firestore:7.1.1'
+    implementation 'com.google.firebase:firebase-inappmessaging-display:19.1.5'
+    implementation 'com.google.firebase:firebase-analytics:18.0.3'
+    implementation 'com.google.firebase:firebase-config:20.0.4'
 
+    compile 'com.ms-square:expandableTextView:0.1.4'
+    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
+    implementation 'com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0'
+
+
+    implementation 'com.google.android.gms:play-services-ads:20.1.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

@@ -3,15 +3,15 @@
     <item
         android:id="@+id/navigation_minecraft_download"
         android:icon="@drawable/ic_baseline_arrow_circle_down_24"
-        android:title="Download"/>
+        android:title="@string/download_minecraft"/>
 
     <item
         android:id="@+id/navigation_changelogs"
         android:icon="@drawable/ic_baseline_view_list_24"
-        android:title="Changeloges"/>
+        android:title="@string/changelogs"/>
 
     <item
         android:id="@+id/navigation_about"
         android:icon="@drawable/ic_baseline_info_24"
-        android:title="About"/>
+        android:title="@string/about"/>
 </menu>

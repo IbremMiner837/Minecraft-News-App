@@ -169,7 +169,7 @@ public class desingSettingsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        Intent intent = new Intent(desingSettingsActivity.this, realeseChangelogs.class);
+        Intent intent = new Intent(desingSettingsActivity.this, MainActivity.class);
         startActivity(intent);
         overridePendingTransition(0, 0);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);

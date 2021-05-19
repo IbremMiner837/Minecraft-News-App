@@ -26,8 +26,6 @@ public class AboutActivity extends AppCompatActivity {
     TextView version_name_text, version_code_text, build_type_text;
     private int theme = 0;
 
-    BottomNavigationView bottomNavigationView;
-
     //crowdin token
     //78cce953a66615c110b9492707720c223f55c0abfc247c545a11e071d12184b467651ff647a584e3
 
@@ -103,33 +101,7 @@ public class AboutActivity extends AppCompatActivity {
             }
         });
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
-
-        bottomNavigationView.setSelectedItemId(R.id.navigation_about);
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.navigation_minecraft_download:
-                        startActivity(new Intent(getApplicationContext(), MinecraftDownloadActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-
-                    case R.id.navigation_changelogs:
-                        startActivity(new Intent(getApplicationContext(), realeseChangelogs.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-
-                    case R.id.navigation_about:
-                        return true;
-                }
-
-                return false;
-            }
-        });
-
-        if (theme == 0) {
+        /*if (theme == 0) {
             //line.setVisibility(View.VISIBLE);
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         } else if (theme == 1) {
@@ -138,7 +110,7 @@ public class AboutActivity extends AppCompatActivity {
         } else if (theme == 2) {
             //line.setVisibility(View.VISIBLE);
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }
+        }*/
     }
 
     public void imgClick() {
@@ -171,7 +143,7 @@ public class AboutActivity extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        Intent intent = new Intent(AboutActivity.this, realeseChangelogs.class);
+        Intent intent = new Intent(AboutActivity.this, MainActivity.class);
         startActivity(intent);
         overridePendingTransition(0, 0);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);

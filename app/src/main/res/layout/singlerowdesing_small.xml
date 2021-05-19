@@ -6,7 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
     android:elevation="16dp"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    style="@style/Widget.MaterialComponents.CardView">
 
     <RelativeLayout
         android:id="@+id/cardView"

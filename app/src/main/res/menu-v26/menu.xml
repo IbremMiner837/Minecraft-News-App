@@ -2,18 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/action_check_update"
-        android:title="@string/check_update"
-        android:icon="@drawable/ic_action_update"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/action_settings"
-        android:title="@string/settings"
-        android:icon="@drawable/ic_baseline_settings_24"
-        android:iconTint="@color/primaryColor"
-        app:showAsAction="never"/>
-
     <!--item
         android:id="@+id/search"
         android:icon="@drawable/ic_baseline_search_24"

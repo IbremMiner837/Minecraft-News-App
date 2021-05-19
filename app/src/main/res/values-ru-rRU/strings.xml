@@ -12,8 +12,11 @@
     <string name="minecraft">Майнкрафт</string>
     <string name="changelog">Чейнджлог</string>
     <string name="download">Скачать</string>
-    <string name="download_minecraft">Скачать Майнкрафт</string>
-    <string name="downloading_file">Скачивание Файла пожалуйста подождите…</string>
+    <string name="download_minecraft">Скачать Minecraft</string>
+    <string name="downloading_file">Скачивание файла началось, пожалуйста подождите…</string>
+    <string name="signature_verification">Проверка подписи</string>
+    <string name="original">Оригинал</string>
+    <string name="modification">Модификация</string>
     <string name="about">О приложении</string>
     <string name="settings">Настройки</string>
     <string name="sort">Сортировка</string>
@@ -27,6 +30,19 @@
     <string name="select">Выбрать</string>
     <string name="selected">Выбрано</string>
     <string name="file_size">Размер Файла</string>
+    <string name="cancel">Отмена</string>
+    <string name="back">Назад</string>
+    <string name="next">Вперед</string>
+    <string name="link_copied">Ссылка Скопирована</string>
+
+    <!--OnBoardingScreem-->
+    <string name="welcome">Welcome</string>
+    <string name="all_changeloges">All Changeloges</string>
+
+    <string name="welcome_desc">Добро пожаловать в наше приложение для любителей игры Minecraft! Надеюсь вы останетесь им довольны.</string>
+    <string name="all_changeloges_desc">Здесь ты легко найдешь список изменений, для всех версий Minecraft, больше не нужно, тратить время иская на сайте нужный список изменений.</string>
+    <string name="minecraft_download_desc">А также можешь легко скачивать Minecraft прямо с нашей программы, удобно да?</string>
+    <string name="lets_go">Погнали!</string>
 
     <!--Desing Settings-->
     <string name="card_size">Размер карточек</string>
@@ -66,4 +82,5 @@
 </string-array>
     <string name="not_Chosen">Не Выбрано</string>
     <string name="select_changelog">Выбрать Чейнджлог</string>
+    <string name="menu">Меню</string>
 </resources>
