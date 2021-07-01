@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mcbedrock.minecraftnews"
-    android:versionCode="3"
-    android:versionName="1.0.2 beta">
+    android:versionCode="6"
+    android:versionName="1.0.5 beta">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MinecraftNews">
-        <activity android:name=".MainActivity"></activity>
+
+        <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-4193046598871025~7234135728"/>
+
+        <activity android:name=".fullScreenChangelog_info">
+        </activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".splashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,19 +32,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".IntroActivity" />
         <activity android:name=".LicenseActivity" />
-        <activity android:name=".minecraftBedrockDownload.MinecraftDownloadActivity" />
         <activity android:name=".AboutActivity" />
         <activity android:name=".desingSettingsActivity" />
-        <activity
-            android:name=".AdminPanel"
-            android:parentActivityName=".bedrockRealeseChangelog.realeseChangelogs" />
         <activity android:name=".cardSizeSettingsActivity" />
-        <activity android:name=".bedrockRealeseChangelog.realeseChangelogs" /> <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-4193046598871025~7234135728" />
+
     </application>
 
 </manifest>

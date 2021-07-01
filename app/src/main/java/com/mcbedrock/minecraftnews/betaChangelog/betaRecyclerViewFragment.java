@@ -133,8 +133,7 @@ public class betaRecyclerViewFragment extends Fragment {
 
     private void LoadPrefs() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        card_size = sharedPreferences.getBoolean("card_smallsize", true);
+        card_size = sharedPreferences.getBoolean("card_size", true);
         sort_by_descending = sharedPreferences.getBoolean("sort_by_descending",true);
     }
-
 }

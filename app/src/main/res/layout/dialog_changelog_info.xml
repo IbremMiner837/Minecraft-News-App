@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/dialog_img"
-        android:layout_width="358dp"
-        android:layout_height="179dp"
+        android:layout_width="match_parent"
+        android:layout_height="196dp"
         android:src="@drawable/logo_1024"
         android:scaleType="centerCrop"
         android:background="@drawable/changelog_info_dialog_style"/>

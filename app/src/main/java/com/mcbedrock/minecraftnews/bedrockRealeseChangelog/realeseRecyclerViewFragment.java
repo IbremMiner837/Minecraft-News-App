@@ -17,7 +17,6 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.mcbedrock.minecraftnews.R;
-import com.mcbedrock.minecraftnews.minecraftBedrockDownload.minecraftDownloadModel;
 
 public class realeseRecyclerViewFragment extends Fragment {
 
@@ -67,7 +66,6 @@ public class realeseRecyclerViewFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_realese_recview, container, false);
         /*View card_view = inflater.inflate(R.layout.singlerowdesing_small, container, false);
         View card_view1 = inflater.inflate(R.layout.singlerowdesing_small, container, false);
-
         TextView link_text = (TextView) card_view.findViewById(R.id.link_text);
         link_text.setEllipsize(TextUtils.TruncateAt.MARQUEE);
         link_text.setSelected(true);*/
@@ -112,7 +110,6 @@ public class realeseRecyclerViewFragment extends Fragment {
                 recview.setAdapter(adapterBC);
             }
         }
-
         return view;
     }
 
@@ -140,12 +137,9 @@ public class realeseRecyclerViewFragment extends Fragment {
         }
     }
 
-
-
     private void LoadPrefs() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        card_size = sharedPreferences.getBoolean("card_smallsize", true);
+        card_size = sharedPreferences.getBoolean("card_size", true);
         sort_by_descending = sharedPreferences.getBoolean("sort_by_descending",true);
     }
-
 }

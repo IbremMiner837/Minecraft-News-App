@@ -34,6 +34,7 @@
     <string name="back">Back</string>
     <string name="next">Next</string>
     <string name="link_copied">Link Copied</string>
+    <string name="ok">Ok</string>
 
     <!--OnBoardingScreem-->
     <string name="welcome">Welcome</string>
@@ -52,6 +53,9 @@
     <string name="light_theme">Light Theme</string>
     <string name="dark_theme">Dark Theme</string>
     <string name="system_theme_desc">The appearance of the application will change depending on the theme of the Android</string>
+    <string name="view_info_about_changelogs">View info. about changelog</string>
+    <string name="in_the_dialog">In the dialog</string>
+    <string name="full_screen">Full screen</string>
 
     <!--Card size Settings-->
     <string name="select_card_size">Select card size</string>
@@ -82,33 +86,14 @@
         <item>Beta Changelog</item>
         <item>Snapshot Changelog</item>
     </string-array>
-    <string name="not_Chosen">Not Chosen</string>
+    <string name="not_chosen">Not Chosen</string>
     <string name="select_changelog">Select Changelog</string>
-    <string name="title_activity_settings">SettingsActivity</string>
-
-    <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
-
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
-
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
-    <string name="title_activity_bottom_nav_bar">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="title_activity_main">FullscreenActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
     <string name="menu">Menu</string>
+
+    <string name="we_are_in_discord">We are in Discord</string>
+    <string name="we_are_in_vk">We are in Discord</string>
+    <string name="we_are_in_tiktok">We are in Discord</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

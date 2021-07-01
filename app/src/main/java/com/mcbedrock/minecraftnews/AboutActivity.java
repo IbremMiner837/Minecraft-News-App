@@ -1,8 +1,7 @@
 package com.mcbedrock.minecraftnews;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,9 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.mcbedrock.minecraftnews.bedrockRealeseChangelog.realeseChangelogs;
-import com.mcbedrock.minecraftnews.minecraftBedrockDownload.MinecraftDownloadActivity;
+import com.google.android.material.appbar.MaterialToolbar;
 
 public class AboutActivity extends AppCompatActivity {
 
@@ -33,21 +30,6 @@ public class AboutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().setTitle(R.string.about);
-
-        //set action bar title
-        //getSupportActionBar().setTitle(R.string.about);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        //For TikTok
-        //Icons made by Freepik from https://www.flaticon.com
-
-        //For Discord
-        //Icons made by Pixel Perfect from https://www.flaticon.com/
-
-        //For VK
-        //Icons made by Pixel perfect from https://www.flaticon.com/
 
         version_name_text = findViewById(R.id.version_name_text);
         version_code_text = findViewById(R.id.version_code_text);
@@ -101,6 +83,20 @@ public class AboutActivity extends AppCompatActivity {
             }
         });
 
+        MaterialToolbar actionbar = (MaterialToolbar) findViewById(R.id.topAppBar);
+        if (null != actionbar) {
+            actionbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_new_24);
+
+            actionbar.setTitle(R.string.about);
+            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //NavUtils.navigateUpFromSameTask(fullScreenChangelog_info.this);
+                    onBackPressed();
+                }
+            });
+        }
+
         /*if (theme == 0) {
             //line.setVisibility(View.VISIBLE);
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
@@ -126,7 +122,6 @@ public class AboutActivity extends AppCompatActivity {
         theme = sharedPreferences.getInt("theme", 1);
     }
 
-    /*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -138,15 +133,5 @@ public class AboutActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }*/
-
-    @Override
-    public void onBackPressed()
-    {
-        Intent intent = new Intent(AboutActivity.this, MainActivity.class);
-        startActivity(intent);
-        overridePendingTransition(0, 0);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        super.onBackPressed();  // optional depending on your needs
     }
 }

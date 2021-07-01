@@ -34,6 +34,7 @@
     <string name="back">Назад</string>
     <string name="next">Вперед</string>
     <string name="link_copied">Ссылка Скопирована</string>
+    <string name="ok">Хорошо</string>
 
     <!--OnBoardingScreem-->
     <string name="welcome">Welcome</string>
@@ -51,7 +52,10 @@
     <string name="system_theme">Системная тема</string>
     <string name="light_theme">Светлая тема</string>
     <string name="dark_theme">Темная тема</string>
-    <string name="system_theme_desc">Внешний вид приложения будет меняться в зависимости от темя Android</string>
+    <string name="system_theme_desc">Внешний вид приложения будет меняться в зависимости от темы Android</string>
+    <string name="view_info_about_changelogs">Просмотр инфо. об чейнджлоге</string>
+    <string name="in_the_dialog">В диалоговом окне</string>
+    <string name="full_screen">Во весь экран</string>
 
     <!--Card size Settings-->
     <string name="select_card_size">Выбрать размер карточки</string>
@@ -80,7 +84,11 @@
     <item>Бета Чейнджлог</item>
     <item>Снапшот Чейнджлог</item>
 </string-array>
-    <string name="not_Chosen">Не Выбрано</string>
+    <string name="not_chosen">Не Выбрано</string>
     <string name="select_changelog">Выбрать Чейнджлог</string>
     <string name="menu">Меню</string>
+
+    <string name="we_are_in_discord">Мы в Discord</string>
+    <string name="we_are_in_vk">Мы в ВКонтакте</string>
+    <string name="we_are_in_tiktok">Мы в TikTok</string>
 </resources>

@@ -44,8 +44,9 @@
     <color name="primaryTextColor">#ffffff</color>
     <color name="transparent">#00ffffff</color>
 
-    <color name="green">#FF55FF55</color>
+    <color name="green">#61B15A</color>
     <color name="dark_green">#FF00AA00</color>
+    <color name="red">#FF4646</color>
     <color name="light_blue_600">#FF039BE5</color>
     <color name="light_blue_900">#FF01579B</color>
     <color name="light_blue_A200">#FF40C4FF</color>

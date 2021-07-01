@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.view.LayoutInflater;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class LoadingDialog {
     private Activity activity;
+    private AppCompatActivity appCompatActivity;
     private AlertDialog alertDialog;
 
     LoadingDialog(Activity myActivity) {
