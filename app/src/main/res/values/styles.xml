@@ -1,0 +1,15 @@
+<resources>
+
+    <style name="Widget.Theme.MinecraftNews.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+    <style name="Widget.Theme.MinecraftNews.ButtonBar.Fullscreen" parent="">
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+    </style>
+
+    <!--style name="BottomSheetTheme" parent="Theme.MaterialComponents.BottomSheetDialog">
+        <item name="BottomSheetStyle">S</item>
+    </style-->
+</resources>
