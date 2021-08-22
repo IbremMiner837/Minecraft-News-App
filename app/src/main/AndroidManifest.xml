@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mcbedrock.minecraftnews"
-    android:versionCode="6"
-    android:versionName="1.0.5 beta">
+    android:versionCode="8"
+    android:versionName="1.0.7">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -20,23 +20,18 @@
         <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-4193046598871025~7234135728"/>
+            android:value="ca-app-pub-4193046598871025~7234135728" />
 
-        <activity android:name=".fullScreenChangelog_info">
-        </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".splashScreen">
+        <activity android:name=".fullScreenChangelog_info"></activity>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LicenseActivity" />
-        <activity android:name=".AboutActivity" />
-        <activity android:name=".desingSettingsActivity" />
-        <activity android:name=".cardSizeSettingsActivity" />
 
+        <activity android:name=".aboutActivity" />
     </application>
 
 </manifest>
