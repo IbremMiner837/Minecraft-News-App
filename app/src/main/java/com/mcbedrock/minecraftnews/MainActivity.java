@@ -1,8 +1,11 @@
 package com.mcbedrock.minecraftnews;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,6 +20,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.snackbar.Snackbar;
@@ -35,8 +42,15 @@ import com.google.android.play.core.tasks.OnSuccessListener;
 import com.google.android.play.core.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.mcbedrock.minecraftnews.API.SetLocaleAPI;
 import com.mcbedrock.minecraftnews.adapter.horizontalRecyclerViewAdapter;
 import com.mcbedrock.minecraftnews.adapter.verticalRecyclerViewAdapter;
+import com.mcbedrock.minecraftnews.fragments.CategoriesFragment;
+import com.mcbedrock.minecraftnews.fragments.betaRecyclerViewFragment;
+import com.mcbedrock.minecraftnews.fragments.javaRecyclerViewFragment;
+import com.mcbedrock.minecraftnews.fragments.realeseRecyclerViewFragment;
+import com.mcbedrock.minecraftnews.fragments.snapshotRecyclerViewFragment;
+import com.mcbedrock.minecraftnews.jsonParser.minecraftnet_news;
 import com.mcbedrock.minecraftnews.models.categoryModel;
 import com.mcbedrock.minecraftnews.models.categoryTwoModel;
 
@@ -45,18 +59,17 @@ import org.jetbrains.annotations.NotNull;
 public class MainActivity extends AppCompatActivity {
 
     private static final int RC_APP_UPDATE = 100;
-    RecyclerView recyclerView;
-    FirebaseDatabase database;
-    DatabaseReference reference;
-    FirebaseRecyclerAdapter<categoryModel, verticalRecyclerViewAdapter> categoryAdapter;
-    FirebaseRecyclerAdapter<categoryTwoModel, horizontalRecyclerViewAdapter> changelogsAdapter;
-    RecyclerView.LayoutManager manager;
+
     //Play Core Update
     private AppUpdateManager mAppUpdateManager;
+
     //Play Core Review
     private ReviewManager mReviewManager;
     private ReviewInfo reviewInfo;
     private Context mContext;
+
+    private Toolbar toolbar;
+
     //Play Core Update
     private InstallStateUpdatedListener installStateUpdatedListener = new InstallStateUpdatedListener() {
         @Override
@@ -85,66 +98,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (!isConnected(this)) {
+            Intent intent = new Intent(MainActivity.this, NoConnectionActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         mContext = getApplicationContext();
 
-        //getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new realeseRecyclerViewFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new CategoriesFragment()).commit();
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        final SetLocaleAPI setLocaleAPI = new SetLocaleAPI();
+        setLocaleAPI.setLocale(this, "ru");
+
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //Database Init
-        database = FirebaseDatabase.getInstance();
-        reference = database.getReference("Category");
-
-        manager = new LinearLayoutManager(this);
-        recyclerView = findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(manager);
-
-        FirebaseRecyclerOptions<categoryModel> options = new FirebaseRecyclerOptions.Builder<categoryModel>()
-                .setQuery(reference, categoryModel.class)
-                .build();
-
-        categoryAdapter = new FirebaseRecyclerAdapter<categoryModel, verticalRecyclerViewAdapter>(options) {
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            protected void onBindViewHolder(@NonNull verticalRecyclerViewAdapter verticalRecyclerViewAdapter, int i, @NonNull categoryModel categoryModel) {
-                verticalRecyclerViewAdapter.categoryName.setText(categoryModel.getCategoryName());
-
-                FirebaseRecyclerOptions<categoryTwoModel> options1 = new FirebaseRecyclerOptions.Builder<categoryTwoModel>()
-                        .setQuery(reference.child(categoryModel.getCategoryId()).child("data"), categoryTwoModel.class)
-                        .build();
-
-                changelogsAdapter = new FirebaseRecyclerAdapter<categoryTwoModel, horizontalRecyclerViewAdapter>(options1) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull horizontalRecyclerViewAdapter horizontalRecyclerViewAdapter, int i, @NonNull categoryTwoModel categoryTwoModel) {
-                        horizontalRecyclerViewAdapter.category_title.setText(categoryTwoModel.getTitle());
-                        horizontalRecyclerViewAdapter.category_description.setText(categoryTwoModel.getDescription());
-                    }
-
-                    @NonNull
-                    @Override
-                    public horizontalRecyclerViewAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(getBaseContext())
-                                .inflate(R.layout.category_card_view, parent, false);
-                        return new horizontalRecyclerViewAdapter(view);
-                    }
-                };
-                changelogsAdapter.startListening();
-                changelogsAdapter.notifyDataSetChanged();
-                verticalRecyclerViewAdapter.categoryRecyclerView.setAdapter(changelogsAdapter);
+            public void onClick(View v) {
+                onBackPressed();
             }
-
-            @NonNull
-            @Override
-            public verticalRecyclerViewAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(getBaseContext())
-                        .inflate(R.layout.category_item_view, parent, false);
-                return new verticalRecyclerViewAdapter(view);
-            }
-        };
-
-        categoryAdapter.startListening();
-        categoryAdapter.notifyDataSetChanged();
-        recyclerView.setAdapter(categoryAdapter);
+        });
 
         //Play Core Review
         activateReviewInfo();
@@ -177,14 +152,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         thread.start();
-
-        /*findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //openApp();
-                launchGoogleChrome(v);
-            }
-        });*/
     }
 
     @Override
@@ -197,14 +164,29 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.share_app:
-                //code
-                break;
-            case R.id.menu:
-                //code
-                break;
+            //case R.id.share_app:
+            //code
+            //  break;
+            case R.id.about_app: {
+                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+                startActivity(intent);
+            }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        toolbar.setTitle(R.string.app_name);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDisplayShowHomeEnabled(false);
+
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
+            return;
+        }
     }
 
     //Play Core Update
@@ -240,6 +222,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private boolean isConnected(Activity activity) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) activity.getSystemService(mContext.CONNECTIVITY_SERVICE);
+
+        NetworkInfo wifiConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mobileConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+        return (wifiConn != null && wifiConn.isConnected()) || (mobileConn != null && mobileConn.isConnected());
+    }
+
     @Override
     protected void onStop() {
         //Play Core Update
@@ -251,8 +242,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        final SetLocaleAPI setLocaleAPI = new SetLocaleAPI();
+        setLocaleAPI.setLocale(this, "ru");
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
+
+        final SetLocaleAPI setLocaleAPI = new SetLocaleAPI();
+        setLocaleAPI.setLocale(this, "ru");
 
         //Play Core Update
         mAppUpdateManager.getAppUpdateInfo().addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {

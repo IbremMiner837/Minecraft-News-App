@@ -7,6 +7,7 @@ import android.view.View;
 import com.google.android.material.snackbar.Snackbar;
 
 public class snackbarAPI {
+
     private Activity activity;
     private View view;
     private Context context;

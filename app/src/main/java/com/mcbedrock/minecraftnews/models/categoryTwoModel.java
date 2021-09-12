@@ -4,15 +4,17 @@ public class categoryTwoModel {
     private String title;
     private String description;
     private String imageURL;
+    private String articleURL;
 
     public categoryTwoModel() {
 
     }
 
-    public categoryTwoModel(String title, String description, String imageURL) {
+    public categoryTwoModel(String title, String description, String imageURL, String articleURL) {
         this.title = title;
         this.description = description;
         this.imageURL = imageURL;
+        this.articleURL = articleURL;
     }
 
     public String getTitle() {
@@ -37,5 +39,13 @@ public class categoryTwoModel {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    public String getArticleURL() {
+        return articleURL;
+    }
+
+    public void setArticleURL(String articleURL) {
+        this.articleURL = articleURL;
     }
 }

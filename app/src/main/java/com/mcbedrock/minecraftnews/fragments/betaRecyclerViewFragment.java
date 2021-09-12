@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,20 +15,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.mcbedrock.minecraftnews.MainActivity;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.adapter.changelogsAdapter;
-import com.mcbedrock.minecraftnews.adapter.changelogsAdapterBG;
 import com.mcbedrock.minecraftnews.models.changelogsModel;
 
 public class betaRecyclerViewFragment extends Fragment {
 
     //ГЕНЕРАТОР КАРТОЧЕК
-    RecyclerView recview;
-    changelogsAdapter adapter;
-    changelogsAdapterBG adapterBC;
 
-    private Boolean card_size;
-    private Boolean sort_by_descending;
+    private RecyclerView recview;
+    private changelogsAdapter adapter;
+    private Toolbar toolbar;
 
     public betaRecyclerViewFragment() {
     }
@@ -36,7 +35,10 @@ public class betaRecyclerViewFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        LoadPrefs();
+        toolbar = getActivity().findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.beta_version_changelogs);
+
+        ((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -47,75 +49,30 @@ public class betaRecyclerViewFragment extends Fragment {
         recview = (RecyclerView) view.findViewById(R.id.recview);
         recview.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        LoadPrefs();
+        Query query = FirebaseFirestore.getInstance()
+                .collection("bedrock_beta_changeloges")
+                .orderBy("version", Query.Direction.DESCENDING)//от новых
+                .limit(36);
 
-        if (sort_by_descending) {
-            Query query = FirebaseFirestore.getInstance()
-                    .collection("bedrock_beta_changeloges")
-                    .orderBy("version", Query.Direction.DESCENDING)//от новых
-                    .limit(50);
+        FirestoreRecyclerOptions<changelogsModel> options = new FirestoreRecyclerOptions.Builder<changelogsModel>()
+                .setQuery(query, changelogsModel.class)
+                .build();
 
-            FirestoreRecyclerOptions<changelogsModel> options = new FirestoreRecyclerOptions.Builder<changelogsModel>()
-                    .setQuery(query, changelogsModel.class)
-                    .build();
+        adapter = new changelogsAdapter(options);
+        recview.setAdapter(adapter);
 
-
-            if (card_size) {
-                adapter = new changelogsAdapter(options);
-                recview.setAdapter(adapter);
-            } else {
-                adapterBC = new changelogsAdapterBG(options);
-                recview.setAdapter(adapterBC);
-            }
-        } else {
-            Query query = FirebaseFirestore.getInstance()
-                    .collection("bedrock_beta_changeloges")
-                    .orderBy("version", Query.Direction.ASCENDING)//от новых
-                    .limit(50);
-
-            FirestoreRecyclerOptions<changelogsModel> options = new FirestoreRecyclerOptions.Builder<changelogsModel>()
-                    .setQuery(query, changelogsModel.class)
-                    .build();
-
-
-            if (card_size) {
-                adapter = new changelogsAdapter(options);
-                recview.setAdapter(adapter);
-            } else {
-                adapterBC = new changelogsAdapterBG(options);
-                recview.setAdapter(adapterBC);
-            }
-        }
         return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        LoadPrefs();
-
-        if (card_size) {
-            adapter.startListening();
-        } else {
-            adapterBC.startListening();
-        }
+        adapter.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        LoadPrefs();
-
-        if (card_size) {
-            adapter.startListening();
-        } else {
-            adapterBC.startListening();
-        }
-    }
-
-    private void LoadPrefs() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        card_size = sharedPreferences.getBoolean("card_size", true);
-        sort_by_descending = sharedPreferences.getBoolean("sort_by_descending",true);
+        adapter.startListening();
     }
 }

@@ -2,10 +2,13 @@ package com.mcbedrock.minecraftnews.jsonParser;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +20,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.button.MaterialButton;
+import com.mcbedrock.minecraftnews.API.ChromeCustomTabAPI;
+import com.mcbedrock.minecraftnews.AboutActivity;
 import com.mcbedrock.minecraftnews.R;
 
 import java.util.List;
@@ -57,9 +64,39 @@ public class jsonAdapter extends RecyclerView.Adapter<jsonAdapter.ViewHolder> {
 
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
 
-                Uri uri = Uri.parse("https://www.minecraft.net" + jsonDataList.get(position).getArticleURL());
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                activity.startActivity(intent);
+                final BottomSheetDialog dialog = new BottomSheetDialog(v.getContext());
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.minecraft_net_view_bottom_sheet);
+
+                ImageView minecraft_net_bottom_sheet_view_image = (ImageView) dialog.findViewById(R.id.minecraft_net_bottom_sheet_view_image);
+                TextView minecraft_net_bottom_sheet_view_title = (TextView) dialog.findViewById(R.id.minecraft_net_bottom_sheet_view_title);
+                TextView minecraft_net_bottom_sheet_view_description = (TextView) dialog.findViewById(R.id.minecraft_net_bottom_sheet_view_description);
+                MaterialButton minecraft_net_bottom_sheet_view_button_all_changelog = (MaterialButton) dialog.findViewById(R.id.minecraft_net_bottom_sheet_view_button_all_changelog);
+
+                minecraft_net_bottom_sheet_view_button_all_changelog.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final ChromeCustomTabAPI chromeCustomTabAPI = new ChromeCustomTabAPI(activity);
+                        chromeCustomTabAPI.OpenCustomTab(activity, "https://www.minecraft.net" + jsonDataList.get(position).getArticleURL(), R.color.primaryColor);
+
+                        dialog.dismiss();
+                        dialog.hide();
+                    }
+                });
+
+                RequestOptions requestOptions = new RequestOptions();
+                requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(16));
+
+                Glide.with(minecraft_net_bottom_sheet_view_image)
+                        .load("https://www.minecraft.net" + jsonDataList.get(position).getImageURL())
+                        .apply(requestOptions)
+                        .into(minecraft_net_bottom_sheet_view_image);
+                minecraft_net_bottom_sheet_view_title.setText(jsonDataList.get(position).getTitle());
+                minecraft_net_bottom_sheet_view_description.setText(jsonDataList.get(position).getSubHeader().replaceAll("\\\\n", "\n"));
+
+
+                dialog.show();
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             }
         });
     }

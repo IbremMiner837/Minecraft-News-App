@@ -3,14 +3,11 @@ package com.mcbedrock.minecraftnews.API;
 public class jsonParseAPI {
     /*
     https://code.google.com/p/google-gson/
-
     String sURL = "http://freegeoip.net/json/"; //just a string
-
     // Connect to the URL using java's native library
     URL url = new URL(sURL);
     URLConnection request = url.openConnection();
     request.connect();
-
     // Convert to a JSON object to print data
     JsonParser jp = new JsonParser(); //from gson
     JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent())); //Convert the input stream to a json element
@@ -20,7 +17,6 @@ public class jsonParseAPI {
 
     /*
     для парса: https://www.minecraft.net/content/minecraft-net/_jcr_content.articles.grid
-
     structure:
     object
     -> article_grid [20]

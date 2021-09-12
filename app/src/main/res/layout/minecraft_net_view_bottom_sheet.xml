@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.MaterialComponents.CardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="@string/news_review"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/minecraft_net_bottom_sheet_view_image"
+            android:layout_width="match_parent"
+            android:layout_height="228dp"
+            android:layout_margin="8dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/minecraft_background_0" />
+
+        <TextView
+            android:id="@+id/minecraft_net_bottom_sheet_view_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            android:text="This is Title"
+            android:textSize="21sp"
+            android:textStyle="bold" />
+
+        <!--com.mcbedrock.minecraftnews.API.ExpandableTextViewAPI
+            android:id="@+id/changelog_bottom_sheet_view_description"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Changes"
+            android:textSize="18sp"/-->
+
+        <TextView
+            android:id="@+id/minecraft_net_bottom_sheet_view_description"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Changes"
+            android:textSize="18sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/minecraft_net_bottom_sheet_view_button_all_changelog"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/more"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            app:icon="@drawable/ic_baseline_web_24"
+            app:iconGravity="textStart" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

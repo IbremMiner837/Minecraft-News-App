@@ -1,157 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".aboutActivity">
+    tools:context=".AboutActivity">
 
-    <LinearLayout
-        android:id="@+id/layout"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        tools:ignore="MissingConstraints">
+        android:fitsSystemWindows="true"
+        app:liftOnScroll="true">
 
-        <!--View
-            android:id="@+id/line"
-            android:layout_width="320dp"
-            android:layout_height="1dp"
-            android:padding="8dp"
-            android:background="@color/primaryColor"/-->
-
-        <ImageView
-            android:id="@+id/about_img"
-            android:layout_width="156dp"
-            android:layout_height="156dp"
-            android:scaleY="1.2"
-            android:scaleX="1.2"
-            android:src="@mipmap/ic_launcher"
-            android:layout_marginTop="56dp"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:padding="8dp"
-            android:layout_marginTop="-18dp">
+            android:background="@drawable/toolbar"
+            android:elevation="10dp"
+            android:minHeight="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|snap" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-            <TextView
-                android:id="@+id/about_version_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:text="@string/version"
-                android:textSize="21sp"/>
-
-            <TextView
-                android:id="@+id/version_name_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:text=""
-                android:textSize="21sp"/>
-
-            <TextView
-                android:id="@+id/version_code_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:text=""
-                android:textSize="21sp"/>
-        </LinearLayout>
-
-        <View
-            android:layout_width="320dp"
-            android:layout_height="1dp"
-            android:background="@color/primaryColor"/>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
-            android:padding="8dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/vk_btn"
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Theme.MinecraftNews"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                app:icon="@mipmap/ic_launcher"
-                app:iconSize="32sp"
-                app:iconPadding="8dp"
-                app:iconTint="#2787F5"
-                android:textAllCaps="false"
-                android:text="@string/we_are_in_vk"
-                android:textSize="21sp"
-                android:textColor="#2787F5"
-                android:textStyle="bold"
-                android:textAlignment="textStart"/>
+                android:elevation="4dp"
+                app:cardCornerRadius="16dp"
+                app:cardUseCompatPadding="true">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/tiktok_btn"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/logo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="centerCrop"
+                            android:scaleX="1.6"
+                            android:scaleY="1.6"
+                            android:src="@mipmap/ic_launcher_foreground" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/app_name_textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/logo"
+                            android:paddingTop="26dp"
+                            android:text="@string/app_name"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/logo"
+                            android:paddingTop="56dp"
+                            android:text="@IbremMiner837.Dev"
+                            android:textSize="16sp" />
+
+                    </RelativeLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/version"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Version: 1.0.7 (8)"
+                        android:textAlignment="viewStart"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_baseline_info_24"
+                        app:iconGravity="start"
+                        app:iconPadding="16dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/changelog"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/changelog"
+                        android:textAlignment="viewStart"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_baseline_update_24"
+                        app:iconGravity="start"
+                        app:iconPadding="16dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/source_code"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/source_code"
+                        android:textAlignment="viewStart"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_baseline_code_24"
+                        app:iconGravity="start"
+                        app:iconPadding="16dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/license"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/license"
+                        android:textAlignment="viewStart"
+                        android:textAllCaps="false"
+                        android:textColor="@color/red"
+                        app:icon="@drawable/ic_baseline_book_24"
+                        app:iconGravity="start"
+                        app:iconPadding="16dp"
+                        app:iconTint="@color/red" />
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Theme.MinecraftNews"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                app:icon="@mipmap/ic_launcher"
-                app:iconSize="32sp"
-                app:iconPadding="8dp"
-                android:textAllCaps="false"
-                android:text="@string/we_are_in_tiktok"
-                android:textSize="21sp"
-                android:textStyle="bold"
-                android:textAlignment="textStart"
-                android:longClickable="true"/>
+                android:elevation="4dp"
+                app:cardCornerRadius="16dp"
+                app:cardUseCompatPadding="true">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/discord_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                app:icon="@mipmap/ic_launcher"
-                app:iconSize="32sp"
-                app:iconPadding="8dp"
-                app:iconTint="#7289DA"
-                android:textAllCaps="false"
-                android:text="@string/we_are_in_discord"
-                android:textSize="21sp"
-                android:textColor="#7289DA"
-                android:textStyle="bold"
-                android:textAlignment="textStart"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="@string/author"
+                        android:textSize="21sp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ibragim_maltsagov"
+                        android:textAlignment="viewStart"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_baseline_person_24"
+                        app:iconGravity="start"
+                        app:iconPadding="16dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/email"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/email"
+                        android:textAlignment="viewStart"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_baseline_alternate_email_24"
+                        app:iconGravity="start"
+                        app:iconPadding="16dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/github"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Github"
+                        android:textAlignment="viewStart"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_baseline_public_24"
+                        app:iconGravity="start"
+                        app:iconPadding="16dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/other_apps"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/other_apps"
+                        android:textAlignment="viewStart"
+                        android:textAllCaps="false"
+                        android:textColor="@color/red"
+                        app:icon="@drawable/ic_baseline_apps_24"
+                        app:iconGravity="start"
+                        app:iconPadding="16dp"
+                        app:iconTint="@color/red" />
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
-
-        <View
-            android:layout_width="320dp"
-            android:layout_height="1dp"
-            android:background="@color/primaryColor"/>
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="© MCBedrock"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
-
-    <TextView
-        android:id="@+id/build_type_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="Realese"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

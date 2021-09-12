@@ -7,10 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mcbedrock.minecraftnews.MainActivity;
 import com.mcbedrock.minecraftnews.R;
 
 import org.json.JSONArray;
@@ -29,9 +31,11 @@ import java.util.List;
 public class minecraftnet_news extends Fragment {
 
     private static String JSON_URL = "https://www.minecraft.net/content/minecraft-net/_jcr_content.articles.grid";
-    RecyclerView recyclerView;
-    List<jsonData> jsonDataList;
-    jsonAdapter adapter;
+    private RecyclerView recyclerView;
+    private List<jsonData> jsonDataList;
+    private jsonAdapter adapter;
+
+    private Toolbar toolbar;
 
     public minecraftnet_news() {
         // Required empty public constructor
@@ -43,6 +47,11 @@ public class minecraftnet_news extends Fragment {
 
         GetData getData = new GetData();
         getData.execute();
+
+        toolbar = getActivity().findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.news);
+
+        ((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void PutDataIntoRecyclerView(List<jsonData> jsonDataList) {

@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="258dp"
-    android:layout_height="202dp"
-    android:layout_margin="6dp"
-    app:cardCornerRadius="10dp">
+    style="@style/Theme.MinecraftNews"
+    android:layout_width="278dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:elevation="4dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="8dp">
+        android:padding="12dp">
 
         <ImageView
             android:id="@+id/category_image"
-            android:layout_width="256dp"
+            android:layout_width="match_parent"
             android:layout_height="128dp"
             android:src="@drawable/minecraft_background_0" />
 
@@ -22,6 +25,7 @@
             android:id="@+id/category_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="2dp"
             android:singleLine="true"
             android:text="Title"
             android:textSize="21sp"
@@ -31,10 +35,11 @@
             android:id="@+id/category_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="2dp"
             android:singleLine="true"
             android:text="Description"
             android:textSize="21sp"
             android:textStyle="bold" />
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

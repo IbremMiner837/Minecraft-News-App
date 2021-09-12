@@ -1,95 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="open_in_vk">Группа ВК</string>
-    <string name="bedrock_release_changelog">Bedrock Релиз</string>
-    <string name="java_realese_changelog">Java Edition Релиз</string>
-    <string name="beta_changelog">Бета Версии</string>
-    <string name="snapshot_changelog">Снапшоты</string>
-    <string name="minecraft.net">Minecraft.net</string>
-    <string name="loading">Загрузка...</string>
-    <string name="changelogs">Чейнджлоги</string>
-    <string name="versionn">Версия:</string>
-    <string name="version">Версия</string>
-    <string name="minecraft">Майнкрафт</string>
-    <string name="changelog">Чейнджлог</string>
-    <string name="download">Скачать</string>
-    <string name="download_minecraft">Скачать Minecraft</string>
-    <string name="downloading_file">Скачивание файла началось, пожалуйста подождите…</string>
-    <string name="signature_verification">Проверка подписи</string>
-    <string name="original">Оригинал</string>
-    <string name="modification">Модификация</string>
-    <string name="about">О приложении</string>
-    <string name="settings">Настройки</string>
-    <string name="sort">Сортировка</string>
-    <string name="newest">От новых версий</string>
-    <string name="oldest">От старых версий</string>
-    <string name="sort_by">Сортировать начиная</string>
-    <string name="search">Поиск</string>
-    <string name="check_update">Проверить обновление</string>
-    <string name="function_not_available">Функция недоступна</string>
-    <string name="desing">Дизайн</string>
-    <string name="select">Выбрать</string>
-    <string name="selected">Выбрано</string>
-    <string name="file_size">Размер Файла</string>
-    <string name="cancel">Отмена</string>
-    <string name="back">Назад</string>
-    <string name="next">Вперед</string>
-    <string name="link_copied">Ссылка Скопирована</string>
-    <string name="ok">Хорошо</string>
+    <string name="app_name">Майнкрафт Новости</string>
 
-    <!--OnBoardingScreem-->
-    <string name="welcome">Welcome</string>
-    <string name="all_changeloges">All Changeloges</string>
+    <string name="category">Категории</string>
+    <string name="news">Новости</string>
 
-    <string name="welcome_desc">Добро пожаловать в наше приложение для любителей игры Minecraft! Надеюсь вы останетесь им довольны.</string>
-    <string name="all_changeloges_desc">Здесь ты легко найдешь список изменений, для всех версий Minecraft, больше не нужно, тратить время иская на сайте нужный список изменений.</string>
-    <string name="minecraft_download_desc">А также можешь легко скачивать Minecraft прямо с нашей программы, удобно да?</string>
-    <string name="lets_go">Погнали!</string>
+    <string name="no_connection">Упс, нет интернет соеденения :(</string>
+    <string name="try_again">Попробовать снова</string>
 
-    <!--Desing Settings-->
-    <string name="card_size">Размер карточек</string>
-    <string name="theme">Темы</string>
-    <string name="auto">Auto</string>
-    <string name="system_theme">Системная тема</string>
-    <string name="light_theme">Светлая тема</string>
-    <string name="dark_theme">Темная тема</string>
-    <string name="system_theme_desc">Внешний вид приложения будет меняться в зависимости от темы Android</string>
-    <string name="view_info_about_changelogs">Просмотр инфо. об чейнджлоге</string>
-    <string name="in_the_dialog">В диалоговом окне</string>
-    <string name="full_screen">Во весь экран</string>
-
-    <!--Card size Settings-->
-    <string name="select_card_size">Выбрать размер карточки</string>
-    <string name="small_size">Маленький размер</string>
-    <string name="big_size">Большой размер</string>
-
-    <!--admin pan-->
-    <string name="admin_panel">Админ Панель</string>
-    <string name="image">Изображение</string>
-    <string name="enter_imgage_link">Введите ссылку на изображение</string>
-    <string name="enter_changelog_link">Введите ссылку на чейнджлог</string>
-    <string name="enter_game_version">Введите версию игры</string>
-    <string name="publich_changelog">Опубликовать Чейнджлог</string>
-    <string name="empty_fields">Пожалуйста, заполните все поля</string>
-    <string name="changelog_published">Чейнджлог опубликован</string>
-
-    <string name="authorization">Авторизация</string>
-    <string name="enter_your_email">Введите свою почту</string>
-    <string name="enter_password">Введите пароль</string>
-    <string name="email">Почта</string>
-    <string name="password">Пароль</string>
-
-    <!--Array--><string-array name="changelog_type">
-    <item>Bedrock Релиз Чейнджлог</item>
-    <item>Java Edition Релиз Чейнджлог</item>
-    <item>Бета Чейнджлог</item>
-    <item>Снапшот Чейнджлог</item>
-</string-array>
-    <string name="not_chosen">Не Выбрано</string>
-    <string name="select_changelog">Выбрать Чейнджлог</string>
     <string name="menu">Меню</string>
+    <string name="coming_soon">Скоро</string>
+    <string name="version_">Версия:</string>
+    <string name="all_changes">Все Изменения</string>
+    <string name="news_review">Обзор Новости</string>
+    <string name="more">Подробнее</string>
 
-    <string name="we_are_in_discord">Мы в Discord</string>
-    <string name="we_are_in_vk">Мы в ВКонтакте</string>
-    <string name="we_are_in_tiktok">Мы в TikTok</string>
+    <!--Changelogs-->
+    <string name="about_changelog">О Чейнджлоге</string>
+    <string name="bedrock_release_changelog">Бедрок Релиз Чейнджлог</string>
+    <string name="java_edition_release_changelog">Джава Эдишн Релиз Чейнджлог</string>
+    <string name="beta_version_changelog">Чейнджлог Бета Версии</string>
+    <string name="snapshot_changelog">Чейнджлог Снапшота</string>
+    <string name="bedrock_release_changelogs">Бедрок Релиз Чейнджлоги</string>
+    <string name="java_edition_release_changelogs">Джава Эдишн Релиз Чейнджлоги</string>
+    <string name="beta_version_changelogs">Чейнджлоги Бета Версий</string>
+    <string name="snapshot_changelogs">Чейнджлоги Снапшотов</string>
+
+    <!--About-->
+    <string name="about_app">О Приложении</string>
+    <string name="version">Версия</string>
+    <string name="changelog">История обновлений</string>
+    <string name="source_code">Исходный код</string>
+    <string name="license">Лицензии</string>
+    <string name="author">Автор</string>
+    <string name="ibragim_maltsagov">Ибрагим Мальцагов</string>
+    <string name="email">ibremminer837.dev@gmail.com</string>
+    <string name="github">Github</string>
+    <string name="other_apps">Другие приложения</string>
+
+    <!--Settings-->
+    <string name="title_activity_settings">SettingsActivity</string>
+    <!-- Preference Titles -->
+    <string name="app_theme_header">Theme</string>
+    <string name="sync_header">Sync</string>
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 </resources>
