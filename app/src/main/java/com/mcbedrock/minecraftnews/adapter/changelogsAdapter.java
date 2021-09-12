@@ -1,9 +1,11 @@
 package com.mcbedrock.minecraftnews.adapter;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +13,9 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,19 +23,76 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.firebase.ui.firestore.paging.FirestorePagingAdapter;
+import com.firebase.ui.firestore.paging.FirestorePagingOptions;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.mcbedrock.minecraftnews.API.ChromeCustomTabAPI;
+import com.mcbedrock.minecraftnews.API.loadingDialogAPI;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.full_screen_changelog_view;
 import com.mcbedrock.minecraftnews.models.changelogsModel;
 
-public class changelogsAdapter extends FirestoreRecyclerAdapter<changelogsModel, changelogsAdapter.holder> {
+public class changelogsAdapter extends FirestorePagingAdapter<changelogsModel, changelogsAdapter.holder> {
 
-    public changelogsAdapter(FirestoreRecyclerOptions<changelogsModel> options) {
+    private Context mContext;
+
+    public changelogsAdapter(FirestorePagingOptions<changelogsModel> options) {
         super(options);
+    }
+
+    @Override
+    protected void onLoadingStateChanged(@NonNull com.firebase.ui.firestore.paging.LoadingState state) {
+        super.onLoadingStateChanged(state);
+
+        switch (state) {
+            case LOADING_INITIAL: {
+                Log.d("PAGING_LOG", "Loading Initial Data");
+
+                AppCompatActivity activity = (AppCompatActivity) mContext;
+
+                final loadingDialogAPI loadingDialogAPI = new loadingDialogAPI(activity);
+                loadingDialogAPI.LoadingState("Loading Initial Data");
+            }
+                break;
+            case LOADING_MORE: {
+                Log.d("PAGING_LOG", "Loading Next Page");
+
+                AppCompatActivity activity = (AppCompatActivity) mContext;
+
+                final loadingDialogAPI loadingDialogAPI = new loadingDialogAPI(activity);
+                loadingDialogAPI.LoadingState("Loading Next Page");
+            }
+                break;
+            case FINISHED: {
+                Log.d("PAGING_LONG", "All Data Loaded");
+
+                AppCompatActivity activity = (AppCompatActivity) mContext;
+
+                final loadingDialogAPI loadingDialogAPI = new loadingDialogAPI(activity);
+                loadingDialogAPI.dismissDialog();
+            }
+                break;
+            case ERROR: {
+                Log.d("PAGING_LOG", "Error Loading Data");
+
+                AppCompatActivity activity = (AppCompatActivity) mContext;
+
+                final loadingDialogAPI loadingDialogAPI = new loadingDialogAPI(activity);
+                loadingDialogAPI.LoadingState("Error Loading Data");
+            }
+                //retry(); повторить
+                break;
+            case LOADED: {
+                Log.d("PAGING_LOG", "Total Item's Loaded: " + getItemCount());
+
+                AppCompatActivity activity = (AppCompatActivity) mContext;
+
+                final loadingDialogAPI loadingDialogAPI = new loadingDialogAPI(activity);
+                loadingDialogAPI.LoadingState("Total Item's Loaded: " + getItemCount());
+            }
+                break;
+        }
     }
 
     @Override

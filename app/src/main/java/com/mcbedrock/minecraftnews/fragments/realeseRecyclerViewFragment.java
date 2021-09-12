@@ -6,12 +6,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.firebase.ui.firestore.paging.FirestorePagingOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.mcbedrock.minecraftnews.MainActivity;
@@ -48,16 +52,23 @@ public class realeseRecyclerViewFragment extends Fragment {
         recview = (RecyclerView) view.findViewById(R.id.recview);
         recview.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        PagedList.Config config = new PagedList.Config.Builder()
+                .setInitialLoadSizeHint(8)
+                .setPageSize(3)
+                .build();
+
         Query query = FirebaseFirestore.getInstance()
                 .collection("bedrock_realese_changeloges")
                 .orderBy("version", Query.Direction.DESCENDING)//от новых
                 .limit(36);
 
-        FirestoreRecyclerOptions<changelogsModel> options = new FirestoreRecyclerOptions.Builder<changelogsModel>()
-                .setQuery(query, changelogsModel.class)
+        FirestorePagingOptions<changelogsModel> options = new FirestorePagingOptions.Builder<changelogsModel>()
+                .setLifecycleOwner(this)
+                .setQuery(query, config, changelogsModel.class)
                 .build();
 
         adapter = new changelogsAdapter(options);
+        recview.setHasFixedSize(true);
         recview.setAdapter(adapter);
 
         return view;
@@ -72,6 +83,12 @@ public class realeseRecyclerViewFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
+        adapter.stopListening();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         adapter.startListening();
     }
 }

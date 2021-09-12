@@ -103,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-
         mContext = getApplicationContext();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new CategoriesFragment()).commit();

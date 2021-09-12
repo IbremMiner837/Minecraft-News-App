@@ -12,6 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.stream.JsonReader;
 import com.mcbedrock.minecraftnews.MainActivity;
 import com.mcbedrock.minecraftnews.R;
 
@@ -44,6 +47,10 @@ public class minecraftnet_news extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
 
         GetData getData = new GetData();
         getData.execute();
