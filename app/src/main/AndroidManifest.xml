@@ -16,12 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MinecraftNews">
-        <activity
-            android:name=".NoConnectionActivity"
-            android:exported="true" />
-        <activity
-            android:name=".full_screen_changelog_view"
-            android:exported="true" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,13 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".AboutActivity"
-            android:exported="true" />
-        <activity
-            android:name=".SettingsActivity"
-            android:exported="true"
-            android:label="@string/title_activity_settings" /> <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
+
+        <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-4193046598871025~7234135728" />
