@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/news"
+        android:enabled="true"
+        app:showAsAction="always"
+        android:title="News"
+        android:icon="@drawable/ic_baseline_newspaper_24"/>
+    <item
+        android:id="@+id/changelogs"
+        android:enabled="true"
+        app:showAsAction="always"
+        android:title="Changelogs"
+        android:icon="@drawable/ic_baseline_article_24"/>
+    <item
+        android:id="@+id/about"
+        android:enabled="true"
+        app:showAsAction="always"
+        android:title="About"
+        android:icon="@drawable/ic_baseline_info_24"/>
+</menu>

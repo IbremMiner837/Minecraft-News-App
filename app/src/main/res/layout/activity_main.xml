@@ -20,15 +20,34 @@
             android:layout_height="?attr/actionBarSize"
             app:title="@string/app_name"
             app:titleCentered="true"
-            app:layout_scrollFlags="scroll|snap"/>
+            app:layout_scrollFlags="scroll|enterAlways|snap"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="100dp"
+        android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Ibragim, Ibragim, Ibragim, Ibragim, Ibragim, Ibragim, Ibragim, Ibragim, Ibragim, Ibragim, Ibragim, Ibragim, Ibragim, Ibragim, Ibragim, Ibragim, Ibragim, Ibragim, Ibragim, Ibragim, "
+                android:textSize="64sp"/>
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/BottomAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:hideOnScroll="false"
+        app:menu="@menu/bottom_app_bar_menu"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
