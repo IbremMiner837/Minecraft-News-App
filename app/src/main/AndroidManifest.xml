@@ -4,7 +4,7 @@
     android:versionCode="10"
     android:versionName="2.0.0 Beta">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -17,7 +17,8 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.AppSplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
