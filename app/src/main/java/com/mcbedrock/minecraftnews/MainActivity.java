@@ -6,6 +6,7 @@ import android.view.View;
 import android.webkit.WebView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.splashscreen.SplashScreen;
 
 import com.google.android.material.color.DynamicColors;
 import com.mcbedrock.minecraftnews.databinding.ActivityMainBinding;
