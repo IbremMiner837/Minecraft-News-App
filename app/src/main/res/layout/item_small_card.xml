@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,6 +14,7 @@
         android:padding="8dp">
 
         <ImageView
+            android:id="@+id/item_small_image"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:src="@drawable/minecraft_background_0"
@@ -26,20 +28,25 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/item_small_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Minecraft Bedrock"
                 android:textSize="24sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:singleLine="true"/>
 
             <TextView
+                android:id="@+id/item_small_version"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Version: 1.19.2"
                 android:textSize="24sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:singleLine="true"/>
 
             <TextView
+                android:id="@+id/item_small_url_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="https://www.minecraft.net/..."

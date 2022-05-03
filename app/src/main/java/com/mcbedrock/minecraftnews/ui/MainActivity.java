@@ -19,8 +19,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.color.DynamicColors;
 import com.mcbedrock.minecraftnews.R;
+import com.mcbedrock.minecraftnews.adapter.ChangelogsAdapter;
 import com.mcbedrock.minecraftnews.adapter.MinecraftNewsAdapter;
 import com.mcbedrock.minecraftnews.databinding.ActivityMainBinding;
+import com.mcbedrock.minecraftnews.model.BaseModel;
 import com.mcbedrock.minecraftnews.model.NewsModel;
 
 import org.json.JSONArray;
@@ -34,9 +36,12 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    private List<NewsModel> models;
-    private MinecraftNewsAdapter adapter;
-    private String jsonURL = "https://www.minecraft.net/content/minecraft-net/_jcr_content.articles.grid";
+    private List<BaseModel> models;
+    private ChangelogsAdapter adapter;
+    private String BEDROCK_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/English/bedrock-releases.json";
+    private String BETA_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/English/bedrock-beta-and-preview.json";
+    private String JAVA_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/English/java-realeses.json";
+    private String SNAPSHOT_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/English/java-snapshots.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,34 +60,52 @@ public class MainActivity extends AppCompatActivity {
         //binding.MarkdownView.loadMarkdownFromUrl("https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/English/Minecraft-Bedrock/Realeses/1-18-30.md");
 
         BottomAppBar();
-        ExtractJson();
+        ExtractJson(BEDROCK_JSON);
     }
 
-    private void ExtractJson() {
+    private void ExtractJson(String jsonURL) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, jsonURL, null, response -> {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, jsonURL, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
 
-            try {
-                JSONArray jsonArray = response.getJSONArray("article_grid");
+                try {
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject jsonObject = response.getJSONObject(i);
 
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                        BaseModel model = new BaseModel();
+                        /*model.setTitle(jsonObject1.getJSONObject("default_title").getString("title"));
+                        model.setSub_header(jsonObject1.getJSONObject("default_title").getString("sub_header"));
+                        model.setImage_url(jsonObject1.getJSONObject("default_title").getJSONObject("image").getString("image"));*/
 
-                    NewsModel model = new NewsModel();
-                    model.setTitle(jsonObject1.getJSONObject("default_title").getString("title"));
-                    model.setSub_header(jsonObject1.getJSONObject("default_title").getString("sub_header"));
-                    model.setImage_url(jsonObject1.getJSONObject("default_title").getJSONObject("image").getString("imageURL"));
-                    models.add(model);
+                        model.setTitle(jsonObject.getString("title"));
+                        model.setVersion(jsonObject.getString("version"));
+                        model.setUrl_text(jsonObject.getString("changelogURL"));
+                        model.setImage_url(jsonObject.getString("imageURL"));
+
+                        models.add(model);
+                    }
+                    binding.recview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                    adapter = new ChangelogsAdapter(getApplicationContext(), models);
+                    binding.recview.setAdapter(adapter);
+                } catch (JSONException e) {
+                    //
                 }
-                binding.recview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                adapter = new MinecraftNewsAdapter(getApplicationContext(), models);
-                binding.recview.setAdapter(adapter);
-            } catch (JSONException e) {
-                //
             }
         }, error -> Log.d("tag", "OnErrorResponse" + error.getMessage()));
 
-        queue.add(jsonObjectRequest);
+        queue.add(jsonArrayRequest);
+
+        /*JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, jsonURL, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject object = response.getJSONObject("").getString("");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });*/
     }
 
     public void BottomAppBar() {
@@ -119,18 +142,26 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btn_bedrock.setOnClickListener(view -> {
+            models.clear();
+            ExtractJson(BEDROCK_JSON);
             bottomSheetDialog.dismiss();
         });
 
         btn_beta_and_preview.setOnClickListener(view -> {
+            models.clear();
+            ExtractJson(BETA_JSON);
             bottomSheetDialog.dismiss();
         });
 
         btn_java.setOnClickListener(view -> {
+            models.clear();
+            ExtractJson(JAVA_JSON);
             bottomSheetDialog.dismiss();
         });
 
         btn_snapshot.setOnClickListener(view -> {
+            models.clear();
+            ExtractJson(SNAPSHOT_JSON);
             bottomSheetDialog.dismiss();
         });
     }
