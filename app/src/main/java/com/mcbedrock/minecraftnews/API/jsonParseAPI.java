@@ -22,7 +22,7 @@ public class jsonParseAPI {
     -> article_grid [20]
     [0, 1, 2, 3...]
     -> 0
-       -> default_tile
+       -> default_title
                      -> sub_header: "Что то типо описания"
                      -> image
                             -> content_type: image

@@ -13,6 +13,7 @@
         android:padding="8dp">
 
         <ImageView
+            android:id="@+id/item_news_image"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:src="@drawable/minecraft_background_0"
@@ -26,6 +27,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/item_news_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Minecraft Bedrock"
@@ -33,6 +35,7 @@
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/item_news_sub_header"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="This is sub header, this is sub header, this is sub header"
