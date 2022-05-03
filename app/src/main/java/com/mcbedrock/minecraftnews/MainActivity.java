@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.splashscreen.SplashScreen;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.color.DynamicColors;
 import com.mcbedrock.minecraftnews.databinding.ActivityMainBinding;
 
@@ -40,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void BottomAppBar() {
+
+        MaterialButton btn_news, btn_bedrock, btn_beta_and_preview, btn_java, btn_snapshot;
+
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         bottomSheetDialog.setContentView(R.layout.bottom_sheet_dialog_menu);
 
@@ -57,6 +61,32 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
             return false;
+        });
+
+        btn_news = bottomSheetDialog.findViewById(R.id.BS_MinecraftNewsBtn);
+        btn_bedrock = bottomSheetDialog.findViewById(R.id.BS_MinecraftBedrockBtn);
+        btn_beta_and_preview = bottomSheetDialog.findViewById(R.id.BS_MinecraftBetaBtn);
+        btn_java = bottomSheetDialog.findViewById(R.id.BS_MinecraftJavaBtn);
+        btn_snapshot = bottomSheetDialog.findViewById(R.id.BS_MinecraftSnapshotBtn);
+
+        btn_news.setOnClickListener(view -> {
+            bottomSheetDialog.dismiss();
+        });
+
+        btn_bedrock.setOnClickListener(view -> {
+            bottomSheetDialog.dismiss();
+        });
+
+        btn_beta_and_preview.setOnClickListener(view -> {
+            bottomSheetDialog.dismiss();
+        });
+
+        btn_java.setOnClickListener(view -> {
+            bottomSheetDialog.dismiss();
+        });
+
+        btn_snapshot.setOnClickListener(view -> {
+            bottomSheetDialog.dismiss();
         });
     }
 }
