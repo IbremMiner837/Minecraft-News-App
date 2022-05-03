@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:gravity="center_horizontal"
+        android:text="@string/menu"
+        android:textSize="21sp"
+        android:textStyle="bold"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/BS_MinecraftNewsBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Minecraft News"
+        android:textSize="18sp"
+        app:icon="@drawable/ic_baseline_newspaper_24"
+        app:iconPadding="16dp"
+        android:textAlignment="textStart"
+        style="@style/Widget.Material3.Button.TextButton"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/BS_MinecraftBedrockBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Minecraft Bedrock Release"
+        android:textSize="18sp"
+        app:icon="@drawable/ic_baseline_article_24"
+        app:iconPadding="16dp"
+        android:textAlignment="textStart"
+        style="@style/Widget.Material3.Button.TextButton"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/BS_MinecraftBetaBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Minecraft Beta and Preview"
+        android:textSize="18sp"
+        app:icon="@drawable/ic_baseline_article_24"
+        app:iconPadding="16dp"
+        android:textAlignment="textStart"
+        style="@style/Widget.Material3.Button.TextButton"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/BS_MinecraftJavaBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Minecraft Java Edition Release"
+        android:textSize="18sp"
+        app:icon="@drawable/ic_baseline_article_24"
+        app:iconPadding="16dp"
+        android:textAlignment="textStart"
+        style="@style/Widget.Material3.Button.TextButton"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/BS_MinecraftSnapshotBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Minecraft Java Edition Snapshots"
+        android:textSize="18sp"
+        app:icon="@drawable/ic_baseline_article_24"
+        app:iconPadding="16dp"
+        android:textAlignment="textStart"
+        style="@style/Widget.Material3.Button.TextButton"/>
+</LinearLayout>
