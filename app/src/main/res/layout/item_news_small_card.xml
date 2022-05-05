@@ -32,7 +32,8 @@
                 android:layout_height="wrap_content"
                 android:text="Minecraft Bedrock"
                 android:textSize="24sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:singleLine="true"/>
 
             <TextView
                 android:id="@+id/item_news_sub_header"

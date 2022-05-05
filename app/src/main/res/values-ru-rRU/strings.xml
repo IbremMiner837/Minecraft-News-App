@@ -1,55 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Майнкрафт Новости</string>
-
-    <string name="category">Категории</string>
-    <string name="news">Новости</string>
-
-    <string name="no_connection">Упс, нет интернет соеденения :(</string>
-    <string name="try_again">Попробовать снова</string>
-
     <string name="menu">Меню</string>
-    <string name="coming_soon">Скоро</string>
-    <string name="version_">Версия:</string>
-    <string name="all_changes">Все Изменения</string>
-    <string name="news_review">Обзор Новости</string>
-    <string name="more">Подробнее</string>
-
-    <!--Changelogs-->
-    <string name="about_changelog">О Чейнджлоге</string>
-    <string name="bedrock_release_changelog">Бедрок Релиз Чейнджлог</string>
-    <string name="java_edition_release_changelog">Джава Эдишн Релиз Чейнджлог</string>
-    <string name="beta_version_changelog">Чейнджлог Бета Версии</string>
-    <string name="snapshot_changelog">Чейнджлог Снапшота</string>
-    <string name="bedrock_release_changelogs">Бедрок Релиз Чейнджлоги</string>
-    <string name="java_edition_release_changelogs">Джава Эдишн Релиз Чейнджлоги</string>
-    <string name="beta_version_changelogs">Чейнджлоги Бета Версий</string>
-    <string name="snapshot_changelogs">Чейнджлоги Снапшотов</string>
-
-    <!--About-->
-    <string name="about_app">О Приложении</string>
+    <string name="minecraft_news">Майнкрафт Новости</string>
+    <string name="minecraft_bedrock_releases">Minecraft Bedrock Релизы</string>
+    <string name="minecraft_betas_and_previews">Minecraft Беты и Превью</string>
+    <string name="minecraft_java_edition_releases">Minecraft Java Edition Релизы</string>
+    <string name="minecraft_java_edition_snapshots">Minecraft Java Edition Снапшоты</string>
+    <string name="about_app">Об Приложении</string>
     <string name="version">Версия</string>
-    <string name="changelog">История обновлений</string>
-    <string name="source_code">Исходный код</string>
+    <string name="changelog">Чейнджлог</string>
+    <string name="source_code">Исходный Код</string>
     <string name="license">Лицензии</string>
     <string name="author">Автор</string>
     <string name="ibragim_maltsagov">Ибрагим Мальцагов</string>
-    <string name="email">ibremminer837.dev@gmail.com</string>
-    <string name="github">Github</string>
     <string name="other_apps">Другие приложения</string>
-
-    <!--Settings-->
-    <string name="title_activity_settings">SettingsActivity</string>
-    <!-- Preference Titles -->
-    <string name="app_theme_header">Theme</string>
-    <string name="sync_header">Sync</string>
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 </resources>

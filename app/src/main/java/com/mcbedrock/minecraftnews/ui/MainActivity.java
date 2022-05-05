@@ -4,16 +4,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
-import androidx.core.splashscreen.SplashScreenViewProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -63,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         BottomAppBar();
         ParseNews(NEWS_JSON);
+        binding.toolbar.setSubtitle("");
     }
 
     private void ParseChangelogs(String jsonURL) {
@@ -149,9 +146,10 @@ public class MainActivity extends AppCompatActivity {
         binding.BottomAppBar.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.news:
-                    break;
-
-                case R.id.settings:
+                    base_models.clear();
+                    news_models.clear();
+                    binding.toolbar.setSubtitle(R.string.minecraft_news);
+                    ParseNews(NEWS_JSON);
                     break;
 
                 case R.id.about:
@@ -169,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
         btn_news.setOnClickListener(view -> {
             base_models.clear();
             news_models.clear();
+            binding.toolbar.setSubtitle("");
             ParseNews(NEWS_JSON);
             bottomSheetDialog.dismiss();
         });
@@ -176,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
         btn_bedrock.setOnClickListener(view -> {
             base_models.clear();
             news_models.clear();
+            binding.toolbar.setSubtitle(R.string.minecraft_bedrock_releases);
             ParseChangelogs(BEDROCK_JSON);
             bottomSheetDialog.dismiss();
         });
@@ -183,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
         btn_beta_and_preview.setOnClickListener(view -> {
             base_models.clear();
             news_models.clear();
+            binding.toolbar.setSubtitle(R.string.minecraft_betas_and_previews);
             ParseChangelogs(BETA_JSON);
             bottomSheetDialog.dismiss();
         });
@@ -190,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
         btn_java.setOnClickListener(view -> {
             base_models.clear();
             news_models.clear();
+            binding.toolbar.setSubtitle(R.string.minecraft_java_edition_releases);
             ParseChangelogs(JAVA_JSON);
             bottomSheetDialog.dismiss();
         });
@@ -197,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
         btn_snapshot.setOnClickListener(view -> {
             base_models.clear();
             news_models.clear();
+            binding.toolbar.setSubtitle(R.string.minecraft_java_edition_snapshots);
             ParseChangelogs(SNAPSHOT_JSON);
             bottomSheetDialog.dismiss();
         });

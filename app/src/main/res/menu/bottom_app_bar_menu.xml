@@ -8,12 +8,6 @@
         android:title="News"
         android:icon="@drawable/ic_baseline_newspaper_24"/>
     <item
-        android:id="@+id/settings"
-        android:enabled="true"
-        app:showAsAction="always"
-        android:title="Settings"
-        android:icon="@drawable/ic_baseline_settings_24"/>
-    <item
         android:id="@+id/about"
         android:enabled="true"
         app:showAsAction="always"
