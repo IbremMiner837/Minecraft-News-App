@@ -4,8 +4,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
+import androidx.core.splashscreen.SplashScreenViewProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.android.volley.Request;
@@ -17,6 +20,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.color.DynamicColors;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.adapter.ChangelogsAdapter;
 import com.mcbedrock.minecraftnews.adapter.MinecraftNewsAdapter;
@@ -38,11 +42,11 @@ public class MainActivity extends AppCompatActivity {
     private List<NewsModel> news_models;
     private ChangelogsAdapter adapter;
     private MinecraftNewsAdapter minecraftNewsAdapter;
-    private final String NEWS_JSON = "https://www.minecraft.net/content/minecraft-net/_jcr_content.articles.grid";
-    private final String BEDROCK_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/English/bedrock-releases.json";
-    private final String BETA_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/English/bedrock-beta-and-preview.json";
-    private final String JAVA_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/English/java-realeses.json";
-    private final String SNAPSHOT_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/English/java-snapshots.json";
+    private static final String NEWS_JSON = "https://www.minecraft.net/content/minecraft-net/_jcr_content.articles.grid";
+    private static final String BEDROCK_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/English/bedrock-releases.json";
+    private static final String BETA_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/English/bedrock-beta-and-preview.json";
+    private static final String JAVA_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/English/java-realeses.json";
+    private static final String SNAPSHOT_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/English/java-snapshots.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,10 +73,6 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject jsonObject = response.getJSONObject(i);
 
                     BaseModel model = new BaseModel();
-                    /*model.setTitle(jsonObject1.getJSONObject("default_title").getString("title"));
-                    model.setSub_header(jsonObject1.getJSONObject("default_title").getString("sub_header"));
-                    model.setImage_url(jsonObject1.getJSONObject("default_title").getJSONObject("image").getString("image"));*/
-
                     model.setTitle(jsonObject.getString("title"));
                     model.setVersion(jsonObject.getString("version"));
                     model.setUrl_text(jsonObject.getString("changelogURL"));
@@ -84,12 +84,23 @@ public class MainActivity extends AppCompatActivity {
                 adapter = new ChangelogsAdapter(getApplicationContext(), base_models);
                 binding.recview.setAdapter(adapter);
             } catch (JSONException e) {
-                //
+                e.printStackTrace();
+                new MaterialAlertDialogBuilder(this)
+                        .setTitle("ОШИБКА ЁПТ")
+                        .setMessage(e.toString())
+                        .show();
             }
-        }, error -> Log.d("tag", "OnErrorResponse" + error.getMessage()));
+        }, error -> {
+            Log.d("tag", "OnErrorResponse" + error.getMessage());
+            new MaterialAlertDialogBuilder(this)
+                    .setTitle("ОШИБКА ЁПТ")
+                    .setMessage(error.getMessage())
+                    .show();
+        });
 
         queue.add(jsonArrayRequest);
     }
+
 
     private void ParseNews(String newsURL) {
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -100,20 +111,29 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
 
                     NewsModel model = new NewsModel();
-                    model.setTitle(jsonObject1.getJSONObject("default_title").getString("title"));
-                    model.setSub_header(jsonObject1.getJSONObject("default_title").getString("sub_header"));
-                    model.setImage_url(jsonObject1.getJSONObject("default_title").getJSONObject("image").getString("image"));
+                    model.setTitle(jsonObject1.getJSONObject("default_tile").getString("title"));
+                    model.setSub_header(jsonObject1.getJSONObject("default_tile").getString("sub_header"));
+                    model.setImage_url(jsonObject1.getJSONObject("default_tile").getJSONObject("image").getString("imageURL"));
 
                     news_models.add(model);
                 }
                 binding.recview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                minecraftNewsAdapter = new MinecraftNewsAdapter(getApplicationContext(), news_models);
+                minecraftNewsAdapter = new MinecraftNewsAdapter(this, news_models);
                 binding.recview.setAdapter(minecraftNewsAdapter);
             } catch (JSONException e) {
-                //
+                e.printStackTrace();
+                new MaterialAlertDialogBuilder(this)
+                        .setTitle("ОШИБКА ЁПТ")
+                        .setMessage(e.toString())
+                        .show();
             }
-        }, error -> Log.d("tag", "OnErrorResponse" + error.getMessage()));
-
+        }, error -> {
+            Log.d("tag", "OnErrorResponse" + error.getMessage());
+            new MaterialAlertDialogBuilder(this)
+                    .setTitle("ОШИБКА ЁПТ")
+                    .setMessage(error.getMessage())
+                    .show();
+        });
         queue.add(jsonObjectRequest);
     }
 

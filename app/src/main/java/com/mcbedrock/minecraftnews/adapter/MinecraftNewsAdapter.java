@@ -21,18 +21,18 @@ import java.util.List;
 
 public class MinecraftNewsAdapter extends RecyclerView.Adapter<MinecraftNewsAdapter.ViewHolder> {
 
-    LayoutInflater inflater;
+    Context context;
     List<NewsModel> models;
 
     public MinecraftNewsAdapter(Context context, List<NewsModel> models) {
-        this.inflater = LayoutInflater.from(context);
+        this.context = context;
         this.models = models;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.item_news_small_card, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news_small_card, parent, false);
         return new ViewHolder(view);
     }
 
