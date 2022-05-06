@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:text="@string/minecraft_news"
         android:textSize="18sp"
-        app:icon="@drawable/ic_baseline_newspaper_24"
+        app:icon="@drawable/ic_newspaper_24"
         app:iconPadding="16dp"
         android:textAlignment="textStart"
         style="@style/Widget.Material3.Button.TextButton"/>
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:text="@string/minecraft_bedrock_releases"
         android:textSize="18sp"
-        app:icon="@drawable/ic_baseline_article_24"
+        app:icon="@drawable/ic_article_24"
         app:iconPadding="16dp"
         android:textAlignment="textStart"
         style="@style/Widget.Material3.Button.TextButton"/>
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:text="@string/minecraft_betas_and_previews"
         android:textSize="18sp"
-        app:icon="@drawable/ic_baseline_article_24"
+        app:icon="@drawable/ic_article_24"
         app:iconPadding="16dp"
         android:textAlignment="textStart"
         style="@style/Widget.Material3.Button.TextButton"/>
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:text="@string/minecraft_java_edition_releases"
         android:textSize="18sp"
-        app:icon="@drawable/ic_baseline_article_24"
+        app:icon="@drawable/ic_article_24"
         app:iconPadding="16dp"
         android:textAlignment="textStart"
         style="@style/Widget.Material3.Button.TextButton"/>
@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:text="@string/minecraft_java_edition_snapshots"
         android:textSize="18sp"
-        app:icon="@drawable/ic_baseline_article_24"
+        app:icon="@drawable/ic_article_24"
         app:iconPadding="16dp"
         android:textAlignment="textStart"
         style="@style/Widget.Material3.Button.TextButton"/>

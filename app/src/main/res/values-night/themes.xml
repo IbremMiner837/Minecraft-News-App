@@ -28,6 +28,9 @@
         <!--item name="colorInversePrimary">@color/md_theme_dark_inversePrimary</item>
         <item name="colorShadow">@color/md_theme_dark_shadow</item-->
         <item name="colorPrimaryInverse">@color/md_theme_dark_primaryInverse</item>
+
+        <item name="android:navigationBarColor">@color/app_bar_dark_color</item>
+        <item name="android:statusBarColor">@color/app_bar_dark_color</item>
     </style>
 
     <style name="Theme.AppSplash" parent="Theme.SplashScreen">

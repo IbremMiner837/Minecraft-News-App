@@ -1,5 +1,6 @@
 package com.mcbedrock.minecraftnews.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.mcbedrock.minecraftnews.API.ChromeCustomTabAPI;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.model.NewsModel;
 
@@ -21,6 +24,7 @@ import java.util.List;
 
 public class MinecraftNewsAdapter extends RecyclerView.Adapter<MinecraftNewsAdapter.ViewHolder> {
 
+    ChromeCustomTabAPI chromeCustomTabAPI;
     Context context;
     List<NewsModel> models;
 
@@ -48,6 +52,11 @@ public class MinecraftNewsAdapter extends RecyclerView.Adapter<MinecraftNewsAdap
                 .load("https://www.minecraft.net" + models.get(position).getImage_url())
                 .apply(requestOptions)
                 .into(holder.image);
+
+        holder.itemView.setOnClickListener(view -> {
+            chromeCustomTabAPI = new ChromeCustomTabAPI((Activity) context);
+            chromeCustomTabAPI.OpenCustomTab((Activity) context, "https://www.minecraft.net" + models.get(position).getArticle_url());
+        });
     }
 
     @Override

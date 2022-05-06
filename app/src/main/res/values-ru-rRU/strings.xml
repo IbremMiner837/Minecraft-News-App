@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Майнкрафт Новости</string>
+
+    <string name="coming_soon">Скоро...</string>
+
+    <!-- Bottom App Bar Menu -->
+
+    <!-- Menu -->
     <string name="menu">Меню</string>
     <string name="minecraft_news">Майнкрафт Новости</string>
     <string name="minecraft_bedrock_releases">Minecraft Bedrock Релизы</string>
     <string name="minecraft_betas_and_previews">Minecraft Беты и Превью</string>
     <string name="minecraft_java_edition_releases">Minecraft Java Edition Релизы</string>
     <string name="minecraft_java_edition_snapshots">Minecraft Java Edition Снапшоты</string>
+
+    <!-- About App -->
     <string name="about_app">Об Приложении</string>
     <string name="version">Версия</string>
     <string name="changelog">Чейнджлог</string>
+    <string name="update_history">История Обновлений</string>
     <string name="source_code">Исходный Код</string>
     <string name="license">Лицензии</string>
     <string name="author">Автор</string>
     <string name="ibragim_maltsagov">Ибрагим Мальцагов</string>
+    <string name="we_are_on_vk">Мы в ВКонтакте</string>
     <string name="other_apps">Другие приложения</string>
 </resources>

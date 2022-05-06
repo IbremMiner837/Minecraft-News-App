@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/AndroidStudioProjects/Minecraft-News-App/app/src/main/res/drawable/ic_apps_24.xml" value="0.1645" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Minecraft-News-App/app/src/main/res/drawable/ic_check_circle_24.xml" value="0.1645" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Minecraft-News-App/app/src/main/res/drawable/ic_history_24.xml" value="0.1645" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Minecraft-News-App/app/src/main/res/drawable/style_corner_radius_16.xml" value="0.1645" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Minecraft-News-App/app/src/main/res/layout/activity_about.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Minecraft-News-App/app/src/main/res/layout/activity_main.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Minecraft-News-App/app/src/main/res/layout/activity_markdown.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Minecraft-News-App/app/src/main/res/layout/bottom_sheet_dialog_menu.xml" value="0.33" />

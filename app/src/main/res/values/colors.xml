@@ -58,4 +58,8 @@
     <color name="md_theme_dark_inversePrimary">#6750A4</color>
     <color name="md_theme_dark_shadow">#000000</color>
     <color name="md_theme_dark_primaryInverse">#6750A4</color>
+
+    <!-- Custom Colors -->
+    <color name="app_bar_light_color">#8F7C9C</color>
+    <color name="app_bar_dark_color">#2A2931</color>
 </resources>

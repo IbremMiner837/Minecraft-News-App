@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".adapter.MarkdownActivity">
+    tools:context=".ui.MarkdownActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -18,8 +18,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="@string/app_name"
+            app:title="@string/changelog"
             app:titleCentered="true"
+            app:navigationIcon="@drawable/ic_arrow_back_24"
             app:layout_scrollFlags="scroll|enterAlways|snap"/>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -36,14 +37,4 @@
             android:layout_height="match_parent"
             app:escapeHtml="false"/>
     </androidx.core.widget.NestedScrollView>
-
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/BottomAppBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:hideOnScroll="false"
-        app:navigationIcon="@drawable/ic_baseline_menu_24"
-        app:menu="@menu/bottom_app_bar_menu"/>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

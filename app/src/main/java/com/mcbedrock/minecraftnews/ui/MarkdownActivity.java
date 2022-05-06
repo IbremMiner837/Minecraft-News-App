@@ -1,4 +1,4 @@
-package com.mcbedrock.minecraftnews.adapter;
+package com.mcbedrock.minecraftnews.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,11 +24,23 @@ public class MarkdownActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        Intent intent = new Intent();
-        intent.getStringExtra("url");
+        Intent intent = this.getIntent();
+        String URL = intent.getExtras().getString("URL");
 
         InternalStyleSheet css = new Github();
         binding.MarkdownView.addStyleSheet(css);
-        binding.MarkdownView.loadMarkdownFromUrl(intent.getStringExtra("url"));
+        binding.MarkdownView.loadMarkdownFromUrl(URL);
+
+        binding.toolbar.setOnClickListener(view1 -> {
+            onBackPressed();
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        finish();
     }
 }

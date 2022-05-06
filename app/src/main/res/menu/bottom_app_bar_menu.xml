@@ -5,12 +5,12 @@
         android:id="@+id/news"
         android:enabled="true"
         app:showAsAction="always"
-        android:title="News"
-        android:icon="@drawable/ic_baseline_newspaper_24"/>
+        android:title="@string/minecraft_news"
+        android:icon="@drawable/ic_newspaper_24"/>
     <item
         android:id="@+id/about"
         android:enabled="true"
         app:showAsAction="always"
-        android:title="About"
-        android:icon="@drawable/ic_baseline_info_24"/>
+        android:title="@string/about_app"
+        android:icon="@drawable/ic_info_24"/>
 </menu>

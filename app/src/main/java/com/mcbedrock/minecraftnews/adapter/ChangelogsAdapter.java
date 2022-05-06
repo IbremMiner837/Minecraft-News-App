@@ -17,7 +17,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.model.BaseModel;
-import com.mcbedrock.minecraftnews.model.NewsModel;
+import com.mcbedrock.minecraftnews.ui.MarkdownActivity;
 
 import java.util.List;
 
@@ -56,7 +56,7 @@ public class ChangelogsAdapter extends RecyclerView.Adapter<ChangelogsAdapter.Vi
             Intent intent = new Intent(context, MarkdownActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            intent.putExtra("url", models.get(position).getUrl_text());
+            intent.putExtra("URL", models.get(position).getUrl_text());
             context.startActivity(intent);
         });
     }

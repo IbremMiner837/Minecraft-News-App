@@ -1,5 +1,6 @@
 package com.mcbedrock.minecraftnews.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -39,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
     private ChangelogsAdapter adapter;
     private MinecraftNewsAdapter minecraftNewsAdapter;
     private static final String NEWS_JSON = "https://www.minecraft.net/content/minecraft-net/_jcr_content.articles.grid";
-    private static final String BEDROCK_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/English/bedrock-releases.json";
-    private static final String BETA_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/English/bedrock-beta-and-preview.json";
-    private static final String JAVA_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/English/java-realeses.json";
-    private static final String SNAPSHOT_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/English/java-snapshots.json";
+    private static final String BEDROCK_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/Russian/bedrock-releases.json";
+    private static final String BETA_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/Russian/bedrock-beta-and-preview.json";
+    private static final String JAVA_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/Russian/java-realeses.json";
+    private static final String SNAPSHOT_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/Russian/java-snapshots.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                     model.setTitle(jsonObject1.getJSONObject("default_tile").getString("title"));
                     model.setSub_header(jsonObject1.getJSONObject("default_tile").getString("sub_header"));
                     model.setImage_url(jsonObject1.getJSONObject("default_tile").getJSONObject("image").getString("imageURL"));
+                    model.setArticle_url(jsonObject1.getString("article_url"));
 
                     news_models.add(model);
                 }
@@ -148,11 +150,15 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.news:
                     base_models.clear();
                     news_models.clear();
-                    binding.toolbar.setSubtitle(R.string.minecraft_news);
+                    binding.toolbar.setSubtitle("");
                     ParseNews(NEWS_JSON);
+                    bottomSheetDialog.dismiss();
                     break;
 
                 case R.id.about:
+                    Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intent);
                     break;
             }
             return false;

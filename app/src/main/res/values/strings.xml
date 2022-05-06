@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">Minecraft News</string>
 
+    <string name="coming_soon">Coming Soon...</string>
+
+    <!-- URLs -->
+    <string name="SOURCE_CODE" translatable="false">http://github.com/IbremMiner837/Minecraft-News-App/</string>
+    <string name="JVMFrog" translatable="false">https://vk.com/jvmfrog</string>
+    <string name="MY_VK" translatable="false">https://vk.com/ibremminer837</string>
+    <string name="GOOGLE_PLAY" translatable="false">https://play.google.com/store/apps/dev?id=8551876312630719902</string>
+
     <!-- Bottom App Bar Menu -->
 
     <!-- Menu -->
@@ -15,11 +23,12 @@
     <string name="about_app">About App</string>
     <string name="version">Version</string>
     <string name="changelog">Changelog</string>
+    <string name="update_history">Update History</string>
     <string name="source_code">Source Code</string>
     <string name="license">License</string>
     <string name="author">Author</string>
     <string name="ibragim_maltsagov">Ibragim Maltsagov</string>
     <string name="email" translatable="false">ibremminer837.dev@gmail.com</string>
-    <string name="github" translatable="false">Github</string>
+    <string name="we_are_on_vk">We are on VK</string>
     <string name="other_apps">Other Apps</string>
 </resources>
