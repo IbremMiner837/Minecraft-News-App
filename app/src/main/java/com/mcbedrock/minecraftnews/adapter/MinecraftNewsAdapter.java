@@ -22,8 +22,6 @@ import com.mcbedrock.minecraftnews.model.NewsModel;
 import java.util.List;
 
 public class MinecraftNewsAdapter extends RecyclerView.Adapter<MinecraftNewsAdapter.ViewHolder> {
-
-    CustomTabAPI customTabAPI;
     Context context;
     List<NewsModel> models;
 
@@ -53,8 +51,8 @@ public class MinecraftNewsAdapter extends RecyclerView.Adapter<MinecraftNewsAdap
                 .into(holder.image);
 
         holder.itemView.setOnClickListener(view -> {
-            customTabAPI = new CustomTabAPI((Activity) context);
-            customTabAPI.OpenCustomTab((Activity) context, "https://www.minecraft.net" + models.get(position).getArticle_url());
+            new CustomTabAPI()
+                    .open(this.context, "https://www.minecraft.net" + models.get(position).getArticle_url());
         });
     }
 

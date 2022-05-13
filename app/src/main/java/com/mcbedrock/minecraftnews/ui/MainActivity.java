@@ -85,12 +85,12 @@ public class MainActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
                 new CustomDialogAPI()
-                        .ErrorDialog(this, e.toString());
+                        .showErrorDialog(this, e.toString());
             }
         }, error -> {
             Log.d("tag", "OnErrorResponse" + error.getMessage());
             new CustomDialogAPI()
-                    .ErrorDialog(this, error.toString());
+                    .showErrorDialog(this, error.toString());
         });
 
         queue.add(jsonArrayRequest);
@@ -119,12 +119,12 @@ public class MainActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
                 new CustomDialogAPI()
-                        .ErrorDialog(this, e.toString());
+                        .showErrorDialog(this, e.toString());
             }
         }, error -> {
             Log.d("tag", "OnErrorResponse" + error.getMessage());
             new CustomDialogAPI()
-                    .ErrorDialog(this, error.toString());
+                    .showErrorDialog(this, error.toString());
         });
         queue.add(jsonObjectRequest);
     }

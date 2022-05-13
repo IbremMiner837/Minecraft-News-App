@@ -7,7 +7,7 @@ import com.mcbedrock.minecraftnews.R;
 
 public class CustomDialogAPI {
 
-    public void ErrorDialog(Context CONTEXT, String ERROR) {
+    public void showErrorDialog(Context CONTEXT, String ERROR) {
         new MaterialAlertDialogBuilder(CONTEXT)
                 .setIcon(R.drawable.ic_round_error_outline_24)
                 .setTitle(R.string.error)

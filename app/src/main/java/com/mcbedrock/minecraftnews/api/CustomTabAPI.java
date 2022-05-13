@@ -6,21 +6,15 @@ import android.net.Uri;
 
 import androidx.browser.customtabs.CustomTabsIntent;
 
+import com.mcbedrock.minecraftnews.R;
+
 public class CustomTabAPI {
 
-    private Activity activity;
-
-    public CustomTabAPI(Activity activity) {
-        activity = activity;
-    }
-
-    public CustomTabAPI(Context context, String article_url, int app_bar_dark_color) {
-
-    }
-
-    public void OpenCustomTab(Activity activity, String URL) {
+    public void open(Context context, String URL) {
         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+        builder.setUrlBarHidingEnabled(true);
+        builder.setShowTitle(true);
         CustomTabsIntent customTabsIntent = builder.build();
-        customTabsIntent.launchUrl(activity, Uri.parse(URL));
+        customTabsIntent.launchUrl(context, Uri.parse(URL));
     }
 }
