@@ -21,6 +21,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.adapter.ChangelogsAdapter;
 import com.mcbedrock.minecraftnews.adapter.MinecraftNewsAdapter;
+import com.mcbedrock.minecraftnews.api.CustomDialogAPI;
 import com.mcbedrock.minecraftnews.databinding.ActivityMainBinding;
 import com.mcbedrock.minecraftnews.model.BaseModel;
 import com.mcbedrock.minecraftnews.model.NewsModel;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private ChangelogsAdapter adapter;
     private MinecraftNewsAdapter minecraftNewsAdapter;
     private static final String NEWS_JSON = "https://www.minecraft.net/content/minecraft-net/_jcr_content.articles.grid";
-    private static final String BEDROCK_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/Russian/bedrock-releases.json";
+    private static final String BEDROCK_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/Rusian/bedrock-releases.json";
     private static final String BETA_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/Russian/bedrock-beta-and-preview.json";
     private static final String JAVA_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/Russian/java-realeses.json";
     private static final String SNAPSHOT_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/Russian/java-snapshots.json";
@@ -83,17 +84,13 @@ public class MainActivity extends AppCompatActivity {
                 binding.recview.setAdapter(adapter);
             } catch (JSONException e) {
                 e.printStackTrace();
-                new MaterialAlertDialogBuilder(this)
-                        .setTitle("ОШИБКА ЁПТ")
-                        .setMessage(e.toString())
-                        .show();
+                new CustomDialogAPI()
+                        .ErrorDialog(this, e.toString());
             }
         }, error -> {
             Log.d("tag", "OnErrorResponse" + error.getMessage());
-            new MaterialAlertDialogBuilder(this)
-                    .setTitle("ОШИБКА ЁПТ")
-                    .setMessage(error.getMessage())
-                    .show();
+            new CustomDialogAPI()
+                    .ErrorDialog(this, error.toString());
         });
 
         queue.add(jsonArrayRequest);
@@ -121,17 +118,13 @@ public class MainActivity extends AppCompatActivity {
                 binding.recview.setAdapter(minecraftNewsAdapter);
             } catch (JSONException e) {
                 e.printStackTrace();
-                new MaterialAlertDialogBuilder(this)
-                        .setTitle("ОШИБКА ЁПТ")
-                        .setMessage(e.toString())
-                        .show();
+                new CustomDialogAPI()
+                        .ErrorDialog(this, e.toString());
             }
         }, error -> {
             Log.d("tag", "OnErrorResponse" + error.getMessage());
-            new MaterialAlertDialogBuilder(this)
-                    .setTitle("ОШИБКА ЁПТ")
-                    .setMessage(error.getMessage())
-                    .show();
+            new CustomDialogAPI()
+                    .ErrorDialog(this, error.toString());
         });
         queue.add(jsonObjectRequest);
     }

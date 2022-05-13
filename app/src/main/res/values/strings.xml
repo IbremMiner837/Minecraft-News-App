@@ -11,6 +11,13 @@
 
     <!-- Bottom App Bar Menu -->
 
+    <!-- AlertDialog -->
+    <string name="error">Error</string>
+    <string name="copy">Copy</string>
+    <string name="ok">ok</string>
+    <string name="Ok">Ok</string>
+    <string name="OK">OK</string>
+
     <!-- Menu -->
     <string name="menu">Menu</string>
     <string name="minecraft_news">Minecraft News</string>

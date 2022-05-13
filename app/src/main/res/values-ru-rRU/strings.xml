@@ -6,6 +6,13 @@
 
     <!-- Bottom App Bar Menu -->
 
+    <!-- AlertDialog -->
+    <string name="error">Ошибка</string>
+    <string name="copy">Копировать</string>
+    <string name="ok">ок</string>
+    <string name="Ok">Ок</string>
+    <string name="OK">ОК</string>
+
     <!-- Menu -->
     <string name="menu">Меню</string>
     <string name="minecraft_news">Майнкрафт Новости</string>
