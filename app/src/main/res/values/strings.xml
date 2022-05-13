@@ -13,7 +13,10 @@
 
     <!-- AlertDialog -->
     <string name="error">Error</string>
+    <string name="link">Link</string>
     <string name="copy">Copy</string>
+    <string name="copy_link">Copy Link</string>
+    <string name="open_link">Open</string>
     <string name="ok">ok</string>
     <string name="Ok">Ok</string>
     <string name="OK">OK</string>

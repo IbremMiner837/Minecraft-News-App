@@ -52,6 +52,8 @@
                 android:text="https://www.minecraft.net/..."
                 android:textSize="18sp"
                 android:textColor="#0070AC"
+                android:clickable="true"
+                android:longClickable="true"
                 android:singleLine="true"/>
         </LinearLayout>
 

@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private ChangelogsAdapter adapter;
     private MinecraftNewsAdapter minecraftNewsAdapter;
     private static final String NEWS_JSON = "https://www.minecraft.net/content/minecraft-net/_jcr_content.articles.grid";
-    private static final String BEDROCK_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/Rusian/bedrock-releases.json";
+    private static final String BEDROCK_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/Russian/bedrock-releases.json";
     private static final String BETA_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/Russian/bedrock-beta-and-preview.json";
     private static final String JAVA_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/Russian/java-realeses.json";
     private static final String SNAPSHOT_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/Russian/java-snapshots.json";
