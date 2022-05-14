@@ -1,10 +1,13 @@
 package com.mcbedrock.minecraftnews.ui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,6 +21,17 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.color.DynamicColors;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.play.core.appupdate.AppUpdateInfo;
+import com.google.android.play.core.appupdate.AppUpdateManager;
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
+import com.google.android.play.core.install.InstallState;
+import com.google.android.play.core.install.InstallStateUpdatedListener;
+import com.google.android.play.core.install.model.AppUpdateType;
+import com.google.android.play.core.install.model.InstallStatus;
+import com.google.android.play.core.install.model.UpdateAvailability;
+import com.google.android.play.core.tasks.OnSuccessListener;
+import com.google.android.play.core.tasks.Task;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.adapter.ChangelogsAdapter;
 import com.mcbedrock.minecraftnews.adapter.MinecraftNewsAdapter;
@@ -25,7 +39,10 @@ import com.mcbedrock.minecraftnews.api.CustomDialogAPI;
 import com.mcbedrock.minecraftnews.databinding.ActivityMainBinding;
 import com.mcbedrock.minecraftnews.model.BaseModel;
 import com.mcbedrock.minecraftnews.model.NewsModel;
+import com.sanojpunchihewa.updatemanager.UpdateManager;
+import com.sanojpunchihewa.updatemanager.UpdateManagerConstant;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,7 +52,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
+    ActivityMainBinding binding;
+    private static final int RC_APP_UPDATE = 100;
+    private AppUpdateManager mAppUpdateManager;
     private List<BaseModel> base_models;
     private List<NewsModel> news_models;
     private ChangelogsAdapter adapter;
@@ -56,12 +75,28 @@ public class MainActivity extends AppCompatActivity {
 
         DynamicColors.applyToActivitiesIfAvailable(getApplication());
 
+        BottomAppBar();
         base_models = new ArrayList<>();
         news_models = new ArrayList<>();
-
-        BottomAppBar();
         ParseNews(NEWS_JSON);
         binding.toolbar.setSubtitle("");
+
+        //Play Core Update
+        mAppUpdateManager = AppUpdateManagerFactory.create(this);
+        mAppUpdateManager.getAppUpdateInfo().addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {
+            @Override
+            public void onSuccess(AppUpdateInfo result) {
+                if (result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                        && result.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
+                    try {
+                        mAppUpdateManager.startUpdateFlowForResult(result, AppUpdateType.IMMEDIATE, MainActivity.this, RC_APP_UPDATE);
+                    } catch (IntentSender.SendIntentException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        //mAppUpdateManager.registerListener(installStateUpdatedListener);
     }
 
     private void ParseChangelogs(String jsonURL) {
@@ -95,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
 
         queue.add(jsonArrayRequest);
     }
-
 
     private void ParseNews(String newsURL) {
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -201,6 +235,37 @@ public class MainActivity extends AppCompatActivity {
             binding.toolbar.setSubtitle(R.string.minecraft_java_edition_snapshots);
             ParseChangelogs(SNAPSHOT_JSON);
             bottomSheetDialog.dismiss();
+        });
+    }
+
+    //Play Core Update
+    private final InstallStateUpdatedListener installStateUpdatedListener = state -> {
+        if (state.installStatus() == InstallStatus.DOWNLOADED) {
+            showCompletedUpdate();
+        }
+    };
+
+    //Play Core Update
+    private void showCompletedUpdate() {
+        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), R.string.new_update_availability,
+                Snackbar.LENGTH_SHORT);
+        snackbar.setAction(R.string.update, v -> mAppUpdateManager.completeUpdate());
+        snackbar.show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //Play Core Update
+        mAppUpdateManager.getAppUpdateInfo().addOnSuccessListener(result -> {
+            if (result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
+                try {
+                    mAppUpdateManager.startUpdateFlowForResult(result, AppUpdateType.IMMEDIATE, MainActivity.this, RC_APP_UPDATE);
+                } catch (IntentSender.SendIntentException e) {
+                    e.printStackTrace();
+                }
+            }
         });
     }
 }

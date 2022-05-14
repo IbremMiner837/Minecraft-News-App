@@ -6,6 +6,10 @@
 
     <!-- Bottom App Bar Menu -->
 
+    <!-- AppUpdate -->
+    <string name="new_update_availability">Доступно Новое Обновление</string>
+    <string name="update">Обновить</string>
+
     <!-- AlertDialog -->
     <string name="error">Ошибка</string>
     <string name="link">Ссылка</string>

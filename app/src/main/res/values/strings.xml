@@ -11,6 +11,10 @@
 
     <!-- Bottom App Bar Menu -->
 
+    <!-- AppUpdate -->
+    <string name="new_update_availability">New Update Available</string>
+    <string name="update">Update</string>
+
     <!-- AlertDialog -->
     <string name="error">Error</string>
     <string name="link">Link</string>
