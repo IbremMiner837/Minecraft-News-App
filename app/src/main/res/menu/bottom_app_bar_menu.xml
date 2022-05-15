@@ -8,6 +8,12 @@
         android:title="@string/minecraft_news"
         android:icon="@drawable/ic_newspaper_24"/>
     <item
+        android:id="@+id/content_language"
+        android:enabled="true"
+        app:showAsAction="always"
+        android:title="@string/content_language"
+        android:icon="@drawable/ic_language_24px"/>
+    <item
         android:id="@+id/about"
         android:enabled="true"
         app:showAsAction="always"

@@ -23,14 +23,21 @@
     <!-- Menu -->
     <string name="menu">Меню</string>
     <string name="minecraft_news">Майнкрафт Новости</string>
-    <string name="minecraft_bedrock_releases">Minecraft Bedrock Релизы</string>
-    <string name="minecraft_betas_and_previews">Minecraft Беты и Превью</string>
-    <string name="minecraft_java_edition_releases">Minecraft Java Edition Релизы</string>
-    <string name="minecraft_java_edition_snapshots">Minecraft Java Edition Снапшоты</string>
+    <string name="minecraft_bedrock_releases">Майнкрафт Bedrock Релизы</string>
+    <string name="minecraft_betas_and_previews">Майнкрафт Беты и Превью</string>
+    <string name="minecraft_java_edition_releases">Майнкрафт Java Edition Релизы</string>
+    <string name="minecraft_java_edition_snapshots">Майнкрафт Java Edition Снапшоты</string>
+
+    <!-- Content Language -->
+    <string name="content_language">Язык Контента</string>
+    <string name="english">Английский</string>
+    <string name="russian">Российский</string>
+    <string name="enter">Подтвердить</string>
 
     <!-- About App -->
     <string name="about_app">Об Приложении</string>
     <string name="version">Версия</string>
+    <string name="versionn">Версия:</string>
     <string name="changelog">Чейнджлог</string>
     <string name="update_history">История Обновлений</string>
     <string name="source_code">Исходный Код</string>

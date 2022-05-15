@@ -1,13 +1,12 @@
 package com.mcbedrock.minecraftnews.ui;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.RadioGroup;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,34 +18,33 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.color.DynamicColors;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.play.core.appupdate.AppUpdateInfo;
 import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
-import com.google.android.play.core.install.InstallState;
 import com.google.android.play.core.install.InstallStateUpdatedListener;
 import com.google.android.play.core.install.model.AppUpdateType;
 import com.google.android.play.core.install.model.InstallStatus;
 import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.android.play.core.tasks.OnSuccessListener;
-import com.google.android.play.core.tasks.Task;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.adapter.ChangelogsAdapter;
 import com.mcbedrock.minecraftnews.adapter.MinecraftNewsAdapter;
 import com.mcbedrock.minecraftnews.api.CustomDialogAPI;
+import com.mcbedrock.minecraftnews.config.Settings;
+import com.mcbedrock.minecraftnews.config.SettingsAssist;
 import com.mcbedrock.minecraftnews.databinding.ActivityMainBinding;
 import com.mcbedrock.minecraftnews.model.BaseModel;
 import com.mcbedrock.minecraftnews.model.NewsModel;
-import com.sanojpunchihewa.updatemanager.UpdateManager;
-import com.sanojpunchihewa.updatemanager.UpdateManagerConstant;
 
-import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,10 +58,13 @@ public class MainActivity extends AppCompatActivity {
     private ChangelogsAdapter adapter;
     private MinecraftNewsAdapter minecraftNewsAdapter;
     private static final String NEWS_JSON = "https://www.minecraft.net/content/minecraft-net/_jcr_content.articles.grid";
-    private static final String BEDROCK_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/Russian/bedrock-releases.json";
-    private static final String BETA_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/Russian/bedrock-beta-and-preview.json";
-    private static final String JAVA_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/Russian/java-realeses.json";
-    private static final String SNAPSHOT_JSON = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/Russian/java-snapshots.json";
+
+    private static final String MD_URL = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/";
+    private static final String BEDROCK_JSON = "/bedrock-releases.json";
+    private static final String BETA_JSON = "/bedrock-beta-and-preview.json";
+    private static final String JAVA_JSON = "/java-realeses.json";
+    private static final String SNAPSHOT_JSON = "/java-snapshots.json";
+    private String CONTENT_LANGUAGE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,18 @@ public class MainActivity extends AppCompatActivity {
         SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
+
+        File settingsFile = new File(getFilesDir(), "Settings.json");
+        if(!settingsFile.exists()) {
+            try {
+                SettingsAssist.save(settingsFile, Settings.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+                new CustomDialogAPI()
+                        .showErrorDialog(this, e.toString());
+            }
+        }
+        loadSettings();
         setContentView(view);
 
         DynamicColors.applyToActivitiesIfAvailable(getApplication());
@@ -80,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         news_models = new ArrayList<>();
         ParseNews(NEWS_JSON);
         binding.toolbar.setSubtitle("");
+        CONTENT_LANGUAGE = Settings.contentLanguage;
 
         //Play Core Update
         mAppUpdateManager = AppUpdateManagerFactory.create(this);
@@ -182,6 +196,11 @@ public class MainActivity extends AppCompatActivity {
                     bottomSheetDialog.dismiss();
                     break;
 
+                case R.id.content_language:
+                    ContentLanguage();
+                    bottomSheetDialog.dismiss();
+                    break;
+
                 case R.id.about:
                     Intent intent = new Intent(MainActivity.this, AboutActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
@@ -209,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
             base_models.clear();
             news_models.clear();
             binding.toolbar.setSubtitle(R.string.minecraft_bedrock_releases);
-            ParseChangelogs(BEDROCK_JSON);
+            ParseChangelogs(MD_URL + CONTENT_LANGUAGE + BEDROCK_JSON);
             bottomSheetDialog.dismiss();
         });
 
@@ -217,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
             base_models.clear();
             news_models.clear();
             binding.toolbar.setSubtitle(R.string.minecraft_betas_and_previews);
-            ParseChangelogs(BETA_JSON);
+            ParseChangelogs(MD_URL + CONTENT_LANGUAGE + BETA_JSON);
             bottomSheetDialog.dismiss();
         });
 
@@ -225,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
             base_models.clear();
             news_models.clear();
             binding.toolbar.setSubtitle(R.string.minecraft_java_edition_releases);
-            ParseChangelogs(JAVA_JSON);
+            ParseChangelogs(MD_URL + CONTENT_LANGUAGE + JAVA_JSON);
             bottomSheetDialog.dismiss();
         });
 
@@ -233,7 +252,46 @@ public class MainActivity extends AppCompatActivity {
             base_models.clear();
             news_models.clear();
             binding.toolbar.setSubtitle(R.string.minecraft_java_edition_snapshots);
-            ParseChangelogs(SNAPSHOT_JSON);
+            ParseChangelogs(MD_URL + CONTENT_LANGUAGE + SNAPSHOT_JSON);
+            bottomSheetDialog.dismiss();
+        });
+    }
+
+    public void ContentLanguage() {
+        RadioGroup radioGroup;
+        MaterialButton materialButton;
+
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        bottomSheetDialog.setContentView(R.layout.bottom_sheet_dialog_content_language);
+        bottomSheetDialog.show();
+
+        radioGroup = bottomSheetDialog.findViewById(R.id.rg_view_content_language);
+        radioGroup.setOnCheckedChangeListener((radioGroup1, checkedId) -> {
+            switch (checkedId) {
+                case R.id.rb_view_content_language_ru:
+                    Settings.contentLanguage = "Russian";
+                    CONTENT_LANGUAGE = Settings.contentLanguage;
+                    break;
+                case R.id.rb_view_content_language_en:
+                    Settings.contentLanguage = "English";
+                    CONTENT_LANGUAGE = Settings.contentLanguage;
+                    break;
+            }
+        });
+
+        if (Settings.contentLanguage.equals("Russian")) {
+            radioGroup.check(R.id.rb_view_content_language_ru);
+        } else if (Settings.contentLanguage.equals("English")) {
+            radioGroup.check(R.id.rb_view_content_language_en);
+        }
+
+        materialButton = bottomSheetDialog.findViewById(R.id.enter_btn);
+        materialButton.setOnClickListener(view -> {
+            saveSettings();
+            base_models.clear();
+            news_models.clear();
+            binding.toolbar.setSubtitle("");
+            ParseNews(NEWS_JSON);
             bottomSheetDialog.dismiss();
         });
     }
@@ -267,5 +325,29 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void saveSettings() {
+        File settingsFile = new File(getFilesDir(), "Settings.json");
+
+        try {
+            SettingsAssist.save(settingsFile, Settings.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+            new CustomDialogAPI()
+                    .showErrorDialog(this, e.toString());
+        }
+    }
+
+    public void loadSettings() {
+        File settingsFile = new File(getFilesDir(), "Settings.json");
+
+        try {
+            SettingsAssist.load(settingsFile, Settings.class);
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+            new CustomDialogAPI()
+                    .showErrorDialog(this, e.toString());
+        }
     }
 }

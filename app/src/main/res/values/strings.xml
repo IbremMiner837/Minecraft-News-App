@@ -33,9 +33,16 @@
     <string name="minecraft_java_edition_releases">Minecraft Java Edition Releases</string>
     <string name="minecraft_java_edition_snapshots">Minecraft Java Edition Snapshots</string>
 
+    <!-- Content Language -->
+    <string name="content_language">Content Language</string>
+    <string name="english">English</string>
+    <string name="russian">Russian</string>
+    <string name="enter">Enter</string>
+
     <!-- About -->
     <string name="about_app">About App</string>
     <string name="version">Version</string>
+    <string name="versionn">Version:</string>
     <string name="changelog">Changelog</string>
     <string name="update_history">Update History</string>
     <string name="source_code">Source Code</string>
