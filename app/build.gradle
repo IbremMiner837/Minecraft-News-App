@@ -9,17 +9,17 @@ android {
 
     defaultConfig {
         applicationId "com.mcbedrock.minecraftnews"
-        minSdkVersion 22
+        minSdkVersion 23
         targetSdkVersion 32
         versionCode 11
-        versionName "2.0.0 Beta"
+        versionName "2.0.1 Beta"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
