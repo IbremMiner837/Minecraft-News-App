@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="16dp"
-    app:cardUseCompatPadding="true">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,14 +14,14 @@
 
         <ImageView
             android:id="@+id/item_news_image"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@drawable/minecraft_background_0"
             android:scaleType="centerCrop"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:paddingHorizontal="8dp"
             android:orientation="vertical">
@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Minecraft Bedrock"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:singleLine="true"/>
 
@@ -40,10 +40,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="This is sub header, this is sub header, this is sub header"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:lines="2"/>
         </LinearLayout>
-
     </LinearLayout>
-
 </com.google.android.material.card.MaterialCardView>

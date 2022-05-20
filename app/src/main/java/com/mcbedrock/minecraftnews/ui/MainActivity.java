@@ -18,7 +18,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.color.DynamicColors;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.play.core.appupdate.AppUpdateInfo;
@@ -197,14 +196,16 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.content_language:
-                    ContentLanguage();
-                    bottomSheetDialog.dismiss();
+                    //ContentLanguage();
+                    //bottomSheetDialog.dismiss();
+                    Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                    startActivity(intent);
                     break;
 
                 case R.id.about:
-                    Intent intent = new Intent(MainActivity.this, AboutActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    startActivity(intent);
+                    Intent intent1 = new Intent(MainActivity.this, AboutActivity.class);
+                    intent1.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intent1);
                     break;
             }
             return false;
