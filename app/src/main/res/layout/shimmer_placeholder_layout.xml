@@ -17,6 +17,7 @@
             android:id="@+id/item_news_image"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:background="@color/shimmer_placeholder"
             android:src="@drawable/minecraft_background_0"
             android:scaleType="centerCrop"/>
 
@@ -32,6 +33,7 @@
                 android:id="@+id/item_news_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/shimmer_placeholder"
                 android:text="Minecraft Bedrock"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -41,6 +43,7 @@
                 android:id="@+id/item_news_sub_header"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/shimmer_placeholder"
                 android:text="This is sub header, this is sub header, this is sub header"
                 android:textSize="20sp"
                 android:lines="2"/>

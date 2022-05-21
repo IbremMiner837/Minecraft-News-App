@@ -32,6 +32,25 @@
         android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <include layout="@layout/shimmer_placeholder_layout"/>
+                <include layout="@layout/shimmer_placeholder_layout"/>
+                <include layout="@layout/shimmer_placeholder_layout"/>
+                <include layout="@layout/shimmer_placeholder_layout"/>
+                <include layout="@layout/shimmer_placeholder_layout"/>
+                <include layout="@layout/shimmer_placeholder_layout"/>
+                <include layout="@layout/shimmer_placeholder_layout"/>
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recview"
             android:layout_width="match_parent"

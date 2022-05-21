@@ -16,6 +16,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.color.DynamicColors;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private List<NewsModel> news_models;
     private ChangelogsAdapter adapter;
     private MinecraftNewsAdapter minecraftNewsAdapter;
+    private ShimmerFrameLayout shimmerFrameLayout;
     private static final String NEWS_JSON = "https://www.minecraft.net/content/minecraft-net/_jcr_content.articles.grid";
 
     private static final String MD_URL = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/";
@@ -90,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         BottomAppBar();
         base_models = new ArrayList<>();
         news_models = new ArrayList<>();
+        shimmerFrameLayout = findViewById(R.id.shimmer_layout);
         ParseNews(NEWS_JSON);
         binding.toolbar.setSubtitle("");
         CONTENT_LANGUAGE = Settings.contentLanguage;
@@ -130,6 +133,9 @@ public class MainActivity extends AppCompatActivity {
                 binding.recview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                 adapter = new ChangelogsAdapter(getApplicationContext(), base_models);
                 binding.recview.setAdapter(adapter);
+                shimmerFrameLayout.startShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
+                binding.recview.setVisibility(View.VISIBLE);
             } catch (JSONException e) {
                 e.printStackTrace();
                 new CustomDialogAPI()
@@ -316,6 +322,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        shimmerFrameLayout.startShimmer();
+
         //Play Core Update
         mAppUpdateManager.getAppUpdateInfo().addOnSuccessListener(result -> {
             if (result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
@@ -326,6 +334,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        shimmerFrameLayout.stopShimmer();
     }
 
     public void saveSettings() {

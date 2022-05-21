@@ -61,6 +61,7 @@ dependencies {
 
     //Loading View
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
     implementation 'com.github.tiagohm.MarkdownView:library:0.19.0'
     implementation 'com.github.tiagohm.MarkdownView:emoji:0.19.0'
