@@ -44,6 +44,8 @@
     <string name="text_size_and_style">Text size and style</string>
     <string name="bold_title">Bold header</string>
     <string name="setting_the_style_of_the_news_card">Setting the style of the news card</string>
+    <string name="rounding_the_corners_of_the_image">Rounding the corners of the image</string>
+    <string name="rounding_card_corners">Rounding card corners</string>
 
     <!-- About -->
     <string name="about_app">About App</string>

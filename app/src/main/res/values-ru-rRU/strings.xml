@@ -39,6 +39,8 @@
     <string name="text_size_and_style">Размер и стиль текста</string>
     <string name="bold_title">Жирный заголовок</string>
     <string name="setting_the_style_of_the_news_card">Настройка стиля карточки для новостей</string>
+    <string name="rounding_the_corners_of_the_image">Скругление углов картинки</string>
+    <string name="rounding_card_corners">Скругление углов карточки</string>
 
     <!-- About App -->
     <string name="about_app">Об Приложении</string>

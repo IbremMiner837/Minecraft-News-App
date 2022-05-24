@@ -52,17 +52,19 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         RequestOptions requestOptions = new RequestOptions();
-        requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(16));
+        requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(Settings.imageCornerRadius));
 
         Glide.with(binding.itemNewsImage)
                 .load(R.drawable.minecraft_background_0)
                 .apply(requestOptions)
                 .into(binding.itemNewsImage);
-        binding.slider.setValue(Settings.textSize);
+        binding.sliderNewsCardTextSize.setValue(Settings.textSize);
         binding.itemSettingsTitle.setTextSize(Settings.textSize);
         binding.itemSettingsSubHeader.setTextSize(Settings.textSize);
         binding.itemNewsImage.getLayoutParams().width = Settings.textSize * 12;
         binding.itemNewsImage.getLayoutParams().height = Settings.textSize * 12;
+        binding.sliderNewsCardImageCornerRadius.setValue(Settings.imageCornerRadius);
+        binding.newsCard.setRadius(Settings.cardCornerRadius);
 
         if (Settings.isTitleBolded) {
             binding.itemSettingsTitle.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
@@ -87,7 +89,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        binding.slider.addOnChangeListener((slider, value, fromUser) -> {
+        binding.sliderNewsCardTextSize.addOnChangeListener((slider, value, fromUser) -> {
             binding.itemSettingsTitle.setTextSize(Math.round(value));
             binding.itemSettingsSubHeader.setTextSize(Math.round(value));
             binding.itemNewsImage.getLayoutParams().width = Math.round(value) * 12;
@@ -96,7 +98,49 @@ public class SettingsActivity extends AppCompatActivity {
             Settings.textSize = Math.round(value);
         });
 
-        binding.slider.addOnSliderTouchListener(new Slider.OnSliderTouchListener() {
+        binding.sliderNewsCardTextSize.addOnSliderTouchListener(new Slider.OnSliderTouchListener() {
+            @Override
+            public void onStartTrackingTouch(@NonNull Slider slider) {
+                //
+            }
+
+            @Override
+            public void onStopTrackingTouch(@NonNull Slider slider) {
+                saveSettings();
+            }
+        });
+
+        binding.sliderNewsCardImageCornerRadius.addOnChangeListener((slider, value, fromUser) -> {
+            RequestOptions requestOptionss = new RequestOptions();
+            requestOptionss = requestOptionss.transform(new CenterCrop(), new RoundedCorners((int) value));
+
+            Glide.with(binding.itemNewsImage)
+                    .load(R.drawable.minecraft_background_0)
+                    .apply(requestOptionss)
+                    .into(binding.itemNewsImage);
+
+            Settings.imageCornerRadius = Math.round(value);
+        });
+
+        binding.sliderNewsCardImageCornerRadius.addOnSliderTouchListener(new Slider.OnSliderTouchListener() {
+            @Override
+            public void onStartTrackingTouch(@NonNull Slider slider) {
+                //
+            }
+
+            @Override
+            public void onStopTrackingTouch(@NonNull Slider slider) {
+                saveSettings();
+            }
+        });
+
+        binding.sliderNewsCardCornerRadius.addOnChangeListener((slider, value, fromUser) -> {
+
+            binding.newsCard.setRadius(value);
+            Settings.cardCornerRadius = Math.round(value);
+        });
+
+        binding.sliderNewsCardCornerRadius.addOnSliderTouchListener(new Slider.OnSliderTouchListener() {
             @Override
             public void onStartTrackingTouch(@NonNull Slider slider) {
                 //

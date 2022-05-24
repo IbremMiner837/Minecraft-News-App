@@ -93,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
         base_models = new ArrayList<>();
         news_models = new ArrayList<>();
         shimmerFrameLayout = findViewById(R.id.shimmer_layout);
+        shimmerFrameLayout.startShimmer();
+        shimmerFrameLayout.setVisibility(View.VISIBLE);
+        binding.recview.setVisibility(View.GONE);
         ParseNews(NEWS_JSON);
         binding.toolbar.setSubtitle("");
         CONTENT_LANGUAGE = Settings.contentLanguage;
@@ -119,6 +122,9 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, jsonURL, null, response -> {
             try {
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
+                binding.recview.setVisibility(View.VISIBLE);
                 for (int i = 0; i < response.length(); i++) {
                     JSONObject jsonObject = response.getJSONObject(i);
 
@@ -133,9 +139,6 @@ public class MainActivity extends AppCompatActivity {
                 binding.recview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                 adapter = new ChangelogsAdapter(getApplicationContext(), base_models);
                 binding.recview.setAdapter(adapter);
-                shimmerFrameLayout.startShimmer();
-                shimmerFrameLayout.setVisibility(View.GONE);
-                binding.recview.setVisibility(View.VISIBLE);
             } catch (JSONException e) {
                 e.printStackTrace();
                 new CustomDialogAPI()
@@ -155,6 +158,9 @@ public class MainActivity extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, newsURL, null, response -> {
             try {
                 JSONArray jsonArray = response.getJSONArray("article_grid");
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
+                binding.recview.setVisibility(View.VISIBLE);
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
 
@@ -197,6 +203,9 @@ public class MainActivity extends AppCompatActivity {
                     base_models.clear();
                     news_models.clear();
                     binding.toolbar.setSubtitle("");
+                    shimmerFrameLayout.startShimmer();
+                    shimmerFrameLayout.setVisibility(View.VISIBLE);
+                    binding.recview.setVisibility(View.GONE);
                     ParseNews(NEWS_JSON);
                     bottomSheetDialog.dismiss();
                     break;
@@ -227,6 +236,9 @@ public class MainActivity extends AppCompatActivity {
             base_models.clear();
             news_models.clear();
             binding.toolbar.setSubtitle("");
+            shimmerFrameLayout.startShimmer();
+            shimmerFrameLayout.setVisibility(View.VISIBLE);
+            binding.recview.setVisibility(View.GONE);
             ParseNews(NEWS_JSON);
             bottomSheetDialog.dismiss();
         });
@@ -235,6 +247,9 @@ public class MainActivity extends AppCompatActivity {
             base_models.clear();
             news_models.clear();
             binding.toolbar.setSubtitle(R.string.minecraft_bedrock_releases);
+            shimmerFrameLayout.startShimmer();
+            shimmerFrameLayout.setVisibility(View.VISIBLE);
+            binding.recview.setVisibility(View.GONE);
             ParseChangelogs(MD_URL + CONTENT_LANGUAGE + BEDROCK_JSON);
             bottomSheetDialog.dismiss();
         });
@@ -243,6 +258,9 @@ public class MainActivity extends AppCompatActivity {
             base_models.clear();
             news_models.clear();
             binding.toolbar.setSubtitle(R.string.minecraft_betas_and_previews);
+            shimmerFrameLayout.startShimmer();
+            shimmerFrameLayout.setVisibility(View.VISIBLE);
+            binding.recview.setVisibility(View.GONE);
             ParseChangelogs(MD_URL + CONTENT_LANGUAGE + BETA_JSON);
             bottomSheetDialog.dismiss();
         });
@@ -259,6 +277,9 @@ public class MainActivity extends AppCompatActivity {
             base_models.clear();
             news_models.clear();
             binding.toolbar.setSubtitle(R.string.minecraft_java_edition_snapshots);
+            shimmerFrameLayout.startShimmer();
+            shimmerFrameLayout.setVisibility(View.VISIBLE);
+            binding.recview.setVisibility(View.GONE);
             ParseChangelogs(MD_URL + CONTENT_LANGUAGE + SNAPSHOT_JSON);
             bottomSheetDialog.dismiss();
         });

@@ -45,6 +45,7 @@
                 android:textSize="20sp"/>
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/news_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp">
@@ -98,7 +99,7 @@
                 android:textSize="20sp"/>
 
             <com.google.android.material.slider.Slider
-                android:id="@+id/slider"
+                android:id="@+id/slider_news_card_text_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:value="20"
@@ -113,6 +114,44 @@
                 android:text="@string/bold_title"
                 android:textSize="20sp"
                 android:checked="true"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:text="@string/rounding_the_corners_of_the_image"
+                android:textSize="20sp"/>
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/slider_news_card_image_corner_radius"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:value="16"
+                android:valueFrom="1"
+                android:valueTo="64"
+                android:stepSize="1"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:text="@string/rounding_card_corners"
+                android:textSize="20sp"/>
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/slider_news_card_corner_radius"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:value="16"
+                android:valueFrom="1"
+                android:valueTo="64"
+                android:stepSize="1"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:paddingVertical="8dp"
+                android:background="#625B71"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
