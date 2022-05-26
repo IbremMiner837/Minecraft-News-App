@@ -45,6 +45,12 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.left_to_right_start, R.anim.right_to_left_start);
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent();

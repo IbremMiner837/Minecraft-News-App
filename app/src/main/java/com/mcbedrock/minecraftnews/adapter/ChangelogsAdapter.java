@@ -1,5 +1,6 @@
 package com.mcbedrock.minecraftnews.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
@@ -62,6 +63,7 @@ public class ChangelogsAdapter extends RecyclerView.Adapter<ChangelogsAdapter.Vi
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             intent.putExtra("URL", models.get(position).getUrl_text());
             context.startActivity(intent);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         });
 
         holder.url_text.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);

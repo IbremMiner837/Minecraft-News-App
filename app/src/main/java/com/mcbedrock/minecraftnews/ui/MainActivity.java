@@ -214,13 +214,16 @@ public class MainActivity extends AppCompatActivity {
                     //ContentLanguage();
                     //bottomSheetDialog.dismiss();
                     Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.right_to_left_finish, R.anim.left_to_right_finish);
                     break;
 
                 case R.id.about:
                     Intent intent1 = new Intent(MainActivity.this, AboutActivity.class);
                     intent1.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(intent1);
+                    overridePendingTransition(R.anim.right_to_left_finish, R.anim.left_to_right_finish);
                     break;
             }
             return false;

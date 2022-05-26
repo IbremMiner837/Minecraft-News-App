@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CompoundButton;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
@@ -47,9 +46,11 @@ public class SettingsActivity extends AppCompatActivity {
         loadSettings();
         setContentView(view);
 
-        binding.toolbar.setOnClickListener(view1 -> {
-            onBackPressed();
-        });
+        binding.toolbar.setOnClickListener(view1 -> onBackPressed());
+        newsCardSettings();
+    }
+
+    public void newsCardSettings() {
 
         RequestOptions requestOptions = new RequestOptions();
         requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(Settings.imageCornerRadius));
@@ -64,6 +65,7 @@ public class SettingsActivity extends AppCompatActivity {
         binding.itemNewsImage.getLayoutParams().width = Settings.textSize * 12;
         binding.itemNewsImage.getLayoutParams().height = Settings.textSize * 12;
         binding.sliderNewsCardImageCornerRadius.setValue(Settings.imageCornerRadius);
+        binding.sliderNewsCardCornerRadius.setValue(Settings.cardCornerRadius);
         binding.newsCard.setRadius(Settings.cardCornerRadius);
 
         if (Settings.isTitleBolded) {
@@ -74,19 +76,15 @@ public class SettingsActivity extends AppCompatActivity {
             binding.switchIsTitleBolded.setChecked(false);
         }
 
-        binding.switchIsTitleBolded.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    binding.itemSettingsTitle.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-                    Settings.isTitleBolded = true;
-                    saveSettings();
-                } else {
-                    binding.itemSettingsTitle.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
-                    Settings.isTitleBolded = false;
-                    saveSettings();
-                }
+        binding.switchIsTitleBolded.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                binding.itemSettingsTitle.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                Settings.isTitleBolded = true;
+            } else {
+                binding.itemSettingsTitle.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                Settings.isTitleBolded = false;
             }
+            saveSettings();
         });
 
         binding.sliderNewsCardTextSize.addOnChangeListener((slider, value, fromUser) -> {
@@ -159,6 +157,12 @@ public class SettingsActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         finish();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.left_to_right_start, R.anim.right_to_left_start);
     }
 
     public void saveSettings() {

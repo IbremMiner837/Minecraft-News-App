@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.mcbedrock.minecraftnews.R;
-import com.mcbedrock.minecraftnews.databinding.ActivityMainBinding;
 import com.mcbedrock.minecraftnews.databinding.ActivityMarkdownBinding;
 
 import br.tiagohm.markdownview.css.InternalStyleSheet;
@@ -34,6 +33,12 @@ public class MarkdownActivity extends AppCompatActivity {
         binding.toolbar.setOnClickListener(view1 -> {
             onBackPressed();
         });
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.left_to_right_start, R.anim.right_to_left_start);
     }
 
     @Override
