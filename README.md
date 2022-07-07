@@ -1,2 +1,2 @@
 # Minecraft News App
-Your finest hour has come!
+Пришёл твой звёздный час 2.0!
