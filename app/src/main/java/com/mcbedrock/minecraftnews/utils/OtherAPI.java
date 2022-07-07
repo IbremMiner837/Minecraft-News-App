@@ -1,4 +1,4 @@
-package com.mcbedrock.minecraftnews.api;
+package com.mcbedrock.minecraftnews.utils;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;

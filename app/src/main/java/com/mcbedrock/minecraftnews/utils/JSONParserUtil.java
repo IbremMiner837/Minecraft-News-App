@@ -1,6 +1,6 @@
-package com.mcbedrock.minecraftnews.api;
+package com.mcbedrock.minecraftnews.utils;
 
-public class JSONParseAPI {
+public class JSONParserUtil {
 
     /*
     для парса: https://www.minecraft.net/content/minecraft-net/_jcr_content.articles.grid

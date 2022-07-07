@@ -1,14 +1,11 @@
-package com.mcbedrock.minecraftnews.api;
+package com.mcbedrock.minecraftnews.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 
 import androidx.browser.customtabs.CustomTabsIntent;
 
-import com.mcbedrock.minecraftnews.R;
-
-public class CustomTabAPI {
+public class CustomTabUtil {
 
     public void open(Context context, String URL) {
         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();

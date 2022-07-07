@@ -14,7 +14,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.slider.Slider;
 import com.mcbedrock.minecraftnews.R;
-import com.mcbedrock.minecraftnews.api.CustomDialogAPI;
+import com.mcbedrock.minecraftnews.utils.DialogsUtil;
 import com.mcbedrock.minecraftnews.config.Settings;
 import com.mcbedrock.minecraftnews.config.SettingsAssist;
 import com.mcbedrock.minecraftnews.databinding.ActivitySettingsBinding;
@@ -39,7 +39,7 @@ public class SettingsActivity extends AppCompatActivity {
                 SettingsAssist.save(settingsFile, Settings.class);
             } catch (IOException e) {
                 e.printStackTrace();
-                new CustomDialogAPI()
+                new DialogsUtil()
                         .showErrorDialog(this, e.toString());
             }
         }
@@ -172,7 +172,7 @@ public class SettingsActivity extends AppCompatActivity {
             SettingsAssist.save(settingsFile, Settings.class);
         } catch (IOException e) {
             e.printStackTrace();
-            new CustomDialogAPI()
+            new DialogsUtil()
                     .showErrorDialog(this, e.toString());
         }
     }
@@ -184,7 +184,7 @@ public class SettingsActivity extends AppCompatActivity {
             SettingsAssist.load(settingsFile, Settings.class);
         } catch (IOException | JSONException e) {
             e.printStackTrace();
-            new CustomDialogAPI()
+            new DialogsUtil()
                     .showErrorDialog(this, e.toString());
         }
     }

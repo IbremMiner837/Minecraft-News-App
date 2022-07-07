@@ -32,7 +32,7 @@ import com.google.android.play.core.tasks.OnSuccessListener;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.adapter.ChangelogsAdapter;
 import com.mcbedrock.minecraftnews.adapter.MinecraftNewsAdapter;
-import com.mcbedrock.minecraftnews.api.CustomDialogAPI;
+import com.mcbedrock.minecraftnews.utils.DialogsUtil;
 import com.mcbedrock.minecraftnews.config.Settings;
 import com.mcbedrock.minecraftnews.config.SettingsAssist;
 import com.mcbedrock.minecraftnews.databinding.ActivityMainBinding;
@@ -60,12 +60,9 @@ public class MainActivity extends AppCompatActivity {
     private ShimmerFrameLayout shimmerFrameLayout;
     private static final String NEWS_JSON = "https://www.minecraft.net/content/minecraft-net/_jcr_content.articles.grid";
 
-    private static final String MD_URL = "https://raw.githubusercontent.com/JVMFrog/Minecraft-Changeloges/master/";
-    private static final String BEDROCK_JSON = "/bedrock-releases.json";
-    private static final String BETA_JSON = "/bedrock-beta-and-preview.json";
-    private static final String JAVA_JSON = "/java-realeses.json";
-    private static final String SNAPSHOT_JSON = "/java-snapshots.json";
-    private String CONTENT_LANGUAGE;
+    private static final String CONTENT = "";
+    private static final String BEDROCK_PATCH_NOTES = "/";
+    private static final String JAVA_PATCH_NOTES = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 SettingsAssist.save(settingsFile, Settings.class);
             } catch (IOException e) {
                 e.printStackTrace();
-                new CustomDialogAPI()
+                new DialogsUtil()
                         .showErrorDialog(this, e.toString());
             }
         }
@@ -98,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
         binding.recview.setVisibility(View.GONE);
         ParseNews(NEWS_JSON);
         binding.toolbar.setSubtitle("");
-        CONTENT_LANGUAGE = Settings.contentLanguage;
 
         //Play Core Update
         mAppUpdateManager = AppUpdateManagerFactory.create(this);
@@ -120,19 +116,20 @@ public class MainActivity extends AppCompatActivity {
 
     private void ParseChangelogs(String jsonURL) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, jsonURL, null, response -> {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, jsonURL, null, response -> {
             try {
+                JSONArray jsonArray = response.getJSONArray("entries");
                 shimmerFrameLayout.stopShimmer();
                 shimmerFrameLayout.setVisibility(View.GONE);
                 binding.recview.setVisibility(View.VISIBLE);
-                for (int i = 0; i < response.length(); i++) {
-                    JSONObject jsonObject = response.getJSONObject(i);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                     BaseModel model = new BaseModel();
                     model.setTitle(jsonObject.getString("title"));
                     model.setVersion(jsonObject.getString("version"));
-                    model.setUrl_text(jsonObject.getString("changelogURL"));
-                    model.setImage_url(jsonObject.getString("imageURL"));
+                    //model.setUrl_text(jsonObject.getString("changelogURL"));
+                    model.setImage_url("https://launchercontent.mojang.com/" + jsonObject.getJSONObject("image").getString("url"));
 
                     base_models.add(model);
                 }
@@ -141,16 +138,16 @@ public class MainActivity extends AppCompatActivity {
                 binding.recview.setAdapter(adapter);
             } catch (JSONException e) {
                 e.printStackTrace();
-                new CustomDialogAPI()
+                new DialogsUtil()
                         .showErrorDialog(this, e.toString());
             }
         }, error -> {
             Log.d("tag", "OnErrorResponse" + error.getMessage());
-            new CustomDialogAPI()
+            new DialogsUtil()
                     .showErrorDialog(this, error.toString());
         });
 
-        queue.add(jsonArrayRequest);
+        queue.add(jsonObjectRequest);
     }
 
     private void ParseNews(String newsURL) {
@@ -177,12 +174,12 @@ public class MainActivity extends AppCompatActivity {
                 binding.recview.setAdapter(minecraftNewsAdapter);
             } catch (JSONException e) {
                 e.printStackTrace();
-                new CustomDialogAPI()
+                new DialogsUtil()
                         .showErrorDialog(this, e.toString());
             }
         }, error -> {
             Log.d("tag", "OnErrorResponse" + error.getMessage());
-            new CustomDialogAPI()
+            new DialogsUtil()
                     .showErrorDialog(this, error.toString());
         });
         queue.add(jsonObjectRequest);
@@ -253,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
             shimmerFrameLayout.startShimmer();
             shimmerFrameLayout.setVisibility(View.VISIBLE);
             binding.recview.setVisibility(View.GONE);
-            ParseChangelogs(MD_URL + CONTENT_LANGUAGE + BEDROCK_JSON);
+            ParseChangelogs(CONTENT + BEDROCK_PATCH_NOTES);
             bottomSheetDialog.dismiss();
         });
 
@@ -264,7 +261,7 @@ public class MainActivity extends AppCompatActivity {
             shimmerFrameLayout.startShimmer();
             shimmerFrameLayout.setVisibility(View.VISIBLE);
             binding.recview.setVisibility(View.GONE);
-            ParseChangelogs(MD_URL + CONTENT_LANGUAGE + BETA_JSON);
+            ParseChangelogs(CONTENT + "testing" + BEDROCK_PATCH_NOTES);
             bottomSheetDialog.dismiss();
         });
 
@@ -272,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
             base_models.clear();
             news_models.clear();
             binding.toolbar.setSubtitle(R.string.minecraft_java_edition_releases);
-            ParseChangelogs(MD_URL + CONTENT_LANGUAGE + JAVA_JSON);
+            ParseChangelogs(CONTENT + JAVA_PATCH_NOTES);
             bottomSheetDialog.dismiss();
         });
 
@@ -283,7 +280,7 @@ public class MainActivity extends AppCompatActivity {
             shimmerFrameLayout.startShimmer();
             shimmerFrameLayout.setVisibility(View.VISIBLE);
             binding.recview.setVisibility(View.GONE);
-            ParseChangelogs(MD_URL + CONTENT_LANGUAGE + SNAPSHOT_JSON);
+            ParseChangelogs(CONTENT + "testing" + JAVA_PATCH_NOTES);
             bottomSheetDialog.dismiss();
         });
     }
@@ -301,11 +298,9 @@ public class MainActivity extends AppCompatActivity {
             switch (checkedId) {
                 case R.id.rb_view_content_language_ru:
                     Settings.contentLanguage = "Russian";
-                    CONTENT_LANGUAGE = Settings.contentLanguage;
                     break;
                 case R.id.rb_view_content_language_en:
                     Settings.contentLanguage = "English";
-                    CONTENT_LANGUAGE = Settings.contentLanguage;
                     break;
             }
         });
@@ -373,7 +368,7 @@ public class MainActivity extends AppCompatActivity {
             SettingsAssist.save(settingsFile, Settings.class);
         } catch (IOException e) {
             e.printStackTrace();
-            new CustomDialogAPI()
+            new DialogsUtil()
                     .showErrorDialog(this, e.toString());
         }
     }
@@ -385,7 +380,7 @@ public class MainActivity extends AppCompatActivity {
             SettingsAssist.load(settingsFile, Settings.class);
         } catch (IOException | JSONException e) {
             e.printStackTrace();
-            new CustomDialogAPI()
+            new DialogsUtil()
                     .showErrorDialog(this, e.toString());
         }
     }

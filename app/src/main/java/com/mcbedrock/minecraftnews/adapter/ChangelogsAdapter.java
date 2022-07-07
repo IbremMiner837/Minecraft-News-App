@@ -1,6 +1,5 @@
 package com.mcbedrock.minecraftnews.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
@@ -18,9 +17,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.mcbedrock.minecraftnews.R;
-import com.mcbedrock.minecraftnews.api.CustomDialogAPI;
-import com.mcbedrock.minecraftnews.api.CustomTabAPI;
-import com.mcbedrock.minecraftnews.api.OtherAPI;
+import com.mcbedrock.minecraftnews.utils.DialogsUtil;
 import com.mcbedrock.minecraftnews.model.BaseModel;
 import com.mcbedrock.minecraftnews.ui.MarkdownActivity;
 
@@ -69,11 +66,11 @@ public class ChangelogsAdapter extends RecyclerView.Adapter<ChangelogsAdapter.Vi
         holder.url_text.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
         holder.url_text.setOnClickListener(view -> {
-            new CustomDialogAPI().showLinkDialog(view.getContext(), models.get(position).getUrl_text());
+            new DialogsUtil().showLinkDialog(view.getContext(), models.get(position).getUrl_text());
         });
 
         holder.url_text.setOnLongClickListener(view -> {
-            new CustomDialogAPI().showLinkDialog(view.getContext(), models.get(position).getUrl_text());
+            new DialogsUtil().showLinkDialog(view.getContext(), models.get(position).getUrl_text());
             return false;
         });
     }

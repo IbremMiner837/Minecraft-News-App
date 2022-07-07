@@ -1,12 +1,11 @@
-package com.mcbedrock.minecraftnews.api;
+package com.mcbedrock.minecraftnews.utils;
 
 import android.content.Context;
-import android.content.DialogInterface;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.mcbedrock.minecraftnews.R;
 
-public class CustomDialogAPI {
+public class DialogsUtil {
 
     public void showErrorDialog(Context context, String error) {
         new MaterialAlertDialogBuilder(context)
@@ -29,7 +28,7 @@ public class CustomDialogAPI {
                     new OtherAPI().copyTextToClipboard(context, url);
                 })
                 .setPositiveButton(R.string.open_link, ((dialogInterface, i) -> {
-                    new CustomTabAPI().open(context, url);
+                    new CustomTabUtil().open(context, url);
                 }))
                 .show();
     }

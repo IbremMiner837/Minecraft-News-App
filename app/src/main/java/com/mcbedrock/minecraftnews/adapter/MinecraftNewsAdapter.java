@@ -15,7 +15,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.card.MaterialCardView;
-import com.mcbedrock.minecraftnews.api.CustomTabAPI;
+import com.mcbedrock.minecraftnews.utils.CustomTabUtil;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.config.Settings;
 import com.mcbedrock.minecraftnews.model.NewsModel;
@@ -60,7 +60,7 @@ public class MinecraftNewsAdapter extends RecyclerView.Adapter<MinecraftNewsAdap
 
 
         holder.itemView.setOnClickListener(view -> {
-            new CustomTabAPI()
+            new CustomTabUtil()
                     .open(this.context, "https://www.minecraft.net" + models.get(position).getArticle_url());
         });
     }

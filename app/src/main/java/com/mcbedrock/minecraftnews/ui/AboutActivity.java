@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.mcbedrock.minecraftnews.api.CustomTabAPI;
+import com.mcbedrock.minecraftnews.utils.CustomTabUtil;
 import com.mcbedrock.minecraftnews.BuildConfig;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.databinding.ActivityAboutBinding;
@@ -26,10 +26,10 @@ public class AboutActivity extends AppCompatActivity {
 
         binding.AAAppVersionBtn.setText(getString(R.string.version) + ": " + BuildConfig.VERSION_NAME + "(" + BuildConfig.VERSION_CODE + ")");
         binding.AAUpdateHistoryBtn.setOnClickListener(view1 -> Toast.makeText(this, R.string.coming_soon, Toast.LENGTH_SHORT).show());
-        binding.AASourceCodeBtn.setOnClickListener(view1 -> new CustomTabAPI().open(this, getString(R.string.SOURCE_CODE)));
+        binding.AASourceCodeBtn.setOnClickListener(view1 -> new CustomTabUtil().open(this, getString(R.string.SOURCE_CODE)));
         binding.AALicenseBtn.setOnClickListener(view1 -> Toast.makeText(this, R.string.coming_soon, Toast.LENGTH_SHORT).show());
-        binding.AAIbragimBtn.setOnClickListener(view1 -> new CustomTabAPI().open(this, getString(R.string.MY_VK)));
-        binding.BSVKGroupBtn.setOnClickListener(view1 -> new CustomTabAPI().open(this, getString(R.string.JVMFrog)));
+        binding.AAIbragimBtn.setOnClickListener(view1 -> new CustomTabUtil().open(this, getString(R.string.MY_VK)));
+        binding.BSVKGroupBtn.setOnClickListener(view1 -> new CustomTabUtil().open(this, getString(R.string.JVMFrog)));
         binding.BSOtherAppsBtn.setOnClickListener(view1 -> {
             final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
             try {
