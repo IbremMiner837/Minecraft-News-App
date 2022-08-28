@@ -38,6 +38,7 @@ import com.mcbedrock.minecraftnews.config.SettingsAssist;
 import com.mcbedrock.minecraftnews.databinding.ActivityMainBinding;
 import com.mcbedrock.minecraftnews.model.BaseModel;
 import com.mcbedrock.minecraftnews.model.NewsModel;
+import com.mcbedrock.minecraftnews.utils.JSONParserUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -60,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
     private ShimmerFrameLayout shimmerFrameLayout;
     private static final String NEWS_JSON = "https://www.minecraft.net/content/minecraft-net/_jcr_content.articles.grid";
 
-    private static final String CONTENT = "";
-    private static final String BEDROCK_PATCH_NOTES = "/";
-    private static final String JAVA_PATCH_NOTES = "";
+    private static final String CONTENT = "https://launchercontent.mojang.com/";
+    private static final String BEDROCK_PATCH_NOTES = "/bedrockPatchNotes.json";
+    private static final String JAVA_PATCH_NOTES = "/javaPatchNotes.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -250,7 +251,12 @@ public class MainActivity extends AppCompatActivity {
             shimmerFrameLayout.startShimmer();
             shimmerFrameLayout.setVisibility(View.VISIBLE);
             binding.recview.setVisibility(View.GONE);
-            ParseChangelogs(CONTENT + BEDROCK_PATCH_NOTES);
+            JSONParserUtil.parseChangelogsWithShimmerEffect(
+                    this,
+                    base_models, adapter,
+                    CONTENT + BEDROCK_PATCH_NOTES,
+                    shimmerFrameLayout,
+                    binding.recview);
             bottomSheetDialog.dismiss();
         });
 
@@ -281,43 +287,6 @@ public class MainActivity extends AppCompatActivity {
             shimmerFrameLayout.setVisibility(View.VISIBLE);
             binding.recview.setVisibility(View.GONE);
             ParseChangelogs(CONTENT + "testing" + JAVA_PATCH_NOTES);
-            bottomSheetDialog.dismiss();
-        });
-    }
-
-    public void ContentLanguage() {
-        RadioGroup radioGroup;
-        MaterialButton materialButton;
-
-        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
-        bottomSheetDialog.setContentView(R.layout.bottom_sheet_dialog_content_language);
-        bottomSheetDialog.show();
-
-        radioGroup = bottomSheetDialog.findViewById(R.id.rg_view_content_language);
-        radioGroup.setOnCheckedChangeListener((radioGroup1, checkedId) -> {
-            switch (checkedId) {
-                case R.id.rb_view_content_language_ru:
-                    Settings.contentLanguage = "Russian";
-                    break;
-                case R.id.rb_view_content_language_en:
-                    Settings.contentLanguage = "English";
-                    break;
-            }
-        });
-
-        if (Settings.contentLanguage.equals("Russian")) {
-            radioGroup.check(R.id.rb_view_content_language_ru);
-        } else if (Settings.contentLanguage.equals("English")) {
-            radioGroup.check(R.id.rb_view_content_language_en);
-        }
-
-        materialButton = bottomSheetDialog.findViewById(R.id.enter_btn);
-        materialButton.setOnClickListener(view -> {
-            saveSettings();
-            base_models.clear();
-            news_models.clear();
-            binding.toolbar.setSubtitle("");
-            ParseNews(NEWS_JSON);
             bottomSheetDialog.dismiss();
         });
     }
