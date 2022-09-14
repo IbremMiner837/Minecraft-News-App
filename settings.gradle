@@ -1,2 +1,3 @@
 include ':app'
 rootProject.name = "Minecraft News"
+include ':mcdownloader'

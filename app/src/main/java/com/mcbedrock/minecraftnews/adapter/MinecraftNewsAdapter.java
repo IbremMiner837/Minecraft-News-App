@@ -15,6 +15,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.card.MaterialCardView;
+import com.mcbedrock.minecraftnews.model.BaseModel;
 import com.mcbedrock.minecraftnews.utils.CustomTabUtil;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.config.Settings;
