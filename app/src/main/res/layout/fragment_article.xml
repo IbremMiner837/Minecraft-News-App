@@ -15,11 +15,12 @@
             android:layout_width="match_parent"
             android:layout_height="196dp"/>
 
-        <WebView
-            android:id="@+id/MarkdownView"
+        <TextView
+            android:id="@+id/TextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="8dp"/>
+            android:padding="8dp"
+            android:textAppearance="@android:style/TextAppearance.Medium"/>
     </LinearLayout>
 
 </FrameLayout>

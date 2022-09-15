@@ -1,6 +1,8 @@
 package com.mcbedrock.minecraftnews.ui.fragment;
 
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,11 +46,14 @@ public class ArticleFragment extends Fragment {
                 null,
                 response -> {
                     try {
-                        final String mimeType = "text/html";
-                        final String encoding = "UTF-8";
                         String html = response.getString("body");
-                        String title = response.getString("title");
-                        binding.MarkdownView.loadDataWithBaseURL("", html, mimeType, encoding, "");
+
+                        binding.TextView.setMovementMethod(LinkMovementMethod.getInstance());
+                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                            binding.TextView.setText(Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY, null, null));
+                        } else {
+                            binding.TextView.setText(Html.fromHtml(html));
+                        }
 
                         RequestOptions requestOptions = new RequestOptions();
                         requestOptions = requestOptions.transform(new CenterCrop());
