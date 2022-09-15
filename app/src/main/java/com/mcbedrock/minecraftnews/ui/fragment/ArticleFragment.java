@@ -1,11 +1,11 @@
-package com.mcbedrock.minecraftnews.ui;
+package com.mcbedrock.minecraftnews.ui.fragment;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
+import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -13,34 +13,31 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.mcbedrock.minecraftnews.R;
-import com.mcbedrock.minecraftnews.databinding.ActivityMarkdownBinding;
+import com.mcbedrock.minecraftnews.databinding.FragmentArticleBinding;
 import com.mcbedrock.minecraftnews.utils.ContentHelper;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import br.tiagohm.markdownview.css.InternalStyleSheet;
-import br.tiagohm.markdownview.css.styles.Github;
+public class ArticleFragment extends Fragment {
 
-public class MarkdownActivity extends AppCompatActivity {
-
-    private ActivityMarkdownBinding binding;
+    private FragmentArticleBinding binding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMarkdownBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
+    }
 
-        Intent intent = this.getIntent();
-        String URL = intent.getExtras().getString("URL");
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        binding = FragmentArticleBinding.inflate(inflater, container, false);
 
-        RequestQueue queue = Volley.newRequestQueue(this);
+        Bundle finalBundle = new Bundle();
+        finalBundle.putAll(getArguments());
+        String URL = finalBundle.getString("URL");
+
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,
@@ -63,28 +60,10 @@ public class MarkdownActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 },
-                error -> {
-                    error.printStackTrace();
-                }
+                Throwable::printStackTrace
         );
         queue.add(jsonObjectRequest);
 
-        binding.toolbar.setOnClickListener(view1 -> {
-            onBackPressed();
-        });
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(R.anim.left_to_right_start, R.anim.right_to_left_start);
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent();
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        finish();
+        return binding.getRoot();
     }
 }

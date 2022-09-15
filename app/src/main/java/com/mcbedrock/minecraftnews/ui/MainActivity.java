@@ -20,6 +20,7 @@ import com.google.android.play.core.install.model.InstallStatus;
 import com.google.android.play.core.install.model.UpdateAvailability;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.databinding.ActivityMainBinding;
+import com.mcbedrock.minecraftnews.ui.fragment.ContentFragment;
 import com.mcbedrock.minecraftnews.utils.ContentHelper;
 import com.mcbedrock.minecraftnews.utils.FragmentUtils;
 
