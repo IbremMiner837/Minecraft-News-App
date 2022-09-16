@@ -40,14 +40,14 @@ public class MainFragment extends Fragment {
 
 
         String[] title = {
-                "Bedrock", "Java Edition", "Dungeons", "Legends"
+                "Java Edition", "Bedrock", "Dungeons", "Legends"
         };
 
         int[] image = {
-                R.drawable.minecraft_vanilla_poster,
-                R.drawable.minecraft_vanilla_poster,
-                R.drawable.minecraft_vanilla_poster,
-                R.drawable.minecraft_vanilla_poster,
+                R.drawable.minecraft_java_edition,
+                R.drawable.minecraft_java_edition,
+                R.drawable.minecraft_java_edition,
+                R.drawable.minecraft_java_edition,
         };
 
         binding.recview.setLayoutManager(new GridLayoutManager(getActivity(), 2));

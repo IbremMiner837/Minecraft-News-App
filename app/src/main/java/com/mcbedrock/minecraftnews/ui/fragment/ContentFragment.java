@@ -30,14 +30,14 @@ public class ContentFragment extends Fragment {
         if (bundle.getInt("contentType") == 0) {
             ContentHelper.getChangelogs(
                     getActivity(),
-                    ContentHelper.BEDROCK_PATCH_NOTES,
+                    ContentHelper.JAVA_PATCH_NOTES,
                     binding.recview,
                     binding.shimmerLayout
             );
         } else if (bundle.getInt("contentType") == 1) {
             ContentHelper.getChangelogs(
                     getActivity(),
-                    ContentHelper.JAVA_PATCH_NOTES,
+                    ContentHelper.BEDROCK_PATCH_NOTES,
                     binding.recview,
                     binding.shimmerLayout
             );
@@ -49,6 +49,28 @@ public class ContentFragment extends Fragment {
                     binding.shimmerLayout
             );
         }
+
+        /* Доделать!!!
+        String contentType;
+        switch(bundle.getInt("contentType")){
+            case 0:
+                contentType = "BEDROCK_PATCH_NOTES";
+                break;
+            case 1:
+                contentType = "JAVA_PATCH_NOTES";
+                break;
+            case 2:
+                contentType = "DUNGEONS_PATCH_NOTES";
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + bundle.getInt("contentType"));
+        }
+        ContentHelper.getChangelogs(
+                getActivity(),
+                contentType,
+                binding.recview,
+                binding.shimmerLayout);
+         */
 
         return binding.getRoot();
     }
