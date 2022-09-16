@@ -1,7 +1,6 @@
 package com.mcbedrock.minecraftnews.adapter;
 
 import android.content.Context;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,21 +17,19 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.mcbedrock.minecraftnews.R;
-import com.mcbedrock.minecraftnews.model.BaseModel;
-import com.mcbedrock.minecraftnews.model.DashboardModel;
-import com.mcbedrock.minecraftnews.ui.fragment.ArticleFragment;
+import com.mcbedrock.minecraftnews.ui.fragment.ContentFragment;
 import com.mcbedrock.minecraftnews.utils.FragmentUtils;
-
-import java.util.List;
 
 public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.ViewHolder> {
 
-    Context context;
-    List<DashboardModel> models;
+    private Context context;
+    private String[] title = new String[0];
+    private int[] image = new int[0];
 
-    public DashboardAdapter(Context context, List<DashboardModel> models) {
+    public DashboardAdapter(Context context, String[] title, int[] image) {
         this.context = context;
-        this.models = models;
+        this.title = title;
+        this.image = image;
     }
 
     @NonNull
@@ -48,16 +45,27 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.View
         RequestOptions requestOptions = new RequestOptions();
         requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(16));
 
-        holder.title.setText(models.get(position).getTitle());
+        holder.title.setText(title[position]);
         Glide.with(holder.image.getContext())
-                .load(models.get(position).getImage())
+                .load(image[position])
                 .apply(requestOptions)
                 .into(holder.image);
+
+        holder.itemView.setOnClickListener(view -> {
+            Bundle bundle = new Bundle();
+            bundle.putInt("contentType", position);
+            FragmentUtils.changeFragmentWithBackStack(
+                    (FragmentActivity) context,
+                    new ContentFragment(),
+                    R.id.frame,
+                    "back",
+                    bundle);
+        });
     }
 
     @Override
     public int getItemCount() {
-        return models.size();
+        return title.length;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

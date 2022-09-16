@@ -33,11 +33,30 @@ public class ContentFragment extends Fragment {
         recview = getActivity().findViewById(R.id.recview);
         shimmerLayout = getActivity().findViewById(R.id.shimmer_layout);
 
-        ContentHelper.getNews(
-                getActivity(),
-                binding.recview,
-                binding.shimmerLayout
-        );
+        Bundle bundle = new Bundle();
+        bundle.putAll(getArguments());
+        if (bundle.getInt("contentType") == 0) {
+            ContentHelper.getChangelogs(
+                    getActivity(),
+                    ContentHelper.BEDROCK_PATCH_NOTES,
+                    binding.recview,
+                    binding.shimmerLayout
+            );
+        } else if (bundle.getInt("contentType") == 1) {
+            ContentHelper.getChangelogs(
+                    getActivity(),
+                    ContentHelper.JAVA_PATCH_NOTES,
+                    binding.recview,
+                    binding.shimmerLayout
+            );
+        }  else if (bundle.getInt("contentType") == 2) {
+            ContentHelper.getChangelogs(
+                    getActivity(),
+                    ContentHelper.DUNGEONS_PATCH_NOTES,
+                    binding.recview,
+                    binding.shimmerLayout
+            );
+        }
 
         return binding.getRoot();
     }
