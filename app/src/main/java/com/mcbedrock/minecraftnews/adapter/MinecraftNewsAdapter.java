@@ -15,17 +15,15 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.card.MaterialCardView;
-import com.mcbedrock.minecraftnews.model.BaseModel;
-import com.mcbedrock.minecraftnews.utils.CustomTabUtil;
 import com.mcbedrock.minecraftnews.R;
-import com.mcbedrock.minecraftnews.config.Settings;
 import com.mcbedrock.minecraftnews.model.NewsModel;
+import com.mcbedrock.minecraftnews.utils.CustomTabUtil;
 
 import java.util.List;
 
 public class MinecraftNewsAdapter extends RecyclerView.Adapter<MinecraftNewsAdapter.ViewHolder> {
-    Context context;
-    List<NewsModel> models;
+    private final Context context;
+    private final List<NewsModel> models;
 
     public MinecraftNewsAdapter(Context context, List<NewsModel> models) {
         this.context = context;
@@ -44,7 +42,7 @@ public class MinecraftNewsAdapter extends RecyclerView.Adapter<MinecraftNewsAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         RequestOptions requestOptions = new RequestOptions();
-        requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(Settings.imageCornerRadius));
+        requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(16));
 
         holder.title.setText(models.get(position).getTitle());
         holder.sub_header.setText(models.get(position).getSub_header());
@@ -53,17 +51,8 @@ public class MinecraftNewsAdapter extends RecyclerView.Adapter<MinecraftNewsAdap
                 .apply(requestOptions)
                 .into(holder.image);
 
-        holder.title.setTextSize(Settings.textSize);
-        holder.sub_header.setTextSize(Settings.textSize);
-        holder.image.getLayoutParams().width = Settings.textSize * 12;
-        holder.image.getLayoutParams().height = Settings.textSize * 12;
-        holder.cardView.setRadius(Settings.cardCornerRadius);
-
-
-        holder.itemView.setOnClickListener(view -> {
-            new CustomTabUtil()
-                    .open(this.context, "https://www.minecraft.net" + models.get(position).getArticle_url());
-        });
+        holder.itemView.setOnClickListener(view -> new CustomTabUtil()
+                .open(this.context, "https://www.minecraft.net" + models.get(position).getArticle_url()));
     }
 
     @Override
@@ -71,7 +60,7 @@ public class MinecraftNewsAdapter extends RecyclerView.Adapter<MinecraftNewsAdap
         return models.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         MaterialCardView cardView;
         TextView title, sub_header;
         ImageView image;

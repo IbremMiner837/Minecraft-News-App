@@ -22,9 +22,9 @@ import com.mcbedrock.minecraftnews.utils.FragmentUtils;
 
 public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.ViewHolder> {
 
-    private Context context;
-    private String[] title = new String[0];
-    private int[] image = new int[0];
+    private final Context context;
+    private String[] title;
+    private int[] image;
 
     public DashboardAdapter(Context context, String[] title, int[] image) {
         this.context = context;
@@ -68,7 +68,7 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.View
         return title.length;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView title;
         ImageView image;
 
