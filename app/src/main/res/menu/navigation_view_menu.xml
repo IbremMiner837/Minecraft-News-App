@@ -3,16 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/news"
-        android:enabled="true"
         app:showAsAction="always"
-        android:title="@string/minecraft_news"/>
+        android:title="Новости"
+        android:icon="@drawable/ic_round_article_24"/>
     <item
         android:id="@+id/changeloges"
-        android:enabled="true"
         app:showAsAction="always"
-        android:title="@string/content_language"/>
+        android:title="Чейнджлоги"
+        android:icon="@drawable/ic_round_notes_24"/>
     <item
-        android:id="@+id/about"
+        android:id="@+id/videos"
         app:showAsAction="always"
-        android:title="@string/about_app"/>
+        android:title="Видео"
+        android:icon="@drawable/ic_round_video_library_24"/>
 </menu>
