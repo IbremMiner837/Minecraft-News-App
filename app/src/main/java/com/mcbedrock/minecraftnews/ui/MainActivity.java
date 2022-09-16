@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentUtils.changeFragment(this, new MainFragment(), R.id.frame, null);
 
-        BottomAppBar();
         binding.toolbar.setSubtitle("");
 
         //Play Core Update
@@ -63,78 +62,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //mAppUpdateManager.registerListener(installStateUpdatedListener);
-    }
-
-    public void BottomAppBar() {
-
-        MaterialButton btn_news, btn_bedrock, btn_beta_and_preview, btn_java, btn_snapshot;
-
-        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
-        bottomSheetDialog.setContentView(R.layout.bottom_sheet_dialog_menu);
-
-        binding.BottomAppBar.setNavigationOnClickListener(view1 -> bottomSheetDialog.show());
-
-        binding.BottomAppBar.setOnMenuItemClickListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.news:
-                    //binding.toolbar.setSubtitle("");
-                    bottomSheetDialog.dismiss();
-                    break;
-
-                case R.id.about:
-                    Intent intent1 = new Intent(MainActivity.this, AboutActivity.class);
-                    intent1.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    startActivity(intent1);
-                    overridePendingTransition(R.anim.right_to_left_finish, R.anim.left_to_right_finish);
-                    break;
-            }
-            return false;
-        });
-
-        btn_news = bottomSheetDialog.findViewById(R.id.BS_MinecraftNewsBtn);
-        btn_bedrock = bottomSheetDialog.findViewById(R.id.BS_MinecraftBedrockBtn);
-        btn_beta_and_preview = bottomSheetDialog.findViewById(R.id.BS_MinecraftBetaBtn);
-        btn_java = bottomSheetDialog.findViewById(R.id.BS_MinecraftJavaBtn);
-        btn_snapshot = bottomSheetDialog.findViewById(R.id.BS_MinecraftSnapshotBtn);
-
-        btn_news.setOnClickListener(view -> {
-            binding.toolbar.setSubtitle("");
-            ContentHelper.getNews(
-                    this,
-                    findViewById(R.id.recview),
-                    findViewById(R.id.shimmer_layout));;
-            bottomSheetDialog.dismiss();
-        });
-
-        btn_bedrock.setOnClickListener(view -> {
-            binding.toolbar.setSubtitle(R.string.minecraft_bedrock_releases);
-            ContentHelper.getChangelogs(
-                    this,
-                    ContentHelper.BEDROCK_PATCH_NOTES,
-                    findViewById(R.id.recview),
-                    findViewById(R.id.shimmer_layout));
-                    bottomSheetDialog.dismiss();
-        });
-
-        btn_java.setOnClickListener(view -> {
-            binding.toolbar.setSubtitle(R.string.minecraft_java_edition_releases);
-            ContentHelper.getChangelogs(
-                    this,
-                    ContentHelper.JAVA_PATCH_NOTES,
-                    findViewById(R.id.recview),
-                    findViewById(R.id.shimmer_layout));
-                    bottomSheetDialog.dismiss();
-        });
-
-        btn_snapshot.setOnClickListener(view -> {
-            binding.toolbar.setSubtitle(R.string.minecraft_java_edition_snapshots);
-            ContentHelper.getChangelogs(
-                    this,
-                    ContentHelper.SNAPSHOTS_PATCH_NOTES,
-                    findViewById(R.id.recview),
-                    findViewById(R.id.shimmer_layout));
-                    bottomSheetDialog.dismiss();
-        });
     }
 
     //Play Core Update

@@ -9,7 +9,7 @@ public class DialogsUtil {
 
     public void showErrorDialog(Context context, String error) {
         new MaterialAlertDialogBuilder(context)
-                .setIcon(R.drawable.ic_round_error_outline_24)
+                //.setIcon(R.drawable.ic_round_error_outline_24)
                 .setTitle(R.string.error)
                 .setMessage(error)
                 .setNegativeButton(R.string.copy, (dialogInterface, i) -> {
@@ -21,7 +21,7 @@ public class DialogsUtil {
 
     public void showLinkDialog(Context context, String url) {
         new MaterialAlertDialogBuilder(context)
-                .setIcon(R.drawable.ic_link_24)
+                //.setIcon(R.drawable.ic_link_24)
                 .setTitle(R.string.link)
                 .setMessage(url)
                 .setNegativeButton(R.string.copy_link, (dialogInterface, i) -> {

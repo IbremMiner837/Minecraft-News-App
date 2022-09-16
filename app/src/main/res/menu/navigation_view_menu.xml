@@ -5,18 +5,14 @@
         android:id="@+id/news"
         android:enabled="true"
         app:showAsAction="always"
-        android:title="@string/minecraft_news"
-        android:icon="@drawable/ic_newspaper_24"/>
+        android:title="@string/minecraft_news"/>
     <item
-        android:id="@+id/content_language"
+        android:id="@+id/changeloges"
         android:enabled="true"
         app:showAsAction="always"
-        android:title="@string/content_language"
-        android:icon="@drawable/ic_language_24px"/>
+        android:title="@string/content_language"/>
     <item
         android:id="@+id/about"
-        android:enabled="true"
         app:showAsAction="always"
-        android:title="@string/about_app"
-        android:icon="@drawable/ic_info_24"/>
+        android:title="@string/about_app"/>
 </menu>
