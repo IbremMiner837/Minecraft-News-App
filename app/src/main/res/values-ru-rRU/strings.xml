@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Майнкрафт Новости</string>
+    <string name="app_name">Новости Майнкрафта</string>
 
     <string name="coming_soon">Скоро...</string>
 
@@ -22,11 +22,11 @@
 
     <!-- Menu -->
     <string name="menu">Меню</string>
-    <string name="minecraft_news">Майнкрафт Новости</string>
-    <string name="minecraft_bedrock_releases">Майнкрафт Bedrock Релизы</string>
-    <string name="minecraft_betas_and_previews">Майнкрафт Беты и Превью</string>
-    <string name="minecraft_java_edition_releases">Майнкрафт Java Edition Релизы</string>
-    <string name="minecraft_java_edition_snapshots">Майнкрафт Java Edition Снапшоты</string>
+    <string name="minecraft_news">Новости</string>
+    <string name="minecraft_bedrock_releases">Bedrock Релизы</string>
+    <string name="minecraft_betas_and_previews">Беты и Превью</string>
+    <string name="minecraft_java_edition_releases">Java Edition Релизы</string>
+    <string name="minecraft_java_edition_snapshots">Java Edition Снапшоты</string>
 
     <!-- Content Language -->
     <string name="content_language">Язык Контента</string>

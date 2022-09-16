@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="0dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ImageView"
+            android:layout_width="178dp"
+            android:layout_height="136dp"
+            android:src="@drawable/minecraft_vanilla_poster"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:id="@+id/TitleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/ImageView"
+            android:paddingLeft="4dp"
+            android:text="Minecraft"
+            android:textSize="21sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/SubheaderView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/ImageView"
+            android:layout_below="@+id/TitleView"
+            android:paddingLeft="4dp"
+            android:text="Minecraft Minecraft Minecraft Minecraft Minecraft Minecraft Minecraft Minecraft Minecraft Minecraft Minecraft"
+            android:textSize="18sp"
+            android:maxLines="2"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/ActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="Action"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            android:layout_toEndOf="@+id/ImageView"
+            android:layout_below="@+id/SubheaderView"
+            style="@style/Widget.Material3.CardView.Filled"/>
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

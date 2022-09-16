@@ -21,6 +21,7 @@ import com.google.android.play.core.install.model.UpdateAvailability;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.databinding.ActivityMainBinding;
 import com.mcbedrock.minecraftnews.ui.fragment.ContentFragment;
+import com.mcbedrock.minecraftnews.ui.fragment.MainFragment;
 import com.mcbedrock.minecraftnews.utils.ContentHelper;
 import com.mcbedrock.minecraftnews.utils.FragmentUtils;
 
@@ -38,8 +39,13 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        DynamicColors.applyToActivitiesIfAvailable(getApplication());
-        FragmentUtils.changeFragment(this, new ContentFragment(), R.id.frame, null);
+        /*splashScreen.setOnExitAnimationListener(splashScreenView -> {
+            splashScreenView.animate().alpha(0).setDuration(500).withEndAction(() -> {
+                splashScreenView.setVisibility(View.GONE);
+            }); vccbnd
+        });*/
+
+        FragmentUtils.changeFragment(this, new MainFragment(), R.id.frame, null);
 
         BottomAppBar();
         binding.toolbar.setSubtitle("");
