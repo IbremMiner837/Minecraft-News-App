@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/news"
-        app:showAsAction="always"
+        android:enabled="true"
         android:title="Новости"
         android:icon="@drawable/ic_round_article_24"/>
     <item
         android:id="@+id/changeloges"
-        app:showAsAction="always"
         android:title="Чейнджлоги"
+        android:enabled="true"
         android:icon="@drawable/ic_round_notes_24"/>
     <item
         android:id="@+id/videos"
-        app:showAsAction="always"
+        android:enabled="true"
         android:title="Видео"
         android:icon="@drawable/ic_round_video_library_24"/>
 </menu>

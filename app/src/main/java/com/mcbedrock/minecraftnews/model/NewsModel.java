@@ -2,17 +2,17 @@ package com.mcbedrock.minecraftnews.model;
 
 public class NewsModel {
 
-    String title, sub_header, article_url, image_url;
+    String title, text, image, readMoreUrl;
 
     public NewsModel() {
         //
     }
 
-    public NewsModel(String title, String sub_header, String article_url, String image_url) {
+    public NewsModel(String title, String text, String image, String readMoreUrl) {
         this.title = title;
-        this.sub_header = sub_header;
-        this.article_url = article_url;
-        this.image_url = image_url;
+        this.text = text;
+        this.image = image;
+        this.readMoreUrl = readMoreUrl;
     }
 
     public String getTitle() {
@@ -23,27 +23,27 @@ public class NewsModel {
         this.title = title;
     }
 
-    public String getSub_header() {
-        return sub_header;
+    public String getText() {
+        return text;
     }
 
-    public void setSub_header(String sub_header) {
-        this.sub_header = sub_header;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public String getArticle_url() {
-        return article_url;
+    public String getImage() {
+        return image;
     }
 
-    public void setArticle_url(String article_url) {
-        this.article_url = article_url;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getImage_url() {
-        return image_url;
+    public String getReadMoreUrl() {
+        return readMoreUrl;
     }
 
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
+    public void setReadMoreUrl(String readMoreUrl) {
+        this.readMoreUrl = readMoreUrl;
     }
 }

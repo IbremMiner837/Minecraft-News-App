@@ -27,7 +27,7 @@ import java.util.List;
 public class ContentHelper {
     public static final String NEWS_JSON = "https://www.minecraft.net/content/minecraft-net/_jcr_content.articles.grid";
     public static final String ALL_NEWS_JSON = "https://launchercontent.mojang.com/news.json";
-    public static final String CONTENT = "https://launchercontent.mojang.com/";
+    public static final String CONTENT = "https://launchercontent.mojang.com";
     public static final String BEDROCK_PATCH_NOTES = "https://launchercontent.mojang.com/bedrockPatchNotes.json";
     public static final String BETA_PATCH_NOTES = "https://launchercontent.mojang.com//testing/bedrockPatchNotes.json";
     public static final String JAVA_PATCH_NOTES = "https://launchercontent.mojang.com/javaPatchNotes.json";
@@ -36,19 +36,19 @@ public class ContentHelper {
 
     public static void getNews(Context context, RecyclerView recyclerView, ShimmerFrameLayout shimmerFrameLayout) {
         RequestQueue queue = Volley.newRequestQueue(context);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, NEWS_JSON, null, response -> {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, ALL_NEWS_JSON, null, response -> {
             shimmerFrameLayout.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
             try {
-                JSONArray jsonArray = response.getJSONArray("article_grid");
+                JSONArray jsonArray = response.getJSONArray("entries");
                 List<NewsModel> newsList = new ArrayList<>();
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    String title = jsonObject.getJSONObject("default_tile").getString("title");
-                    String description = jsonObject.getJSONObject("default_tile").getString("sub_header");
-                    String image = jsonObject.getJSONObject("default_tile").getJSONObject("image").getString("imageURL");
-                    String url = jsonObject.getString("article_url");
-                    newsList.add(new NewsModel(title, description, url, image));
+                    String title = jsonObject.getString("title");
+                    String description = jsonObject.getString("text");
+                    String image = jsonObject.getJSONObject("playPageImage").getString("url");
+                    String url = jsonObject.getString("readMoreLink");
+                    newsList.add(new NewsModel(title, description, image, url));
                 }
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
                 recyclerView.setAdapter(new MinecraftNewsAdapter(context, newsList));

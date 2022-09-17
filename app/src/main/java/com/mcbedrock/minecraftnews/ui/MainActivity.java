@@ -22,6 +22,7 @@ import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.databinding.ActivityMainBinding;
 import com.mcbedrock.minecraftnews.ui.fragment.ContentFragment;
 import com.mcbedrock.minecraftnews.ui.fragment.MainFragment;
+import com.mcbedrock.minecraftnews.ui.fragment.NewsFragment;
 import com.mcbedrock.minecraftnews.utils.ContentHelper;
 import com.mcbedrock.minecraftnews.utils.FragmentUtils;
 
@@ -45,9 +46,21 @@ public class MainActivity extends AppCompatActivity {
             }); vccbnd
         });*/
 
-        FragmentUtils.changeFragment(this, new MainFragment(), R.id.frame, null);
-
-        binding.toolbar.setSubtitle("");
+        FragmentUtils.changeFragment(this, new NewsFragment(), R.id.frame, null);
+        binding.bottomNavigation.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.news:
+                    FragmentUtils.changeFragment(this, new NewsFragment(), R.id.frame, null);
+                    break;
+                case R.id.changeloges:
+                    FragmentUtils.changeFragment(this, new MainFragment(), R.id.frame, null);
+                    break;
+                case R.id.videos:
+                    Snackbar.make(binding.getRoot(), "Settings", Snackbar.LENGTH_SHORT).show();
+                    break;
+            }
+            return true;
+        });
 
         //Play Core Update
         mAppUpdateManager = AppUpdateManagerFactory.create(this);
