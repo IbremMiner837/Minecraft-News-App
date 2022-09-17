@@ -4,74 +4,64 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="16dp"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="0dp"
+    style="@style/Widget.Material3.CardView.Elevated">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="8dp">
+        android:layout_height="112dp">
 
         <ImageView
-            android:id="@+id/item_small_image"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:src="@drawable/minecraft_background_0"
+            android:id="@+id/ImageView"
+            android:layout_width="112dp"
+            android:layout_height="112dp"
+            android:src="@drawable/minecraft_vanilla_poster"
             android:scaleType="centerCrop"/>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/TitleView"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/ImageView"
+            android:paddingTop="4dp"
             android:paddingHorizontal="8dp"
-            android:orientation="vertical">
+            android:text="Minecraft"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:singleLine="true"/>
 
-            <TextView
-                android:id="@+id/item_small_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Minecraft Bedrock"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:singleLine="true"/>
+        <TextView
+            android:id="@+id/TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/ImageView"
+            android:layout_below="@+id/TitleView"
+            android:paddingHorizontal="8dp"
+            android:text="@string/versionn"
+            android:textSize="18sp"
+            android:singleLine="true"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        <TextView
+            android:id="@+id/VersionView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/TextView"
+            android:layout_below="@+id/TitleView"
+            android:text="Minecraft"
+            android:textSize="18sp"
+            android:singleLine="true"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingEnd="4dp"
-                    android:text="@string/versionn"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:singleLine="true"/>
-
-                <TextView
-                    android:id="@+id/item_small_version"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="1.19.2"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:singleLine="true"/>
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/item_small_url_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="https://www.minecraft.net/..."
-                android:textSize="18sp"
-                android:textColor="#0070AC"
-                android:clickable="true"
-                android:longClickable="true"
-                android:singleLine="true"/>
-        </LinearLayout>
-
-    </LinearLayout>
-
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/ActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start|center_vertical"
+            android:text="Читать дальше"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            android:layout_toEndOf="@+id/ImageView"
+            android:layout_below="@+id/TextView"
+            style="@style/Widget.Material3.Button.TextButton"/>
+    </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>

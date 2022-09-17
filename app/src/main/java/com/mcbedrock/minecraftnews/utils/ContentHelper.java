@@ -76,7 +76,7 @@ public class ContentHelper {
                     String description = jsonObject.getString("version");
                     String image = CONTENT + jsonObject.getJSONObject("image").getString("url");
                     String url = CONTENT + jsonObject.getString("contentPath");
-                    baseModels.add(new BaseModel(title, description, url, image));
+                    baseModels.add(new BaseModel(title, description, image, url));
                 }
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
                 recyclerView.setAdapter(new ChangelogsAdapter(context, baseModels));

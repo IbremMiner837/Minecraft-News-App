@@ -17,17 +17,19 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.material.button.MaterialButton;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.ui.fragment.ArticleFragment;
 import com.mcbedrock.minecraftnews.model.BaseModel;
+import com.mcbedrock.minecraftnews.utils.ContentHelper;
 import com.mcbedrock.minecraftnews.utils.FragmentUtils;
 
 import java.util.List;
 
 public class ChangelogsAdapter extends RecyclerView.Adapter<ChangelogsAdapter.ViewHolder> {
 
-    Context context;
-    List<BaseModel> models;
+    private final Context context;
+    private List<BaseModel> models;
 
     public ChangelogsAdapter(Context context, List<BaseModel> models) {
         this.context = context;
@@ -45,29 +47,25 @@ public class ChangelogsAdapter extends RecyclerView.Adapter<ChangelogsAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         RequestOptions requestOptions = new RequestOptions();
-        requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(16));
+        requestOptions = requestOptions.transform(new CenterCrop());
 
         holder.title.setText(models.get(position).getTitle());
         holder.version.setText(models.get(position).getVersion());
-        holder.url_text.setText(models.get(position).getUrl_text());
         Glide.with(holder.image.getContext())
-                .load(models.get(position).getImage_url())
+                .load(models.get(position).getImage())
                 .apply(requestOptions)
                 .into(holder.image);
 
-        holder.itemView.setOnClickListener(view -> {
+        holder.actionButton.setOnClickListener(view -> {
             Bundle finalBundle = new Bundle();
-            finalBundle.putString("URL", models.get(position).getUrl_text());
+            finalBundle.putString("URL", models.get(position).getUrl());
             FragmentUtils.changeFragmentWithBackStack(
                     (FragmentActivity) view.getContext(),
                     new ArticleFragment(),
                     R.id.frame,
                     "ContentFragment",
-                    finalBundle
-            );
+                    finalBundle);
         });
-
-        holder.url_text.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
     }
 
     @Override
@@ -76,16 +74,17 @@ public class ChangelogsAdapter extends RecyclerView.Adapter<ChangelogsAdapter.Vi
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView title, version, url_text;
+        MaterialButton actionButton;
+        TextView title, version;
         ImageView image;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            title = itemView.findViewById(R.id.item_small_title);
-            version = itemView.findViewById(R.id.item_small_version);
-            url_text = itemView.findViewById(R.id.item_small_url_text);
-            image = itemView.findViewById(R.id.item_small_image);
+            title = itemView.findViewById(R.id.TitleView);
+            version = itemView.findViewById(R.id.VersionView);
+            actionButton = itemView.findViewById(R.id.ActionButton);
+            image = itemView.findViewById(R.id.ImageView);
         }
     }
 }

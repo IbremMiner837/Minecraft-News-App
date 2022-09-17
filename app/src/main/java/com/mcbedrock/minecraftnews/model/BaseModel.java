@@ -1,17 +1,17 @@
 package com.mcbedrock.minecraftnews.model;
 
 public class BaseModel {
-    String title, version, url_text, image_url;
+    String title, version, image, url;
 
     public BaseModel() {
         //
     }
 
-    public BaseModel(String title, String version, String url_text, String image_url) {
+    public BaseModel(String title, String version, String image, String url) {
         this.title = title;
         this.version = version;
-        this.url_text = url_text;
-        this.image_url = image_url;
+        this.image = image;
+        this.url = url;
     }
 
     public String getTitle() {
@@ -30,19 +30,19 @@ public class BaseModel {
         this.version = version;
     }
 
-    public String getUrl_text() {
-        return url_text;
+    public String getImage() {
+        return image;
     }
 
-    public void setUrl_text(String url_text) {
-        this.url_text = url_text;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getImage_url() {
-        return image_url;
+    public String getUrl() {
+        return url;
     }
 
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
