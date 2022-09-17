@@ -27,7 +27,7 @@ import java.util.List;
 public class ContentHelper {
     public static final String NEWS_JSON = "https://www.minecraft.net/content/minecraft-net/_jcr_content.articles.grid";
     public static final String ALL_NEWS_JSON = "https://launchercontent.mojang.com/news.json";
-    public static final String CONTENT = "https://launchercontent.mojang.com";
+    public static final String CONTENT = "https://launchercontent.mojang.com/";
     public static final String BEDROCK_PATCH_NOTES = "https://launchercontent.mojang.com/bedrockPatchNotes.json";
     public static final String BETA_PATCH_NOTES = "https://launchercontent.mojang.com//testing/bedrockPatchNotes.json";
     public static final String JAVA_PATCH_NOTES = "https://launchercontent.mojang.com/javaPatchNotes.json";
@@ -65,18 +65,16 @@ public class ContentHelper {
     public static void getChangelogs(Context context, String jsonURL, RecyclerView recyclerView, ShimmerFrameLayout shimmerFrameLayout) {
         RequestQueue queue = Volley.newRequestQueue(context);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, jsonURL, null, response -> {
-            shimmerFrameLayout.setVisibility(View.VISIBLE);
-            recyclerView.setVisibility(View.GONE);
             try {
                 JSONArray jsonArray = response.getJSONArray("entries");
                 List<BaseModel> baseModels = new ArrayList<>();
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     String title = jsonObject.getString("title");
-                    String description = jsonObject.getString("version");
+                    String version = jsonObject.getString("version");
                     String image = CONTENT + jsonObject.getJSONObject("image").getString("url");
                     String url = CONTENT + jsonObject.getString("contentPath");
-                    baseModels.add(new BaseModel(title, description, image, url));
+                    baseModels.add(new BaseModel(title, version, image, url));
                 }
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
                 recyclerView.setAdapter(new ChangelogsAdapter(context, baseModels));

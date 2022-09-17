@@ -60,7 +60,7 @@ public class ChangelogsAdapter extends RecyclerView.Adapter<ChangelogsAdapter.Vi
             Bundle finalBundle = new Bundle();
             finalBundle.putString("URL", models.get(position).getUrl());
             FragmentUtils.changeFragmentWithBackStack(
-                    (FragmentActivity) view.getContext(),
+                    (FragmentActivity) context,
                     new ArticleFragment(),
                     R.id.frame,
                     "ContentFragment",
@@ -81,9 +81,9 @@ public class ChangelogsAdapter extends RecyclerView.Adapter<ChangelogsAdapter.Vi
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            actionButton = itemView.findViewById(R.id.ActionButton);
             title = itemView.findViewById(R.id.TitleView);
             version = itemView.findViewById(R.id.VersionView);
-            actionButton = itemView.findViewById(R.id.ActionButton);
             image = itemView.findViewById(R.id.ImageView);
         }
     }

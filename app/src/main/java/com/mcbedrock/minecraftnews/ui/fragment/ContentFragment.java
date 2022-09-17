@@ -25,6 +25,9 @@ public class ContentFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentContentBinding.inflate(inflater, container, false);
 
+        binding.shimmerLayout.setVisibility(View.VISIBLE);
+        binding.recview.setVisibility(View.GONE);
+
         Bundle bundle = new Bundle();
         bundle.putAll(getArguments());
         if (bundle.getInt("contentType") == 0) {
