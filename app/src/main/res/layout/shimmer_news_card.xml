@@ -29,7 +29,7 @@ style="@style/Widget.Material3.CardView.Elevated">
     <TextView
         android:id="@+id/TextView"
         android:layout_width="194dp"
-        android:layout_height="28dp"
+        android:layout_height="24dp"
         android:layout_marginStart="8dp"
         android:background="@color/shimmer_placeholder"
         android:layout_toEndOf="@+id/ImageView"
@@ -38,7 +38,7 @@ style="@style/Widget.Material3.CardView.Elevated">
     <TextView
         android:id="@+id/DescView"
         android:layout_width="224dp"
-        android:layout_height="28dp"
+        android:layout_height="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginStart="8dp"
         android:background="@color/shimmer_placeholder"

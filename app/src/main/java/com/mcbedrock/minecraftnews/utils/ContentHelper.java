@@ -37,8 +37,6 @@ public class ContentHelper {
     public static void getNews(Context context, RecyclerView recyclerView, ShimmerFrameLayout shimmerFrameLayout) {
         RequestQueue queue = Volley.newRequestQueue(context);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, ALL_NEWS_JSON, null, response -> {
-            shimmerFrameLayout.setVisibility(View.VISIBLE);
-            recyclerView.setVisibility(View.GONE);
             try {
                 JSONArray jsonArray = response.getJSONArray("entries");
                 List<NewsModel> newsList = new ArrayList<>();

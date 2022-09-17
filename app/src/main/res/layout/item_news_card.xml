@@ -24,7 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/ImageView"
-            android:paddingLeft="4dp"
+            android:paddingTop="4dp"
+            android:paddingHorizontal="8dp"
             android:text="Minecraft"
             android:textSize="21sp"
             android:textStyle="bold"
@@ -36,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/ImageView"
             android:layout_below="@+id/TitleView"
-            android:paddingLeft="4dp"
+            android:paddingHorizontal="8dp"
             android:text="Minecraft Minecraft Minecraft Minecraft Minecraft Minecraft Minecraft Minecraft Minecraft Minecraft Minecraft"
             android:textSize="18sp"
             android:maxLines="2"/>
@@ -45,12 +46,12 @@
             android:id="@+id/ActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:gravity="start|center_vertical"
             android:text="Читать дальше"
             android:textAllCaps="false"
             android:textSize="15sp"
             android:layout_toEndOf="@+id/ImageView"
             android:layout_below="@+id/TextView"
-            style="@style/Widget.Material3.Button.TonalButton"/>
+            style="@style/Widget.Material3.Button.TextButton"/>
     </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>

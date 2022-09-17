@@ -26,6 +26,8 @@ public class NewsFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentNewsBinding.inflate(inflater, container, false);
 
+        binding.shimmerLayout.setVisibility(View.VISIBLE);
+        binding.recview.setVisibility(View.GONE);
         ContentHelper.getNews(getActivity(), binding.recview, binding.shimmerLayout);
 
         return binding.getRoot();
