@@ -5,9 +5,12 @@ import android.content.IntentSender;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.color.DynamicColors;
@@ -18,6 +21,11 @@ import com.google.android.play.core.install.InstallStateUpdatedListener;
 import com.google.android.play.core.install.model.AppUpdateType;
 import com.google.android.play.core.install.model.InstallStatus;
 import com.google.android.play.core.install.model.UpdateAvailability;
+import com.google.mlkit.common.model.DownloadConditions;
+import com.google.mlkit.nl.translate.TranslateLanguage;
+import com.google.mlkit.nl.translate.Translation;
+import com.google.mlkit.nl.translate.Translator;
+import com.google.mlkit.nl.translate.TranslatorOptions;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.databinding.ActivityMainBinding;
 import com.mcbedrock.minecraftnews.ui.fragment.ContentFragment;
@@ -75,6 +83,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //mAppUpdateManager.registerListener(installStateUpdatedListener);
+
+        // Create an English-RUSSIAN translator:
+        TranslatorOptions options =
+                new TranslatorOptions.Builder()
+                        .setSourceLanguage(TranslateLanguage.ENGLISH)
+                        .setTargetLanguage(TranslateLanguage.RUSSIAN)
+                        .build();
+        final Translator englishRussianTranslator =
+                Translation.getClient(options);
+
+        DownloadConditions conditions = new DownloadConditions.Builder()
+                .requireWifi()
+                .build();
+        englishRussianTranslator.downloadModelIfNeeded(conditions)
+                .addOnSuccessListener(
+                        (OnSuccessListener) o -> {
+
+                        })
+                .addOnFailureListener(
+                        e -> {
+                            // Model couldn’t be downloaded or other internal error.
+                            // ...
+                        });
     }
 
     //Play Core Update
