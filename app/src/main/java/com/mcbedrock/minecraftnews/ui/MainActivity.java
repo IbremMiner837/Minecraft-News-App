@@ -84,28 +84,7 @@ public class MainActivity extends AppCompatActivity {
         });
         //mAppUpdateManager.registerListener(installStateUpdatedListener);
 
-        // Create an English-RUSSIAN translator:
-        TranslatorOptions options =
-                new TranslatorOptions.Builder()
-                        .setSourceLanguage(TranslateLanguage.ENGLISH)
-                        .setTargetLanguage(TranslateLanguage.RUSSIAN)
-                        .build();
-        final Translator englishRussianTranslator =
-                Translation.getClient(options);
-
-        DownloadConditions conditions = new DownloadConditions.Builder()
-                .requireWifi()
-                .build();
-        englishRussianTranslator.downloadModelIfNeeded(conditions)
-                .addOnSuccessListener(
-                        (OnSuccessListener) o -> {
-
-                        })
-                .addOnFailureListener(
-                        e -> {
-                            // Model couldn’t be downloaded or other internal error.
-                            // ...
-                        });
+        binding.extendedFab.hide();
     }
 
     //Play Core Update
@@ -136,5 +115,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+            finish();
+        }
+
+        binding.extendedFab.hide();
     }
 }
