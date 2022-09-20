@@ -32,4 +32,25 @@ public class DialogsUtil {
                 }))
                 .show();
     }
+
+    public void downloadTranslateModel(Context context) {
+        new MaterialAlertDialogBuilder(context)
+                .setIcon(R.drawable.ic_round_translate_24)
+                .setTitle("Скачать модель перевода?")
+                .setMessage("Для перевода статей необходимо скачать модель перевода. Это займет некоторое время.")
+                .setPositiveButton(R.string.OK, ((dialogInterface, i) -> {
+                    ArticleTranslationHelper.init(context);
+                }))
+                .setNegativeButton("Позже", null)
+                .show();
+    }
+
+    public void translateModelDownloaded(Context context) {
+        new MaterialAlertDialogBuilder(context)
+                .setIcon(R.drawable.ic_round_translate_24)
+                .setTitle("Модель перевода скачана")
+                .setMessage("Модель перевода скачана. Теперь вы можете переводить статьи.")
+                .setPositiveButton(R.string.OK, null)
+                .show();
+    }
 }

@@ -1,5 +1,6 @@
 package com.mcbedrock.minecraftnews.utils;
 
+import android.content.Context;
 import android.text.Html;
 import android.util.Log;
 import android.widget.TextView;
@@ -28,21 +29,6 @@ public class ArticleTranslationHelper {
                         .build();
 
         Translation.getClient(options)
-                .downloadModelIfNeeded(new DownloadConditions.Builder().build())
-                .addOnSuccessListener(
-                        v -> {
-                            // Model downloaded successfully. Okay to start translating.
-                            // (Set a flag, unhidden the translation UI, etc.)
-                            Log.d(TAG, "onSuccess: Model downloaded successfully. Okay to start translating.");
-                        })
-                .addOnFailureListener(
-                        e -> {
-                            // Model could’t be downloaded or other internal error.
-                            // ...
-                            Log.d(TAG, "onFailure: Model could’t be downloaded or other internal error.");
-                        });
-
-        Translation.getClient(options)
                 .translate(article)
                 .addOnSuccessListener(
                         translatedText -> {
@@ -59,6 +45,30 @@ public class ArticleTranslationHelper {
                             // ...
                             Log.d(TAG, "onFailure: Error.");
                             isTranslated = false;
+                        });
+    }
+
+    public static void init(Context context) {
+        TranslatorOptions options =
+                new TranslatorOptions.Builder()
+                        .setSourceLanguage(TranslateLanguage.ENGLISH)
+                        .setTargetLanguage(getSystemLanguage())
+                        .build();
+
+        Translation.getClient(options)
+                .downloadModelIfNeeded(new DownloadConditions.Builder().build())
+                .addOnSuccessListener(
+                        v -> {
+                            // Model downloaded successfully. Okay to start translating.
+                            // (Set a flag, unhidden the translation UI, etc.)
+                            Log.d(TAG, "onSuccess: Model downloaded successfully. Okay to start translating.");
+                            new DialogsUtil().translateModelDownloaded(context);
+                        })
+                .addOnFailureListener(
+                        e -> {
+                            // Model could’t be downloaded or other internal error.
+                            // ...
+                            Log.d(TAG, "onFailure: Model could’t be downloaded or other internal error.");
                         });
     }
 

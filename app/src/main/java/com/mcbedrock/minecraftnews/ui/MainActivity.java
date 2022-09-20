@@ -32,6 +32,7 @@ import com.mcbedrock.minecraftnews.ui.fragment.ContentFragment;
 import com.mcbedrock.minecraftnews.ui.fragment.MainFragment;
 import com.mcbedrock.minecraftnews.ui.fragment.NewsFragment;
 import com.mcbedrock.minecraftnews.utils.ContentHelper;
+import com.mcbedrock.minecraftnews.utils.DialogsUtil;
 import com.mcbedrock.minecraftnews.utils.FragmentUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -53,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
                 splashScreenView.setVisibility(View.GONE);
             }); vccbnd
         });*/
+
+        new DialogsUtil().downloadTranslateModel(this);
 
         FragmentUtils.changeFragment(this, new NewsFragment(), R.id.frame, null);
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
