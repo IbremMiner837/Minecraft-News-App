@@ -43,14 +43,4 @@
         android:layout_gravity="bottom"
         app:menu="@menu/navigation_view_menu"/>
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/extended_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="96dp"
-        android:layout_gravity="bottom|end"
-        android:text="Перевести"
-        app:icon="@drawable/ic_round_translate_24"/>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

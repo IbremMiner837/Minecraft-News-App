@@ -1,19 +1,12 @@
 package com.mcbedrock.minecraftnews.ui;
 
-import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.color.DynamicColors;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
@@ -21,23 +14,20 @@ import com.google.android.play.core.install.InstallStateUpdatedListener;
 import com.google.android.play.core.install.model.AppUpdateType;
 import com.google.android.play.core.install.model.InstallStatus;
 import com.google.android.play.core.install.model.UpdateAvailability;
-import com.google.mlkit.common.model.DownloadConditions;
-import com.google.mlkit.nl.translate.TranslateLanguage;
-import com.google.mlkit.nl.translate.Translation;
-import com.google.mlkit.nl.translate.Translator;
-import com.google.mlkit.nl.translate.TranslatorOptions;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.databinding.ActivityMainBinding;
-import com.mcbedrock.minecraftnews.ui.fragment.ContentFragment;
 import com.mcbedrock.minecraftnews.ui.fragment.MainFragment;
 import com.mcbedrock.minecraftnews.ui.fragment.NewsFragment;
-import com.mcbedrock.minecraftnews.utils.ContentHelper;
 import com.mcbedrock.minecraftnews.utils.DialogsUtil;
 import com.mcbedrock.minecraftnews.utils.FragmentUtils;
+import com.mcbedrock.minecraftnews.ui.fragment.SettingsFragment;
+import com.mcbedrock.minecraftnews.utils.TranslationHelper;
 
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
+
+    private TranslationHelper translationHelper;
     private static final int RC_APP_UPDATE = 100;
     private AppUpdateManager mAppUpdateManager;
 
@@ -55,7 +45,10 @@ public class MainActivity extends AppCompatActivity {
             }); vccbnd
         });*/
 
-        new DialogsUtil().downloadTranslateModel(this);
+        translationHelper = new TranslationHelper(this);
+        if (!TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
+            new DialogsUtil().downloadTranslateModel(this);
+        }
 
         FragmentUtils.changeFragment(this, new NewsFragment(), R.id.frame, null);
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
@@ -67,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                     FragmentUtils.changeFragment(this, new MainFragment(), R.id.frame, null);
                     break;
                 case R.id.videos:
-                    Snackbar.make(binding.getRoot(), "Settings", Snackbar.LENGTH_SHORT).show();
+                    FragmentUtils.changeFragment(this, new SettingsFragment(), R.id.frame, null);
                     break;
             }
             return true;
@@ -86,8 +79,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //mAppUpdateManager.registerListener(installStateUpdatedListener);
-
-        binding.extendedFab.hide();
     }
 
     //Play Core Update
@@ -126,7 +117,5 @@ public class MainActivity extends AppCompatActivity {
         if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
             finish();
         }
-
-        binding.extendedFab.hide();
     }
 }

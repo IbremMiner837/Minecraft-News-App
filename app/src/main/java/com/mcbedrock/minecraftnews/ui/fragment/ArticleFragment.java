@@ -20,6 +20,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.databinding.FragmentArticleBinding;
+import com.mcbedrock.minecraftnews.utils.SharedPreferencesUtil;
 import com.mcbedrock.minecraftnews.utils.TranslationHelper;
 import com.mcbedrock.minecraftnews.utils.ContentHelper;
 
@@ -29,7 +30,6 @@ public class ArticleFragment extends Fragment {
 
     private FragmentArticleBinding binding;
     private String html;
-    private ExtendedFloatingActionButton fab;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,16 @@ public class ArticleFragment extends Fragment {
         Bundle finalBundle = new Bundle();
         finalBundle.putAll(getArguments());
         String URL = finalBundle.getString("URL");
-        fab = getActivity().findViewById(R.id.extended_fab);
+
+        if (SharedPreferencesUtil.getBooleanFromSharedPreferences(getContext(), "enable_translation")) {
+            binding.translateBtn.setVisibility(View.VISIBLE);
+        } else {
+            binding.translateBtn.setVisibility(View.GONE);
+        }
+
+        if (TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
+            binding.translateBtn.setError(getString(R.string.model_not_downloaded), getResources().getDrawable(R.drawable.ic_round_error_outline_24));
+        }
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
@@ -76,15 +85,13 @@ public class ArticleFragment extends Fragment {
         );
         queue.add(jsonObjectRequest);
 
-        fab.show();
-        fab.setText("Перевести");
-        fab.setOnClickListener(v -> {
+        binding.translateBtn.setOnClickListener(v -> {
             if (!TranslationHelper.isTranslated()) {
                 TranslationHelper.isTranslated = true;
-                TranslationHelper.translateArticle(html, binding.TextView, fab);
+                TranslationHelper.translateArticle(html, binding.TextView, binding.translateBtn);
             } else {
                 TranslationHelper.isTranslated = false;
-                fab.setText("Перевести");
+                binding.translateBtn.setText("Перевести");
                 binding.TextView.setMovementMethod(LinkMovementMethod.getInstance());
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
                     binding.TextView.setText(Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY, null, null));

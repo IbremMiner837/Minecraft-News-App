@@ -33,13 +33,25 @@ public class DialogsUtil {
                 .show();
     }
 
+    public void deleteTranslationModel(Context context) {
+        new MaterialAlertDialogBuilder(context)
+                .setIcon(R.drawable.ic_round_download_24)
+                .setTitle(context.getString(R.string.delete_translation_model_title) + "?")
+                .setMessage(R.string.delete_translation_model_message)
+                .setNegativeButton(R.string.cancel, null)
+                .setPositiveButton(R.string.delete, (dialogInterface, i) -> {
+                    TranslationHelper.deleteModelTranslateRemoteModel();
+                })
+                .show();
+    }
+
     public void downloadTranslateModel(Context context) {
         new MaterialAlertDialogBuilder(context)
                 .setIcon(R.drawable.ic_round_translate_24)
-                .setTitle("Скачать модель перевода?")
-                .setMessage("Для перевода статей необходимо скачать модель перевода. Это займет некоторое время.")
+                .setTitle(context.getString(R.string.download_translation_model_title) + "?")
+                .setMessage(R.string.download_translation_model_message)
                 .setPositiveButton(R.string.OK, ((dialogInterface, i) -> {
-                    TranslationHelper.init(context);
+                   TranslationHelper.downloadModel();
                 }))
                 .setNegativeButton("Позже", null)
                 .show();

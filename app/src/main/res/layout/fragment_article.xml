@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.ArticleFragment">
 
     <LinearLayout
@@ -14,6 +15,17 @@
             android:id="@+id/ImageView"
             android:layout_width="match_parent"
             android:layout_height="196dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/translateBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/translate"
+            android:textSize="18sp"
+            android:textAlignment="viewStart"
+            app:icon="@drawable/ic_round_translate_24"
+            style="@style/Widget.Material3.Button.TextButton"/>
 
         <TextView
             android:id="@+id/TextView"
