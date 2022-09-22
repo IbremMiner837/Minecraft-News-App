@@ -17,16 +17,10 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.RequestOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.google.mlkit.nl.translate.TranslateLanguage;
-import com.google.mlkit.nl.translate.Translation;
-import com.google.mlkit.nl.translate.Translator;
-import com.google.mlkit.nl.translate.TranslatorOptions;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.databinding.FragmentArticleBinding;
-import com.mcbedrock.minecraftnews.utils.ArticleTranslationHelper;
+import com.mcbedrock.minecraftnews.utils.TranslationHelper;
 import com.mcbedrock.minecraftnews.utils.ContentHelper;
 
 import org.json.JSONException;
@@ -85,11 +79,11 @@ public class ArticleFragment extends Fragment {
         fab.show();
         fab.setText("Перевести");
         fab.setOnClickListener(v -> {
-            if (!ArticleTranslationHelper.isTranslated()) {
-                ArticleTranslationHelper.isTranslated = true;
-                ArticleTranslationHelper.translateArticle(html, binding.TextView, fab);
+            if (!TranslationHelper.isTranslated()) {
+                TranslationHelper.isTranslated = true;
+                TranslationHelper.translateArticle(html, binding.TextView, fab);
             } else {
-                ArticleTranslationHelper.isTranslated = false;
+                TranslationHelper.isTranslated = false;
                 fab.setText("Перевести");
                 binding.TextView.setMovementMethod(LinkMovementMethod.getInstance());
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {

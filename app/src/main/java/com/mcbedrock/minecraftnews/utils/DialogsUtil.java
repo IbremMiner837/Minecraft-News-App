@@ -39,7 +39,7 @@ public class DialogsUtil {
                 .setTitle("Скачать модель перевода?")
                 .setMessage("Для перевода статей необходимо скачать модель перевода. Это займет некоторое время.")
                 .setPositiveButton(R.string.OK, ((dialogInterface, i) -> {
-                    ArticleTranslationHelper.init(context);
+                    TranslationHelper.init(context);
                 }))
                 .setNegativeButton("Позже", null)
                 .show();
