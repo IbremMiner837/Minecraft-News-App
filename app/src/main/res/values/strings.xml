@@ -38,6 +38,7 @@
     <string name="model">Model</string>
     <string name="was_deleted">was deleted</string>
     <string name="model_not_downloaded">Model not downloaded</string>
+    <string name="model_downloaded">Model downloaded</string>
 
     <string name="version">Version</string>
     <string name="versionn">Version:</string>

@@ -36,20 +36,43 @@
                 android:textSize="18sp"
                 android:enabled="true"/>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/deleteModelBtn"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/delete_translation_model_title"
-                android:textSize="18sp"
-                android:textAlignment="viewStart"
-                style="@style/Widget.Material3.Button.TextButton"/>
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/isModelDownloadedText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="12dp"
+                    android:text="@string/delete_translation_model_title"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/downloadModelBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    app:icon="@drawable/ic_round_download_24"
+                    app:iconTint="#43A047"
+                    style="@style/Widget.Material3.Button.IconButton"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/deleteModelBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_alignParentEnd="true"
+                    app:icon="@drawable/ic_round_delete_24"
+                    app:iconTint="#E53935"
+                    style="@style/Widget.Material3.Button.IconButton"/>
+            </RelativeLayout>
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/attention_for_translation"
-                android:textSize="18sp"/>
+                android:textSize="16sp"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

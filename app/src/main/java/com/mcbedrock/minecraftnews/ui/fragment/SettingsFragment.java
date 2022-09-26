@@ -6,8 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
 
+import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.databinding.FragmentSettingsBinding;
 import com.mcbedrock.minecraftnews.utils.DialogsUtil;
 import com.mcbedrock.minecraftnews.utils.SharedPreferencesUtil;
@@ -31,18 +34,28 @@ public class SettingsFragment extends Fragment {
         binding.enableTranslationSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferencesUtil.saveBooleanToSharedPreferences(getContext(), "enable_translation", isChecked);
             if (isChecked) {
-                if (TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
+                if (!TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
                     new DialogsUtil().downloadTranslateModel(getContext());
-                }
-            } else {
-                if (TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
-                    TranslationHelper.deleteModelTranslateRemoteModel();
+                } else {
+                    new DialogsUtil().deleteTranslationModel(getContext());
                 }
             }
         });
 
+        if (!TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
+            binding.isModelDownloadedText.setText(R.string.model_not_downloaded);
+            binding.deleteModelBtn.setVisibility(View.GONE);
+        } else {
+            binding.isModelDownloadedText.setText(R.string.model_downloaded);
+            binding.downloadModelBtn.setVisibility(View.GONE);
+        }
+
+        binding.downloadModelBtn.setOnClickListener(v -> {
+            new DialogsUtil().downloadTranslateModel(getContext());
+        });
+
         binding.deleteModelBtn.setOnClickListener(v -> {
-            TranslationHelper.deleteModelTranslateRemoteModel();
+            new DialogsUtil().deleteTranslationModel(getContext());
         });
 
         return binding.getRoot();
