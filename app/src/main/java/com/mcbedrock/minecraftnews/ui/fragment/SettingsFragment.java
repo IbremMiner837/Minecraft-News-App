@@ -31,7 +31,7 @@ public class SettingsFragment extends Fragment {
         binding.enableTranslationSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferencesUtil.saveBooleanToSharedPreferences(getContext(), "enable_translation", isChecked);
             if (isChecked) {
-                if (!TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
+                if (TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
                     new DialogsUtil().downloadTranslateModel(getContext());
                 }
             } else {
@@ -41,11 +41,9 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-        if (TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
-            binding.deleteModelBtn.setVisibility(View.VISIBLE);
-        } else {
-            binding.deleteModelBtn.setVisibility(View.GONE);
-        }
+        binding.deleteModelBtn.setOnClickListener(v -> {
+            TranslationHelper.deleteModelTranslateRemoteModel();
+        });
 
         return binding.getRoot();
     }

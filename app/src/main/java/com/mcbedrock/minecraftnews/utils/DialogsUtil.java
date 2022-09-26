@@ -33,6 +33,15 @@ public class DialogsUtil {
                 .show();
     }
 
+    public void deletingTranslationModelDone(Context context) {
+        new MaterialAlertDialogBuilder(context)
+                //.setIcon(R.drawable.ic_round_error_outline_24)
+                .setTitle(R.string.translation_model_removed)
+                .setMessage(context.getString(R.string.model) + " " + context.getString(R.string.was_deleted))
+                .setPositiveButton(R.string.OK, null)
+                .show();
+    }
+
     public void deleteTranslationModel(Context context) {
         new MaterialAlertDialogBuilder(context)
                 .setIcon(R.drawable.ic_round_download_24)

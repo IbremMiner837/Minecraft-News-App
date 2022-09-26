@@ -8,7 +8,6 @@ import android.widget.TextView;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.mlkit.common.model.DownloadConditions;
 import com.google.mlkit.common.model.RemoteModelManager;
 import com.google.mlkit.nl.translate.TranslateLanguage;
@@ -18,10 +17,7 @@ import com.google.mlkit.nl.translate.Translator;
 import com.google.mlkit.nl.translate.TranslatorOptions;
 import com.mcbedrock.minecraftnews.R;
 
-import org.intellij.lang.annotations.Language;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -59,32 +55,40 @@ public class TranslationHelper {
                         });
     }
 
-    private static void getDownloadedModels() {
-        // Get translation models stored on the device.
-        getRemoteModelManager()
-                .getDownloadedModels(TranslateRemoteModel.class)
-                .addOnSuccessListener(
-                        remoteModels -> {
-                            List<String> modelCodes = new ArrayList<>(remoteModels.size());
-                            for (TranslateRemoteModel model : remoteModels) {
-                                modelCodes.add(model.getLanguage());
-                            }
-                            Collections.sort(modelCodes);
-                            availableModels.setValue(modelCodes);
-                        })
-                .addOnFailureListener(e -> {
-                    Log.e(TAG, "Error getting downloaded models", e);
-                });
+    public static boolean isLanguageDownloaded(String language) {
+        if (getAvailableModels().equals(language)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public static boolean isLanguageDownloaded(String language) {
-        return language.equals(getSystemLanguage());
+    private static MutableLiveData<List<String>> getAvailableModels() {
+        MutableLiveData<List<String>> availableModels = new MutableLiveData<>();
+        RemoteModelManager.getInstance().getDownloadedModels(TranslateRemoteModel.class)
+                .addOnSuccessListener(
+                        models -> {
+                            // Model downloading is complete.
+                            // ...
+                            List<String> modelList = new ArrayList<>();
+                            for (TranslateRemoteModel model : models) {
+                                modelList.add(model.getLanguage());
+                            }
+                            availableModels.setValue(modelList);
+                        })
+                .addOnFailureListener(
+                        e -> {
+                            // Model downloading failed.
+                            // ...
+                            Log.d(TAG, "onFailure: Model downloading failed.");
+                        });
+        return availableModels;
     }
 
     public static void deleteModelTranslateRemoteModel() {
         getRemoteModelManager().deleteDownloadedModel(getModel(getSystemLanguage()))
                 .addOnSuccessListener(o -> {
-                    // Success.
+                    new DialogsUtil().deletingTranslationModelDone(context);
                 })
                 .addOnFailureListener(e -> {
                     // Error.

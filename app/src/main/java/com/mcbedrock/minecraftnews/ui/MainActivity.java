@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
         translationHelper = new TranslationHelper(this);
-        if (!TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
+        if (TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
             new DialogsUtil().downloadTranslateModel(this);
         }
 

@@ -34,6 +34,9 @@
     <string name="download_translation_model_message">To translate articles, you need to download a translation model. It will take some time.</string>
     <string name="delete_translation_model_title">Delete translation model</string>
     <string name="delete_translation_model_message">To save space on your device, we recommend deleting the translation model if you don\'t use translation.</string>
+    <string name="translation_model_removed">Translation model removed</string>
+    <string name="model">Model</string>
+    <string name="was_deleted">was deleted</string>
     <string name="model_not_downloaded">Model not downloaded</string>
 
     <string name="version">Version</string>
