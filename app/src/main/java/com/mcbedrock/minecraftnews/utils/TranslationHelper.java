@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.Html;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -31,7 +32,6 @@ public class TranslationHelper {
 
     private static final String TAG = "ArticleTranslationHelper";
     public static Boolean isTranslated = false;
-    public static MutableLiveData<List<String>> availableModels = new MutableLiveData<>();
 
     public static void translateArticle(String article, TextView textView, MaterialButton button) {
 
@@ -56,25 +56,28 @@ public class TranslationHelper {
     }
 
     public static boolean isLanguageDownloaded(String language) {
-        if (getAvailableModels().equals(language)) {
-            return true;
-        } else {
-            return false;
+        boolean isDownloaded = false;
+        for (int i = 0; i < getAvailableModels().size(); i++) {
+            if (getAvailableModels().get(i).equals(language)) {
+                isDownloaded = true;
+            } else {
+                isDownloaded = false;
+            }
         }
+        return isDownloaded;
     }
 
-    private static MutableLiveData<List<String>> getAvailableModels() {
-        MutableLiveData<List<String>> availableModels = new MutableLiveData<>();
-        RemoteModelManager.getInstance().getDownloadedModels(TranslateRemoteModel.class)
+    public static List<String> getAvailableModels() {
+        List<String> availableModels = new ArrayList<>();
+        getRemoteModelManager()
+                .getDownloadedModels(TranslateRemoteModel.class)
                 .addOnSuccessListener(
                         models -> {
                             // Model downloading is complete.
                             // ...
-                            List<String> modelList = new ArrayList<>();
                             for (TranslateRemoteModel model : models) {
-                                modelList.add(model.getLanguage());
+                                availableModels.add(model.getLanguage());
                             }
-                            availableModels.setValue(modelList);
                         })
                 .addOnFailureListener(
                         e -> {
@@ -86,7 +89,8 @@ public class TranslationHelper {
     }
 
     public static void deleteModelTranslateRemoteModel() {
-        getRemoteModelManager().deleteDownloadedModel(getModel(getSystemLanguage()))
+        getRemoteModelManager()
+                .deleteDownloadedModel(getModel(getSystemLanguage()))
                 .addOnSuccessListener(o -> {
                     new DialogsUtil().deletingTranslationModelDone(context);
                 })
@@ -96,12 +100,13 @@ public class TranslationHelper {
     }
 
     public static void downloadModel() {
-        getRemoteModelManager().download(getModel(getSystemLanguage()), setDownloadConditions())
+        getRemoteModelManager()
+                .download(getModel(getSystemLanguage()), setDownloadConditions())
                 .addOnSuccessListener(o -> {
                     new DialogsUtil().translateModelDownloaded(context);
                 })
                 .addOnFailureListener(e -> {
-                    // Error.
+                    Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
                 });
     }
 
@@ -113,7 +118,6 @@ public class TranslationHelper {
         return new TranslatorOptions.Builder()
                 .setSourceLanguage(TranslateLanguage.ENGLISH)
                 .setTargetLanguage(getSystemLanguage())
-                .setExecutor(Runnable::run)
                 .build();
     }
 

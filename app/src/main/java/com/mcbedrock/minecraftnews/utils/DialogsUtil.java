@@ -60,7 +60,7 @@ public class DialogsUtil {
                 .setTitle(context.getString(R.string.download_translation_model_title) + "?")
                 .setMessage(R.string.download_translation_model_message)
                 .setPositiveButton(R.string.OK, ((dialogInterface, i) -> {
-                   TranslationHelper.downloadModel();
+                    TranslationHelper.downloadModel();
                 }))
                 .setNegativeButton("Позже", null)
                 .show();

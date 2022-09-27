@@ -20,6 +20,8 @@ public class SettingsFragment extends Fragment {
 
     private FragmentSettingsBinding binding;
 
+    private TranslationHelper translationHelper;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,24 +32,26 @@ public class SettingsFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentSettingsBinding.inflate(inflater, container, false);
 
+        translationHelper = new TranslationHelper(getContext());
+
         binding.enableTranslationSwitch.setChecked(SharedPreferencesUtil.getBooleanFromSharedPreferences(getContext(), "enable_translation"));
         binding.enableTranslationSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferencesUtil.saveBooleanToSharedPreferences(getContext(), "enable_translation", isChecked);
             if (isChecked) {
-                if (!TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
-                    new DialogsUtil().downloadTranslateModel(getContext());
-                } else {
+                if (TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
                     new DialogsUtil().deleteTranslationModel(getContext());
+                } else {
+                    new DialogsUtil().downloadTranslateModel(getContext());
                 }
             }
         });
 
-        if (!TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
-            binding.isModelDownloadedText.setText(R.string.model_not_downloaded);
-            binding.deleteModelBtn.setVisibility(View.GONE);
-        } else {
+        if (TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
             binding.isModelDownloadedText.setText(R.string.model_downloaded);
             binding.downloadModelBtn.setVisibility(View.GONE);
+        } else {
+            binding.isModelDownloadedText.setText(R.string.model_not_downloaded);
+            binding.deleteModelBtn.setVisibility(View.GONE);
         }
 
         binding.downloadModelBtn.setOnClickListener(v -> {
