@@ -6,8 +6,11 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.lifecycle.MutableLiveData;
+import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.mlkit.common.model.DownloadConditions;
 import com.google.mlkit.common.model.RemoteModelManager;
@@ -21,6 +24,7 @@ import com.mcbedrock.minecraftnews.R;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 public class TranslationHelper {
 
@@ -67,24 +71,32 @@ public class TranslationHelper {
         return isDownloaded;
     }
 
+    public static boolean isLanguageDownloaded() {
+        boolean isDownloaded = false;
+        for (String item : getAvailableModels()) {
+            if (item.equals(getSystemLanguage())) {
+                isDownloaded = true;
+            } else {
+                isDownloaded = false;
+            }
+        }
+        return isDownloaded;
+    }
+
     public static List<String> getAvailableModels() {
         List<String> availableModels = new ArrayList<>();
         getRemoteModelManager()
                 .getDownloadedModels(TranslateRemoteModel.class)
-                .addOnSuccessListener(
-                        models -> {
-                            // Model downloading is complete.
-                            // ...
-                            for (TranslateRemoteModel model : models) {
-                                availableModels.add(model.getLanguage());
-                            }
-                        })
-                .addOnFailureListener(
-                        e -> {
-                            // Model downloading failed.
-                            // ...
-                            Log.d(TAG, "onFailure: Model downloading failed.");
-                        });
+                .addOnSuccessListener(translateRemoteModels -> {
+                    for (TranslateRemoteModel model : translateRemoteModels) {
+                        availableModels.add(model.getLanguage());
+                        Log.d("EBAT", model.getLanguage());
+                    }
+                }).addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "onComplete: " + availableModels);
+                    }
+                });
         return availableModels;
     }
 

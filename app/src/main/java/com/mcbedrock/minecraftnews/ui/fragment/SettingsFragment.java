@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.databinding.FragmentSettingsBinding;
 import com.mcbedrock.minecraftnews.utils.DialogsUtil;
@@ -38,7 +39,7 @@ public class SettingsFragment extends Fragment {
         binding.enableTranslationSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferencesUtil.saveBooleanToSharedPreferences(getContext(), "enable_translation", isChecked);
             if (isChecked) {
-                if (TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
+                if (TranslationHelper.isLanguageDownloaded()) {
                     new DialogsUtil().deleteTranslationModel(getContext());
                 } else {
                     new DialogsUtil().downloadTranslateModel(getContext());
@@ -46,7 +47,7 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-        if (TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
+        if (TranslationHelper.isLanguageDownloaded()) {
             binding.isModelDownloadedText.setText(R.string.model_downloaded);
             binding.downloadModelBtn.setVisibility(View.GONE);
         } else {
