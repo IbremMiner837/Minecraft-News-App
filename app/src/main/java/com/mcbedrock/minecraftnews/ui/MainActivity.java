@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TranslationHelper.getAvailableModels();
         SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
