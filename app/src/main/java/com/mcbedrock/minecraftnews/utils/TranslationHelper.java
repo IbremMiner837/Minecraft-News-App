@@ -78,14 +78,14 @@ public class TranslationHelper {
     }
 
     public static void deleteModelTranslateRemoteModel() {
-        getRemoteModelManager()
-                .deleteDownloadedModel(getModel(getSystemLanguage()))
-                .addOnSuccessListener(o -> {
-                    new DialogsUtil().deletingTranslationModelDone(context);
-                })
-                .addOnFailureListener(e -> {
-                    // Error.
-                });
+        for (int i = 0; i < availableModels.size(); i++) {
+            getRemoteModelManager()
+                    .deleteDownloadedModel(new TranslateRemoteModel.Builder(availableModels.get(i)).build())
+                    .addOnSuccessListener(o -> {
+                        new DialogsUtil().deletingTranslationModelDone(context);
+                        getAvailableModels();
+                    });
+        }
     }
 
     public static void downloadModel() {
@@ -93,6 +93,7 @@ public class TranslationHelper {
                 .download(getModel(getSystemLanguage()), setDownloadConditions())
                 .addOnSuccessListener(o -> {
                     new DialogsUtil().translateModelDownloaded(context);
+                    getAvailableModels();
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();

@@ -39,15 +39,19 @@ public class SettingsFragment extends Fragment {
         binding.enableTranslationSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferencesUtil.saveBooleanToSharedPreferences(getContext(), "enable_translation", isChecked);
             if (isChecked) {
-                if (TranslationHelper.isLanguageDownloaded("ru")) {
-                    new DialogsUtil().deleteTranslationModel(getContext());
+                if (TranslationHelper.isLanguageDownloaded("en") && TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
+                    //new DialogsUtil().downloadTranslateModel(getContext());
                 } else {
                     new DialogsUtil().downloadTranslateModel(getContext());
+                }
+            } else {
+                if (TranslationHelper.isLanguageDownloaded("en") && TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
+                    new DialogsUtil().deleteTranslationModel(getContext());
                 }
             }
         });
 
-        if (TranslationHelper.isLanguageDownloaded("ru")) {
+        if (TranslationHelper.isLanguageDownloaded("en") && TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
             binding.isModelDownloadedText.setText(R.string.model_downloaded);
             binding.downloadModelBtn.setVisibility(View.GONE);
         } else {
