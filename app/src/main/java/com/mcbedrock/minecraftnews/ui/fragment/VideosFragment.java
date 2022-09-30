@@ -54,7 +54,7 @@ public class VideosFragment extends Fragment {
                 mAdapter.setVideos(videos);
                 mAdapter.notifyDataSetChanged();
                 binding.progressBar.setVisibility(View.GONE);
-                binding.swipeLayout.setRefreshing(false);
+                //binding.swipeLayout.setRefreshing(false);
             }
         });
 

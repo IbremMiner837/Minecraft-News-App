@@ -3,23 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_layout"
-    android:paddingTop="50dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragment.VideosFragment">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_layout"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".ui.MainActivity" />
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        android:layout_height="match_parent"
+        tools:context=".ui.MainActivity" />
 
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/progressBar"

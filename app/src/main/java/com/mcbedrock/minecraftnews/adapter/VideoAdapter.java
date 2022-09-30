@@ -1,12 +1,15 @@
 package com.mcbedrock.minecraftnews.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
+import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import com.google.android.youtube.player.YouTubeThumbnailLoader;
 import com.google.android.youtube.player.YouTubeThumbnailView;
 import com.mcbedrock.minecraftnews.R;
@@ -51,20 +55,18 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
 
         final Video currentVideo = videos.get(position);
 
-        String pubDateString = currentVideo.getDate();
-        final String videoTitle = currentVideo.getTitle();
-
         //retrieve video link
         final String videoId = currentVideo.getVideoId();
         final String link = "https://www.youtube.com/watch?v=" + videoId;
 
-        //viewHolder.title.setText(currentVideo.getTitle());
-        //viewHolder.pubDate.setText(pubDateString);
+        viewHolder.title.setText(currentVideo.getTitle());
+        viewHolder.pubDate.setText(currentVideo.getDate().split("T")[0]);
 
+        //load thumbnail
         viewHolder.playerView.initialize("AIzaSyC0-QuSGQA31mwQAlNwyLghxdMaNIaYjdc", new YouTubeThumbnailView.OnInitializedListener() {
             @Override
-            public void onInitializationSuccess(YouTubeThumbnailView youTubeThumbnailView, YouTubeThumbnailLoader youTubeThumbnailLoader) {
-                youTubeThumbnailLoader.setVideo(videoId);
+            public void onInitializationSuccess(YouTubeThumbnailView youTubeThumbnailView, final YouTubeThumbnailLoader youTubeThumbnailLoader) {
+                youTubeThumbnailLoader.setVideo(currentVideo.getVideoId());
                 youTubeThumbnailLoader.setOnThumbnailLoadedListener(new YouTubeThumbnailLoader.OnThumbnailLoadedListener() {
                     @Override
                     public void onThumbnailLoaded(YouTubeThumbnailView youTubeThumbnailView, String s) {
@@ -85,11 +87,10 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
         });
 
         //show statistic of the selected video
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                context.getVideoStats(videoId);
-            }
+        viewHolder.itemView.setOnClickListener(view -> {
+            //context.getVideoStats(videoId);
+            Intent intent = YouTubeStandalonePlayer.createVideoIntent((Activity) view.getContext(), "QuSGQA31mwQAlNwyLghxdMaNIaYjdc", currentVideo.getVideoId());
+            context.startActivity(intent);
         });
     }
 
@@ -111,14 +112,12 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
         YouTubeThumbnailView playerView;
         TextView title;
         TextView pubDate;
-        ImageView image;
 
         ViewHolder(View itemView) {
 
             super(itemView);
-            //title = itemView.findViewById(R.id.title);
-            //pubDate = itemView.findViewById(R.id.pubDate);
-            image = itemView.findViewById(R.id.image);
+            title = itemView.findViewById(R.id.YouTubeVideoName);
+            pubDate = itemView.findViewById(R.id.YouTubeVideoPublishDate);
             playerView = itemView.findViewById(R.id.YouTubePlayerView);
         }
     }

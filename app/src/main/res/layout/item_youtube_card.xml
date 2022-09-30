@@ -8,9 +8,38 @@
     app:cardCornerRadius="0dp"
     style="@style/Widget.Material3.CardView.Elevated">
 
-    <com.google.android.youtube.player.YouTubeThumbnailView
-        android:id="@+id/YouTubePlayerView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
+
+        <com.google.android.youtube.player.YouTubeThumbnailView
+            android:id="@+id/YouTubePlayerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/YouTubeVideoName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Minecraft the Wild Update Release!"
+                android:textSize="21sp"
+                android:textStyle="bold"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/YouTubeVideoPublishDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="30.09.2022"
+                android:textSize="18sp"
+                android:textAlignment="textEnd"/>
+        </LinearLayout>
+    </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

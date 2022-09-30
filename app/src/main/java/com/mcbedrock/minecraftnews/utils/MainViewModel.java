@@ -72,7 +72,7 @@ public class MainViewModel extends ViewModel {
 
         String requestUrl = mParser.generateRequest(
                 CHANNEL_ID,
-                20,
+                50,
                 Parser.ORDER_DATE,
                 KEY
         );
