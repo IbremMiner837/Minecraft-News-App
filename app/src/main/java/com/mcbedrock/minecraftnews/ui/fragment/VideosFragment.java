@@ -49,6 +49,7 @@ public class VideosFragment extends Fragment {
         mAdapter = new VideoAdapter(new ArrayList<Video>(), this);
         binding.list.setAdapter(mAdapter);
 
+
         viewModel.getVideoLiveList().observe(getViewLifecycleOwner(), videos -> {
             if (videos != null) {
                 mAdapter.setVideos(videos);

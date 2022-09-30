@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubeIntents;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
@@ -31,6 +33,7 @@ import java.util.List;
 
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> {
 
+    private static final String TAG = VideoAdapter.class.getSimpleName();
     private List<Video> videos;
     private VideosFragment context;
 
@@ -75,22 +78,34 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
 
                     @Override
                     public void onThumbnailError(YouTubeThumbnailView youTubeThumbnailView, YouTubeThumbnailLoader.ErrorReason errorReason) {
-
+                        Log.e(TAG, "Youtube Thumbnail Error: " + errorReason.toString());
                     }
                 });
             }
 
             @Override
             public void onInitializationFailure(YouTubeThumbnailView youTubeThumbnailView, YouTubeInitializationResult youTubeInitializationResult) {
-
+                Log.e(TAG, "Youtube Initialization Failure: " + youTubeInitializationResult.toString());
+                switch (youTubeInitializationResult) {
+                    case SERVICE_MISSING:
+                    case SERVICE_DISABLED:
+                    case SERVICE_VERSION_UPDATE_REQUIRED:
+                        youTubeInitializationResult.getErrorDialog(context.getActivity(), Integer.parseInt(youTubeInitializationResult.toString())).show();
+                        break;
+                    case UNKNOWN_ERROR:
+                        youTubeInitializationResult.getErrorDialog(context.getActivity(), Integer.parseInt(youTubeInitializationResult.toString())).show();
+                        break;
+                }
             }
         });
 
-        //show statistic of the selected video
-        viewHolder.itemView.setOnClickListener(view -> {
-            //context.getVideoStats(videoId);
-            Intent intent = YouTubeStandalonePlayer.createVideoIntent((Activity) view.getContext(), "QuSGQA31mwQAlNwyLghxdMaNIaYjdc", currentVideo.getVideoId());
-            context.startActivity(intent);
+        //open video on click
+        viewHolder.playerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = YouTubeStandalonePlayer.createVideoIntent(context.getActivity(), "AIzaSyC0-QuSGQA31mwQAlNwyLghxdMaNIaYjdc", videoId);
+                context.startActivity(intent);
+            }
         });
     }
 
@@ -108,13 +123,11 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-
         YouTubeThumbnailView playerView;
         TextView title;
         TextView pubDate;
 
         ViewHolder(View itemView) {
-
             super(itemView);
             title = itemView.findViewById(R.id.YouTubeVideoName);
             pubDate = itemView.findViewById(R.id.YouTubeVideoPublishDate);
