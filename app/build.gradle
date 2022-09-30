@@ -48,11 +48,13 @@ dependencies {
     implementation 'com.google.firebase:firebase-inappmessaging-display:20.1.3'
 
     //Google Play and Google
-    implementation 'com.google.mlkit:language-id:17.0.4'
     implementation 'com.google.mlkit:translate:17.0.1'
     implementation 'com.google.android.play:core:1.10.3'
     implementation "androidx.browser:browser:1.4.0"
     implementation 'androidx.core:core-splashscreen:1.0.0'
+    implementation files("libs\\YouTubeAndroidPlayerApi.jar")
+
+    implementation 'com.prof18.youtubeparser:youtubeparser:4.0.1'
 
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'com.android.volley:volley:1.2.1'

@@ -18,6 +18,7 @@ import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.databinding.ActivityMainBinding;
 import com.mcbedrock.minecraftnews.ui.fragment.MainFragment;
 import com.mcbedrock.minecraftnews.ui.fragment.NewsFragment;
+import com.mcbedrock.minecraftnews.ui.fragment.VideosFragment;
 import com.mcbedrock.minecraftnews.utils.DialogsUtil;
 import com.mcbedrock.minecraftnews.utils.FragmentUtils;
 import com.mcbedrock.minecraftnews.ui.fragment.SettingsFragment;
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     FragmentUtils.changeFragment(this, new MainFragment(), R.id.frame, null);
                     break;
                 case R.id.videos:
-                    FragmentUtils.changeFragment(this, new SettingsFragment(), R.id.frame, null);
+                    FragmentUtils.changeFragment(this, new VideosFragment(), R.id.frame, null);
                     break;
             }
             return true;

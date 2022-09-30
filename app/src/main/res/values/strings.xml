@@ -6,6 +6,7 @@
     <string name="JVMFrog" translatable="false">https://vk.com/jvmfrog</string>
     <string name="GOOGLE_PLAY" translatable="false">https://play.google.com/store/apps/dev?id=8551876312630719902</string>
 
+    <string name="YOUTUBE_API_KEY">AIzaSyC0-QuSGQA31mwQAlNwyLghxdMaNIaYjdc</string>
     <!-- AppUpdate -->
     <string name="new_update_availability">New Update Available</string>
     <string name="update">Update</string>
@@ -21,11 +22,13 @@
     <string name="delete">Delete</string>
     <string name="later">Later</string>
     <string name="cancel">Cancel</string>
-    
+
     <!-- Translate -->
     <string name="translate">Translate</string>
     <string name="translating">Translating</string>
+
     <style name="translated">Translated</style>
+
     <string name="return_original">Return original</string>
     <string name="translate_settings">Translate Settings</string>
     <string name="enable_translation">Enable translation</string>
@@ -42,5 +45,7 @@
 
     <string name="version">Version</string>
     <string name="versionn">Version:</string>
-    
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
