@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start|center_vertical"
-            android:text="Читать дальше"
+            android:text="@string/read_more"
             android:textAllCaps="false"
             android:textSize="15sp"
             android:layout_toEndOf="@+id/ImageView"

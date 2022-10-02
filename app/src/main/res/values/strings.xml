@@ -7,11 +7,13 @@
     <string name="GOOGLE_PLAY" translatable="false">https://play.google.com/store/apps/dev?id=8551876312630719902</string>
 
     <string name="YOUTUBE_API_KEY">AIzaSyC0-QuSGQA31mwQAlNwyLghxdMaNIaYjdc</string>
+
     <!-- AppUpdate -->
     <string name="new_update_availability">New Update Available</string>
     <string name="update">Update</string>
 
     <!-- AlertDialog -->
+    <string name="warning">Warning</string>
     <string name="error">Error</string>
     <string name="copy">Copy</string>
     <string name="link">Link</string>
@@ -23,13 +25,13 @@
     <string name="later">Later</string>
     <string name="cancel">Cancel</string>
 
-    <!-- Translate -->
+    <!-- Translate Button -->
     <string name="translate">Translate</string>
     <string name="translating">Translating</string>
-
     <style name="translated">Translated</style>
+    <string name="show_original">Show original</string>
 
-    <string name="return_original">Return original</string>
+    <!-- Translate Settings -->
     <string name="translate_settings">Translate Settings</string>
     <string name="enable_translation">Enable translation</string>
     <string name="attention_for_translation">Note! The translation is done using the ML Kit Translation library directly on the device, and because of this, the translation may not be very accurate.</string>
@@ -43,9 +45,28 @@
     <string name="model_not_downloaded">Model not downloaded</string>
     <string name="model_downloaded">Model downloaded</string>
 
+    <!-- Card Settings -->
+    <string name="enable_rounded_corners_on_cards">Enable rounded corners on cards</string>
+
     <string name="version">Version</string>
     <string name="versionn">Version:</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="read_more">Read more</string>
 
+    <!-- Navigation-->
+    <string name="news">News</string>
+    <string name="changelogs">Changelog\'s</string>
+    <string name="videos">Videos</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+
+    <!-- Changelogs -->
+    <string name="java_edition" translatable="false">Java Edition</string>
+    <string name="bedrock_edition" translatable="false">Bedrock Edition</string>
+    <string name="dungeons" translatable="false">Dungeons</string>
+    <string name="legends" translatable="false">Legends</string>
+
+    <!-- Videos -->
+    <string name="attention_for_videos">Attention! During video playback, there may be microfreezes, this is due to the fact that YouTube has not updated its library for a long time to support stable operation.</string>
+    <string name="show_max_videos">Show maximum as% videos</string>
+    <string name="show_max_videos_warning">We advise you not to increase the maximum video display value, so as not to cause lags and delays.</string>
 </resources>

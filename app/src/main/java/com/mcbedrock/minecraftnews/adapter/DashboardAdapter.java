@@ -23,10 +23,10 @@ import com.mcbedrock.minecraftnews.utils.FragmentUtils;
 public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.ViewHolder> {
 
     private final Context context;
-    private String[] title;
+    private int[] title;
     private int[] image;
 
-    public DashboardAdapter(Context context, String[] title, int[] image) {
+    public DashboardAdapter(Context context, int[] title, int[] image) {
         this.context = context;
         this.title = title;
         this.image = image;
@@ -45,7 +45,7 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.View
         RequestOptions requestOptions = new RequestOptions();
         requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(16));
 
-        holder.title.setText(title[position]);
+        holder.title.setText(context.getString(title[position]));
         Glide.with(holder.image.getContext())
                 .load(image[position])
                 .apply(requestOptions)

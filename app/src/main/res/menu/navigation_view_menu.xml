@@ -4,16 +4,16 @@
     <item
         android:id="@+id/news"
         android:enabled="true"
-        android:title="Новости"
+        android:title="@string/news"
         android:icon="@drawable/ic_round_article_24"/>
     <item
         android:id="@+id/changeloges"
-        android:title="Чейнджлоги"
+        android:title="@string/changelogs"
         android:enabled="true"
         android:icon="@drawable/ic_round_notes_24"/>
     <item
         android:id="@+id/videos"
         android:enabled="true"
-        android:title="Видео"
+        android:title="@string/videos"
         android:icon="@drawable/ic_round_video_library_24"/>
 </menu>

@@ -39,8 +39,9 @@ public class MainFragment extends Fragment {
                 .into(binding.ImageView);
 
 
-        String[] title = {
-                "Java Edition", "Bedrock", "Dungeons", "Legends"
+        int[] title = {
+                R.string.java_edition, R.string.bedrock_edition,
+                R.string.dungeons, R.string.legends
         };
 
         int[] image = {
