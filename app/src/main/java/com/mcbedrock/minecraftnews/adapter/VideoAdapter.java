@@ -1,32 +1,19 @@
 package com.mcbedrock.minecraftnews.adapter;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
-import com.google.android.youtube.player.YouTubeInitializationResult;
-import com.google.android.youtube.player.YouTubeIntents;
-import com.google.android.youtube.player.YouTubePlayer;
-import com.google.android.youtube.player.YouTubePlayerView;
-import com.google.android.youtube.player.YouTubeStandalonePlayer;
-import com.google.android.youtube.player.YouTubeThumbnailLoader;
-import com.google.android.youtube.player.YouTubeThumbnailView;
 import com.mcbedrock.minecraftnews.R;
-import com.mcbedrock.minecraftnews.ui.MainActivity;
 import com.mcbedrock.minecraftnews.ui.fragment.VideosFragment;
-import com.mcbedrock.minecraftnews.utils.MainViewModel;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 import com.prof.youtubeparser.models.videos.Video;
 
 import java.util.List;
@@ -62,51 +49,68 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
         final String videoId = currentVideo.getVideoId();
         final String link = "https://www.youtube.com/watch?v=" + videoId;
 
+        context.getLifecycle().addObserver(viewHolder.playerView);
+
         viewHolder.title.setText(currentVideo.getTitle());
         viewHolder.pubDate.setText(currentVideo.getDate().split("T")[0]);
 
-        //load thumbnail
-        viewHolder.playerView.initialize("AIzaSyC0-QuSGQA31mwQAlNwyLghxdMaNIaYjdc", new YouTubeThumbnailView.OnInitializedListener() {
+        viewHolder.playerView.addYouTubePlayerListener(new YouTubePlayerListener() {
             @Override
-            public void onInitializationSuccess(YouTubeThumbnailView youTubeThumbnailView, final YouTubeThumbnailLoader youTubeThumbnailLoader) {
-                youTubeThumbnailLoader.setVideo(currentVideo.getVideoId());
-                youTubeThumbnailLoader.setOnThumbnailLoadedListener(new YouTubeThumbnailLoader.OnThumbnailLoadedListener() {
-                    @Override
-                    public void onThumbnailLoaded(YouTubeThumbnailView youTubeThumbnailView, String s) {
-                        youTubeThumbnailLoader.release();
-                    }
-
-                    @Override
-                    public void onThumbnailError(YouTubeThumbnailView youTubeThumbnailView, YouTubeThumbnailLoader.ErrorReason errorReason) {
-                        Log.e(TAG, "Youtube Thumbnail Error: " + errorReason.toString());
-                    }
-                });
+            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                youTubePlayer.cueVideo(currentVideo.getVideoId(), 0);
             }
 
             @Override
-            public void onInitializationFailure(YouTubeThumbnailView youTubeThumbnailView, YouTubeInitializationResult youTubeInitializationResult) {
-                Log.e(TAG, "Youtube Initialization Failure: " + youTubeInitializationResult.toString());
-                switch (youTubeInitializationResult) {
-                    case SERVICE_MISSING:
-                    case SERVICE_DISABLED:
-                    case SERVICE_VERSION_UPDATE_REQUIRED:
-                        youTubeInitializationResult.getErrorDialog(context.getActivity(), Integer.parseInt(youTubeInitializationResult.toString())).show();
-                        break;
-                    case UNKNOWN_ERROR:
-                        youTubeInitializationResult.getErrorDialog(context.getActivity(), Integer.parseInt(youTubeInitializationResult.toString())).show();
-                        break;
-                }
+            public void onStateChange(@NonNull YouTubePlayer youTubePlayer, @NonNull PlayerConstants.PlayerState playerState) {
+
+            }
+
+            @Override
+            public void onPlaybackQualityChange(@NonNull YouTubePlayer youTubePlayer, @NonNull PlayerConstants.PlaybackQuality playbackQuality) {
+
+            }
+
+            @Override
+            public void onPlaybackRateChange(@NonNull YouTubePlayer youTubePlayer, @NonNull PlayerConstants.PlaybackRate playbackRate) {
+
+            }
+
+            @Override
+            public void onError(@NonNull YouTubePlayer youTubePlayer, @NonNull PlayerConstants.PlayerError playerError) {
+                Log.e(TAG, "onError: " + playerError.toString());
+            }
+
+            @Override
+            public void onCurrentSecond(@NonNull YouTubePlayer youTubePlayer, float v) {
+
+            }
+
+            @Override
+            public void onVideoDuration(@NonNull YouTubePlayer youTubePlayer, float v) {
+                Log.d(TAG, "onVideoDuration: " + v);
+            }
+
+            @Override
+            public void onVideoLoadedFraction(@NonNull YouTubePlayer youTubePlayer, float v) {
+                //
+            }
+
+            @Override
+            public void onVideoId(@NonNull YouTubePlayer youTubePlayer, @NonNull String s) {
+                Log.d(TAG, "onVideoId: " + s);
+            }
+
+            @Override
+            public void onApiChange(@NonNull YouTubePlayer youTubePlayer) {
+                Log.d(TAG, "onApiChange: " + youTubePlayer.toString());
             }
         });
 
         //open video on click
-        viewHolder.playerView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = YouTubeStandalonePlayer.createVideoIntent(context.getActivity(), "AIzaSyC0-QuSGQA31mwQAlNwyLghxdMaNIaYjdc", videoId);
-                context.startActivity(intent);
-            }
-        });
+        /*viewHolder.playerView.setOnClickListener(v -> {
+            Intent intent = YouTubeStandalonePlayer.createVideoIntent(context.getActivity(), "AIzaSyC0-QuSGQA31mwQAlNwyLghxdMaNIaYjdc", videoId);
+            context.startActivity(intent);
+        });*/
     }
 
     @Override
@@ -123,7 +127,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        YouTubeThumbnailView playerView;
+        YouTubePlayerView playerView;
         TextView title;
         TextView pubDate;
 

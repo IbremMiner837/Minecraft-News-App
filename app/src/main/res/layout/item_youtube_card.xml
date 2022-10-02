@@ -14,10 +14,13 @@
         android:orientation="vertical">
 
 
-        <com.google.android.youtube.player.YouTubeThumbnailView
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
             android:id="@+id/YouTubePlayerView"
             android:layout_width="match_parent"
-            android:layout_height="212dp"/>
+            android:layout_height="wrap_content"
+            app:enableAutomaticInitialization="true"
+            app:handleNetworkEvents="true"
+            app:autoPlay="false" />
 
         <LinearLayout
             android:layout_width="match_parent"
