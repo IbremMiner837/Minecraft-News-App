@@ -10,10 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.ui.fragment.VideosFragment;
+import com.mcbedrock.minecraftnews.utils.OtherAPI;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
+import com.prof.youtubeparser.VideoStats;
+import com.prof.youtubeparser.models.stats.Statistics;
 import com.prof.youtubeparser.models.videos.Video;
 
 import java.util.List;
@@ -45,15 +48,36 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
 
         final Video currentVideo = videos.get(position);
 
-        //retrieve video link
         final String videoId = currentVideo.getVideoId();
         final String link = "https://www.youtube.com/watch?v=" + videoId;
 
-        context.getLifecycle().addObserver(viewHolder.playerView);
+        VideoStats videoStats = new VideoStats();
+        String url = videoStats.generateStatsRequest(currentVideo.getVideoId(), "AIzaSyC0-QuSGQA31mwQAlNwyLghxdMaNIaYjdc");
+        videoStats.execute(url);
+        videoStats.onFinish(new VideoStats.OnTaskCompleted() {
+
+            @Override
+            public void onTaskCompleted(@NonNull Statistics stats) {
+                //Here you can set the statistic to a Text View for instance
+
+                //for example:
+                String body = "Views: " + stats.getViewCount() + "\n" +
+                        "Like: " + stats.getLikeCount() + "\n" +
+                        "Dislike: " + stats.getDislikeCount() + "\n" +
+                        "Number of comment: " + stats.getCommentCount() + "\n" +
+                        "Number of favourite: " + stats.getFavoriteCount();
+            }
+
+            @Override
+            public void onError(@NonNull Exception e) {
+                Log.e(TAG, "onError: " + e.getMessage());
+            }
+        });
 
         viewHolder.title.setText(currentVideo.getTitle());
-        viewHolder.pubDate.setText(currentVideo.getDate().split("T")[0]);
+        viewHolder.pubDate.setText(OtherAPI.formatDate(currentVideo.getDate()));
 
+        context.getLifecycle().addObserver(viewHolder.playerView);
         viewHolder.playerView.addYouTubePlayerListener(new YouTubePlayerListener() {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
@@ -111,6 +135,9 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
             Intent intent = YouTubeStandalonePlayer.createVideoIntent(context.getActivity(), "AIzaSyC0-QuSGQA31mwQAlNwyLghxdMaNIaYjdc", videoId);
             context.startActivity(intent);
         });*/
+
+        //fetch statistics
+
     }
 
     @Override
