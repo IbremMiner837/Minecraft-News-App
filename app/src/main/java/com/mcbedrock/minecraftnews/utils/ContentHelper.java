@@ -50,14 +50,16 @@ public class ContentHelper {
                 }
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
                 recyclerView.setAdapter(new MinecraftNewsAdapter(context, newsList));
-                shimmerFrameLayout.stopShimmer();
-                shimmerFrameLayout.setVisibility(View.GONE);
-                recyclerView.setVisibility(View.VISIBLE);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, error -> {
-            Log.e("Volley", error.toString());
+        }, error -> Log.e("Volley", error.toString()));
+        queue.addRequestEventListener((request, event) -> {
+            if (event == RequestQueue.RequestEvent.REQUEST_FINISHED) {
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+            }
         });
         queue.add(jsonObjectRequest);
     }
@@ -78,14 +80,16 @@ public class ContentHelper {
                 }
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
                 recyclerView.setAdapter(new ChangelogsAdapter(context, baseModels));
-                shimmerFrameLayout.stopShimmer();
-                shimmerFrameLayout.setVisibility(View.GONE);
-                recyclerView.setVisibility(View.VISIBLE);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, error -> {
-            Log.e("Volley", error.toString());
+        }, error -> Log.e("Volley", error.toString()));
+        queue.addRequestEventListener((request, event) -> {
+            if (event == RequestQueue.RequestEvent.REQUEST_FINISHED) {
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+            }
         });
         queue.add(jsonObjectRequest);
     }
