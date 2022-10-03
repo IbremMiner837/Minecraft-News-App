@@ -20,7 +20,8 @@
             android:layout_height="?attr/actionBarSize"
             app:title="@string/app_name"
             app:titleCentered="true"
-            app:layout_scrollFlags="scroll|enterAlways|snap"/>
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:menu="@menu/toolbar_menu"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView

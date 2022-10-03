@@ -69,4 +69,5 @@
     <string name="attention_for_videos">Attention! During video playback, there may be microfreezes, this is due to the fact that YouTube has not updated its library for a long time to support stable operation.</string>
     <string name="show_max_videos">Show maximum as% videos</string>
     <string name="show_max_videos_warning">We advise you not to increase the maximum video display value, so as not to cause lags and delays.</string>
+    <string name="views">views</string>
 </resources>

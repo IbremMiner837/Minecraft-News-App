@@ -60,7 +60,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("Minecraft");
                 stringBuilder.append(" • ");
-                stringBuilder.append(OtherAPI.formatViews(String.valueOf(stats.getViewCount())) + " views");
+                stringBuilder.append(OtherAPI.formatViews(String.valueOf(stats.getViewCount())) + " " + context.getString(R.string.views));
                 stringBuilder.append(" • ");
                 stringBuilder.append(OtherAPI.formatDate(currentVideo.getDate()));
                 viewHolder.metaData.setText(stringBuilder.toString());

@@ -20,6 +20,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.databinding.FragmentArticleBinding;
+import com.mcbedrock.minecraftnews.utils.DialogsUtil;
 import com.mcbedrock.minecraftnews.utils.SharedPreferencesUtil;
 import com.mcbedrock.minecraftnews.utils.TranslationHelper;
 import com.mcbedrock.minecraftnews.utils.ContentHelper;
@@ -51,8 +52,32 @@ public class ArticleFragment extends Fragment {
             binding.translateBtn.setVisibility(View.GONE);
         }
 
-        if (TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
-            binding.translateBtn.setError(getString(R.string.model_not_downloaded), getResources().getDrawable(R.drawable.ic_round_error_outline_24));
+        if (!TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
+            binding.translateBtn.setIcon(getContext().getDrawable(R.drawable.ic_round_error_outline_24));
+            binding.translateBtn.setIconTint(getContext().getColorStateList(R.color.design_default_color_error));
+            binding.translateBtn.setText(getContext().getString(R.string.model_not_downloaded));
+            binding.translateBtn.setTextColor(getContext().getColor(R.color.design_default_color_error));
+            //binding.translateBtn.setEnabled(false);
+
+            binding.translateBtn.setOnClickListener(v -> {
+                new DialogsUtil().downloadTranslateModel(getContext());
+            });
+        } else {
+            binding.translateBtn.setOnClickListener(v -> {
+                if (!TranslationHelper.isTranslated()) {
+                    TranslationHelper.isTranslated = true;
+                    TranslationHelper.translateArticle(html, binding.TextView, binding.translateBtn);
+                } else {
+                    TranslationHelper.isTranslated = false;
+                    binding.translateBtn.setText(R.string.translate);
+                    binding.TextView.setMovementMethod(LinkMovementMethod.getInstance());
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                        binding.TextView.setText(Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY, null, null));
+                    } else {
+                        binding.TextView.setText(Html.fromHtml(html));
+                    }
+                }
+            });
         }
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
@@ -84,22 +109,7 @@ public class ArticleFragment extends Fragment {
                 Throwable::printStackTrace
         );
         queue.add(jsonObjectRequest);
-
-        binding.translateBtn.setOnClickListener(v -> {
-            if (!TranslationHelper.isTranslated()) {
-                TranslationHelper.isTranslated = true;
-                TranslationHelper.translateArticle(html, binding.TextView, binding.translateBtn);
-            } else {
-                TranslationHelper.isTranslated = false;
-                binding.translateBtn.setText("Перевести");
-                binding.TextView.setMovementMethod(LinkMovementMethod.getInstance());
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                    binding.TextView.setText(Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY, null, null));
-                } else {
-                    binding.TextView.setText(Html.fromHtml(html));
-                }
-            }
-        });
+        
         return binding.getRoot();
     }
 }

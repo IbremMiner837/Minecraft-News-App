@@ -1,5 +1,6 @@
 package com.mcbedrock.minecraftnews.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.Html;
 import android.util.Log;
@@ -41,7 +42,7 @@ public class TranslationHelper {
                             Log.d(TAG, "onSuccess: Translation successful.");
                             textView.setText("");
                             textView.append(Html.fromHtml(((String) translatedText)));
-                            button.setText("Перевести обратно");
+                            button.setText(R.string.show_original);
                             isTranslated = true;
                         })
                 .addOnFailureListener(
@@ -92,11 +93,11 @@ public class TranslationHelper {
         getRemoteModelManager()
                 .download(getModel(getSystemLanguage()), setDownloadConditions())
                 .addOnSuccessListener(o -> {
-                    new DialogsUtil().translateModelDownloaded(context);
+                    new DialogsUtil().translateModelDownloaded((Activity) context);
                     getAvailableModels();
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "onFailure: " + e);
                 });
     }
 

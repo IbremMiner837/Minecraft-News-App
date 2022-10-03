@@ -68,6 +68,14 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
+        binding.toolbar.setOnMenuItemClickListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.toolbar_menu_item_settings:
+                    FragmentUtils.changeFragmentWithBackStack(this, new SettingsFragment(), R.id.frame, "back", null);
+                    break;
+            }
+            return true;
+        });
         //Play Core Update
         mAppUpdateManager = AppUpdateManagerFactory.create(this);
         mAppUpdateManager.getAppUpdateInfo().addOnSuccessListener(result -> {

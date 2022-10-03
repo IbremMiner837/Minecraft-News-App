@@ -1,5 +1,6 @@
 package com.mcbedrock.minecraftnews.utils;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -66,12 +67,14 @@ public class DialogsUtil {
                 .show();
     }
 
-    public void translateModelDownloaded(Context context) {
+    public void translateModelDownloaded(Activity context) {
         new MaterialAlertDialogBuilder(context)
                 .setIcon(R.drawable.ic_round_translate_24)
                 .setTitle("Модель перевода скачана")
                 .setMessage("Модель перевода скачана. Теперь вы можете переводить статьи.")
-                .setPositiveButton(R.string.OK, null)
+                .setPositiveButton(R.string.OK, ((dialogInterface, i) -> {
+                    context.recreate();
+                }))
                 .show();
     }
 }
