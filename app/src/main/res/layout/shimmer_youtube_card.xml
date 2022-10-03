@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+app:cardUseCompatPadding="true"
+app:cardCornerRadius="0dp"
+style="@style/Widget.Material3.CardView.Elevated">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:id="@+id/YouTubePlayerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/shimmer_placeholder"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/TitleView"
+            android:layout_width="256dp"
+            android:layout_height="28dp"
+            android:layout_margin="8dp"
+            android:background="@color/shimmer_placeholder"/>
+
+        <TextView
+            android:id="@+id/TextView"
+            android:layout_width="336dp"
+            android:layout_height="28dp"
+            android:layout_margin="8dp"
+            android:background="@color/shimmer_placeholder"/>
+    </LinearLayout>
+</LinearLayout>
+</com.google.android.material.card.MaterialCardView>
