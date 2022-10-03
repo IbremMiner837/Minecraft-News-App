@@ -37,12 +37,11 @@
                 android:textStyle="bold"/>
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/YouTubeVideoPublishDate"
+                android:id="@+id/YouTubeVideoMetaData"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="30.09.2022"
-                android:textSize="18sp"
-                android:textAlignment="textEnd"/>
+                android:text="Minecraft * 847k views * 30.09.2022"
+                android:textSize="16sp"/>
         </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

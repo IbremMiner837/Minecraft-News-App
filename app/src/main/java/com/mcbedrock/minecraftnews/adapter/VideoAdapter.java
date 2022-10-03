@@ -55,19 +55,16 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
         String url = videoStats.generateStatsRequest(currentVideo.getVideoId(), "AIzaSyC0-QuSGQA31mwQAlNwyLghxdMaNIaYjdc");
         videoStats.execute(url);
         videoStats.onFinish(new VideoStats.OnTaskCompleted() {
-
             @Override
             public void onTaskCompleted(@NonNull Statistics stats) {
-                //Here you can set the statistic to a Text View for instance
-
-                //for example:
-                String body = "Views: " + stats.getViewCount() + "\n" +
-                        "Like: " + stats.getLikeCount() + "\n" +
-                        "Dislike: " + stats.getDislikeCount() + "\n" +
-                        "Number of comment: " + stats.getCommentCount() + "\n" +
-                        "Number of favourite: " + stats.getFavoriteCount();
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("Minecraft");
+                stringBuilder.append(" • ");
+                stringBuilder.append(OtherAPI.formatViews(String.valueOf(stats.getViewCount())) + " views");
+                stringBuilder.append(" • ");
+                stringBuilder.append(OtherAPI.formatDate(currentVideo.getDate()));
+                viewHolder.metaData.setText(stringBuilder.toString());
             }
-
             @Override
             public void onError(@NonNull Exception e) {
                 Log.e(TAG, "onError: " + e.getMessage());
@@ -75,7 +72,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
         });
 
         viewHolder.title.setText(currentVideo.getTitle());
-        viewHolder.pubDate.setText(OtherAPI.formatDate(currentVideo.getDate()));
 
         context.getLifecycle().addObserver(viewHolder.playerView);
         viewHolder.playerView.addYouTubePlayerListener(new YouTubePlayerListener() {
@@ -156,12 +152,12 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
     static class ViewHolder extends RecyclerView.ViewHolder {
         YouTubePlayerView playerView;
         TextView title;
-        TextView pubDate;
+        TextView metaData;
 
         ViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.YouTubeVideoName);
-            pubDate = itemView.findViewById(R.id.YouTubeVideoPublishDate);
+            metaData = itemView.findViewById(R.id.YouTubeVideoMetaData);
             playerView = itemView.findViewById(R.id.YouTubePlayerView);
         }
     }
