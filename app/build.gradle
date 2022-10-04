@@ -11,8 +11,8 @@ android {
         applicationId "com.mcbedrock.minecraftnews"
         minSdkVersion 23
         targetSdkVersion 33
-        versionCode 11
-        versionName "2.0.1 Beta"
+        versionCode 14
+        versionName "2.0.0 Release"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -20,6 +20,7 @@ android {
     buildTypes {
         release {
             minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

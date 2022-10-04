@@ -179,7 +179,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/we_are_on_vk"
                         android:textSize="21sp"
-                        app:icon="@drawable/ic_round_public_24"
+                        app:icon="@drawable/vk"
                         app:iconPadding="16dp"
                         app:iconSize="24dp"
                         app:iconTintMode="screen"

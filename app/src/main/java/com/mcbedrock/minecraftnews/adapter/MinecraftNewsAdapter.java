@@ -54,7 +54,7 @@ public class MinecraftNewsAdapter extends RecyclerView.Adapter<MinecraftNewsAdap
                 .into(holder.image);
 
         holder.materialButton.setOnClickListener(view -> new CustomTabUtil()
-                .open(this.context, models.get(position).getReadMoreUrl()));
+                .OpenCustomTab(this.context, models.get(position).getReadMoreUrl(), context.getColor(R.color.md_theme_light_onSecondary)));
     }
 
     @Override
