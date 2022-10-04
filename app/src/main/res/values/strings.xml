@@ -40,6 +40,10 @@
     <string name="attention_for_translation">Note! The translation is done using the ML Kit Translation library directly on the device, and because of this, the translation may not be very accurate.</string>
     <string name="download_translation_model_title">Download translation model</string>
     <string name="download_translation_model_message">To translate articles, you need to download a translation model. It will take some time.</string>
+    <string name="downloaded_translation_model_title">Downloaded translation model</string>
+    <string name="downloaded_translation_model_message">The translation model has been downloaded successfully.</string>
+    <string name="download_translation_model_error_title">Error downloading translation model</string>
+    <string name="download_translation_model_error_message">An error occurred while downloading the translation model. Please try again later.</string>
     <string name="delete_translation_model_title">Delete translation model</string>
     <string name="delete_translation_model_message">To save space on your device, we recommend deleting the translation model if you don\'t use translation.</string>
     <string name="translation_model_removed">Translation model removed</string>

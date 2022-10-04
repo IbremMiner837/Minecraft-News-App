@@ -29,7 +29,7 @@ public class DialogsUtil {
                     new OtherAPI().copyTextToClipboard(context, url);
                 })
                 .setPositiveButton(R.string.open_link, ((dialogInterface, i) -> {
-                    new CustomTabUtil().open(context, url);
+                    new CustomTabUtil().OpenCustomTab(context, url, context.getColor(R.color.design_default_color_on_primary));
                 }))
                 .show();
     }
@@ -70,8 +70,8 @@ public class DialogsUtil {
     public void translateModelDownloaded(Activity context) {
         new MaterialAlertDialogBuilder(context)
                 .setIcon(R.drawable.ic_round_translate_24)
-                .setTitle("Модель перевода скачана")
-                .setMessage("Модель перевода скачана. Теперь вы можете переводить статьи.")
+                .setTitle(context.getString(R.string.downloaded_translation_model_title))
+                .setMessage(R.string.downloaded_translation_model_message)
                 .setPositiveButton(R.string.OK, ((dialogInterface, i) -> {
                     context.recreate();
                 }))
