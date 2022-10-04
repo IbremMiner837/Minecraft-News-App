@@ -16,6 +16,7 @@ import com.google.android.play.core.install.model.InstallStatus;
 import com.google.android.play.core.install.model.UpdateAvailability;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.databinding.ActivityMainBinding;
+import com.mcbedrock.minecraftnews.ui.fragment.AboutFragment;
 import com.mcbedrock.minecraftnews.ui.fragment.MainFragment;
 import com.mcbedrock.minecraftnews.ui.fragment.NewsFragment;
 import com.mcbedrock.minecraftnews.ui.fragment.VideosFragment;
@@ -70,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
 
         binding.toolbar.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
+                case R.id.about_app:
+                    FragmentUtils.changeFragmentWithBackStack(this, new AboutFragment(), R.id.frame, "back", null);
+                    break;
                 case R.id.toolbar_menu_item_settings:
                     FragmentUtils.changeFragmentWithBackStack(this, new SettingsFragment(), R.id.frame, "back", null);
                     break;
