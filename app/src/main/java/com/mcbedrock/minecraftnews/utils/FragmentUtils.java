@@ -7,8 +7,6 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.mcbedrock.minecraftnews.R;
-
 public class FragmentUtils {
 
     public static void changeFragment(FragmentActivity activity, Fragment to, int frameId, Bundle bundle) {

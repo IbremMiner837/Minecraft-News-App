@@ -2,6 +2,7 @@ package com.mcbedrock.minecraftnews.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.view.ContextThemeWrapper;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.mcbedrock.minecraftnews.R;
@@ -9,8 +10,8 @@ import com.mcbedrock.minecraftnews.R;
 public class DialogsUtil {
 
     public void showErrorDialog(Context context, String error) {
-        new MaterialAlertDialogBuilder(context)
-                //.setIcon(R.drawable.ic_round_error_outline_24)
+        new MaterialAlertDialogBuilder(new ContextThemeWrapper(context, R.style.Theme_AppTheme_MaterialAlertDialog))
+                .setIcon(R.drawable.ic_round_error_outline_24)
                 .setTitle(R.string.error)
                 .setMessage(error)
                 .setNegativeButton(R.string.copy, (dialogInterface, i) -> {
@@ -21,7 +22,7 @@ public class DialogsUtil {
     }
 
     public void showLinkDialog(Context context, String url) {
-        new MaterialAlertDialogBuilder(context)
+        new MaterialAlertDialogBuilder(new ContextThemeWrapper(context, R.style.Theme_AppTheme_MaterialAlertDialog))
                 //.setIcon(R.drawable.ic_link_24)
                 .setTitle(R.string.link)
                 .setMessage(url)
@@ -35,8 +36,8 @@ public class DialogsUtil {
     }
 
     public void deletingTranslationModelDone(Context context) {
-        new MaterialAlertDialogBuilder(context)
-                //.setIcon(R.drawable.ic_round_error_outline_24)
+        new MaterialAlertDialogBuilder(new ContextThemeWrapper(context, R.style.Theme_AppTheme_MaterialAlertDialog))
+                .setIcon(R.drawable.ic_round_done_24)
                 .setTitle(R.string.translation_model_removed)
                 .setMessage(context.getString(R.string.model) + " " + context.getString(R.string.was_deleted))
                 .setPositiveButton(R.string.OK, null)
@@ -44,8 +45,8 @@ public class DialogsUtil {
     }
 
     public void deleteTranslationModel(Context context) {
-        new MaterialAlertDialogBuilder(context)
-                .setIcon(R.drawable.ic_round_download_24)
+        new MaterialAlertDialogBuilder(new ContextThemeWrapper(context, R.style.Theme_AppTheme_MaterialAlertDialog))
+                .setIcon(R.drawable.ic_round_delete_24)
                 .setTitle(context.getString(R.string.delete_translation_model_title) + "?")
                 .setMessage(R.string.delete_translation_model_message)
                 .setNegativeButton(R.string.cancel, null)
@@ -56,8 +57,8 @@ public class DialogsUtil {
     }
 
     public void downloadTranslateModel(Context context) {
-        new MaterialAlertDialogBuilder(context)
-                .setIcon(R.drawable.ic_round_translate_24)
+        new MaterialAlertDialogBuilder(new ContextThemeWrapper(context, R.style.Theme_AppTheme_MaterialAlertDialog))
+                .setIcon(R.drawable.ic_round_download_24)
                 .setTitle(context.getString(R.string.download_translation_model_title) + "?")
                 .setMessage(R.string.download_translation_model_message)
                 .setPositiveButton(R.string.OK, ((dialogInterface, i) -> {
@@ -68,8 +69,8 @@ public class DialogsUtil {
     }
 
     public void translateModelDownloaded(Activity context) {
-        new MaterialAlertDialogBuilder(context)
-                .setIcon(R.drawable.ic_round_translate_24)
+        new MaterialAlertDialogBuilder(new ContextThemeWrapper(context, R.style.Theme_AppTheme_MaterialAlertDialog))
+                .setIcon(R.drawable.ic_round_download_done_24)
                 .setTitle(context.getString(R.string.downloaded_translation_model_title))
                 .setMessage(R.string.downloaded_translation_model_message)
                 .setPositiveButton(R.string.OK, ((dialogInterface, i) -> {

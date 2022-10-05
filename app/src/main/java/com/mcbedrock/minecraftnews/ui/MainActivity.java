@@ -19,17 +19,15 @@ import com.mcbedrock.minecraftnews.databinding.ActivityMainBinding;
 import com.mcbedrock.minecraftnews.ui.fragment.AboutFragment;
 import com.mcbedrock.minecraftnews.ui.fragment.MainFragment;
 import com.mcbedrock.minecraftnews.ui.fragment.NewsFragment;
-import com.mcbedrock.minecraftnews.ui.fragment.VideosFragment;
-import com.mcbedrock.minecraftnews.utils.DialogsUtil;
-import com.mcbedrock.minecraftnews.utils.FragmentUtils;
 import com.mcbedrock.minecraftnews.ui.fragment.SettingsFragment;
+import com.mcbedrock.minecraftnews.ui.fragment.VideosFragment;
+import com.mcbedrock.minecraftnews.utils.FragmentUtils;
 import com.mcbedrock.minecraftnews.utils.TranslationHelper;
 
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
 
-    private TranslationHelper translationHelper;
     private static final int RC_APP_UPDATE = 100;
     private AppUpdateManager mAppUpdateManager;
 
@@ -41,17 +39,6 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
-        /*splashScreen.setOnExitAnimationListener(splashScreenView -> {
-            splashScreenView.animate().alpha(0).setDuration(500).withEndAction(() -> {
-                splashScreenView.setVisibility(View.GONE);
-            }); vccbnd
-        });*/
-
-        translationHelper = new TranslationHelper(this);
-        if (TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
-            new DialogsUtil().downloadTranslateModel(this);
-        }
 
         FragmentUtils.changeFragment(this, new NewsFragment(), R.id.frame, null);
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
@@ -80,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
+
         //Play Core Update
         mAppUpdateManager = AppUpdateManagerFactory.create(this);
         mAppUpdateManager.getAppUpdateInfo().addOnSuccessListener(result -> {

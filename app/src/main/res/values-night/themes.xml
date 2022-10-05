@@ -25,17 +25,20 @@
         <item name="colorOutline">@color/md_theme_dark_outline</item>
         <item name="colorOnSurfaceInverse">@color/md_theme_dark_inverseOnSurface</item>
         <item name="colorSurfaceInverse">@color/md_theme_dark_inverseSurface</item>
-        <!--item name="colorInversePrimary">@color/md_theme_dark_inversePrimary</item>
-        <item name="colorShadow">@color/md_theme_dark_shadow</item-->
-        <item name="colorPrimaryInverse">@color/md_theme_dark_primaryInverse</item>
 
         <item name="android:navigationBarColor">@color/app_bar_dark_color</item>
         <item name="android:statusBarColor">@color/app_bar_dark_color</item>
+
+        <item name="materialAlertDialogTheme">@style/Theme.AppTheme.MaterialAlertDialog</item>
     </style>
 
     <style name="Theme.AppSplash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">#222222</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/logo_x512</item>
         <item name="postSplashScreenTheme">@style/AppTheme</item>
+    </style>
+
+    <style name="Theme.AppTheme.MaterialAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="android:tint">@color/md_theme_dark_onSurface</item>
     </style>
 </resources>
