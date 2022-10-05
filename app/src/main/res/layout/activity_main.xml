@@ -21,7 +21,8 @@
             app:title="@string/app_name"
             app:titleCentered="true"
             app:layout_scrollFlags="scroll|enterAlways|snap"
-            app:menu="@menu/toolbar_menu"/>
+            app:menu="@menu/toolbar_menu"
+            style="?attr/appBarLayoutStyle"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -42,6 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:menu="@menu/navigation_view_menu"/>
+        app:menu="@menu/navigation_view_menu"
+        style="?attr/bottomNavigationStyle"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

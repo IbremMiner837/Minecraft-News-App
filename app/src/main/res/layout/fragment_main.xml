@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="182dp"
         android:padding="8dp"
-        android:src="@drawable/minecraft_vanilla_poster"/>
+        android:src="@drawable/minecraft_background_0"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recview"
