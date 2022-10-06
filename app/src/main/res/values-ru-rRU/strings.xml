@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Новости Майнкрафта</string>
+
+    <!-- AppUpdate -->
+    <string name="new_update_availability">Новое Обновление Доступно!</string>
+    <string name="update">Обновить</string>
+
+    <!-- AlertDialog -->
+    <string name="warning">Предупреждение</string>
+    <string name="error">Ошибка</string>
+    <string name="copy">Копировать</string>
+    <string name="link">Ссылка</string>
+    <string name="copy_link">Копировать ссылку</string>
+    <string name="open_link">Открыть</string>
+    <string name="OK">OK</string>
+    <string name="download">Скачать</string>
+    <string name="delete">Удалить</string>
+    <string name="later">Позже</string>
+    <string name="cancel">Отмена</string>
+
+    <!-- Translate Button -->
+    <string name="translate">Перевести</string>
+    <string name="translating">Перевод</string>
+    <style name="translated">Переведено</style>
+    <string name="show_original">Показать оригинал</string>
+
+    <!-- Translate Settings -->
+    <string name="translate_settings">Настройки Перевода</string>
+    <string name="enable_translation">Включить функцию перевода</string>
+    <string name="attention_for_translation">Примечание! Перевод делается с помощью библиотеки ML Kit Translation непосредственно на устройстве, и из-за этого перевод может быть не очень точным.</string>
+    <string name="download_translation_model_title">Скачать модель перевода</string>
+    <string name="download_translation_model_message">Для перевода чейнждлог вам необходимо скачать модель перевода. Это займет некоторое время.</string>
+    <string name="downloaded_translation_model_title">Модель перевода загружена</string>
+    <string name="downloaded_translation_model_message">Модель перевода успешно загружена.</string>
+    <string name="download_translation_model_error_title">Ошибка при загрузке модели перевода</string>
+    <string name="download_translation_model_error_message">Произошла ошибка при загрузке модели перевода. Пожалуйста, попробуйте позже.</string>
+    <string name="delete_translation_model_title">Удалить модель перевода</string>
+    <string name="delete_translation_model_message">Чтобы сэкономить место на вашем устройстве, мы рекомендуем удалить модель перевода, если вы не пользуетесь функцией перевода чейнждлогов.</string>
+    <string name="translation_model_removed">Модель перевода удалена</string>
+    <string name="model">Модель</string>
+    <string name="was_deleted">была удалена</string>
+    <string name="model_not_downloaded">Модель не скачана</string>
+    <string name="model_downloaded">Модель загружена</string>
+
+    <!-- Card Settings -->
+    <string name="enable_rounded_corners_on_cards">Включить закругленные углы у карточек</string>
+
+    <string name="version">Версия</string>
+    <string name="versionn">Версия:</string>
+    <string name="read_more">Читать далее</string>
+
+    <!-- Navigation-->
+    <string name="news">Новости</string>
+    <string name="changelogs">Чейнждлоги</string>
+    <string name="videos">Видео</string>
+    <string name="settings">Настройки</string>
+    <string name="about_app">О Приложении</string>
+
+    <!-- Changelogs -->
+    <string name="java_edition" translatable="false">Java Edition</string>
+    <string name="bedrock_edition" translatable="false">Bedrock Edition</string>
+    <string name="dungeons" translatable="false">Dungeons</string>
+    <string name="legends" translatable="false">Legends</string>
+
+    <!-- Videos -->
+    <string name="attention_for_videos">Внимание! Во время воспроизведения видео могут быть микрофризы, это связано с тем, что YouTube давно не обновлял свою библиотеку для поддержки стабильной работы.</string>
+    <string name="show_max_videos">Показать максимальное количество видео as%</string>
+    <string name="show_max_videos_warning">Советуем не увеличивать максимальное значение отображаемвых видео, чтобы не возникало лагов и задержек.</string>
+    <string name="views">просмотров</string>
+
+    <!-- About App -->
+    <string name="about_app_text">Новости Minecraft — это агрегатор новостей для Minecraft. Он предназначен для предоставления вам последних новостей от сообщества Minecraft. Приложение полностью бесплатное и с открытым исходным кодом. Вы можете найти исходный код на GitHub.</string>
+    <string name="about_app_text2">Приложение не связано с Mojang AB или Microsoft Corporation. Minecraft является товарным знаком Mojang AB. Все права защищены.</string>
+    <string name="ibragim">Ибрагим Мальцагов</string>
+    <string name="report_a_bug">Сообщить об ошибке</string>
+    <string name="source_code">Исходный код</string>
+    <string name="rate_app">Оценить приложение</string>
+    <string name="share_app">Поделиться приложением</string>
+    <string name="share_app_text">Скачайте это приложение в Google Play: %s</string>
+    <string name="we_are_on_vk">Мы в ВКонтакте</string>
+    <string name="we_are_on_vk_text">Присоединяйтесь к нашему сообществу ВКонтакте, чтобы получать последние новости о приложении и сообществе Minecraft.</string>
+    <string name="other_apps">Другие приложения</string>
+    <string name="other_apps_text">У нас есть другие приложения в Google Play. Проверь их!</string>
+    <string name="improve_translation">Улучшить перевод</string>
+    <string name="improve_translation_text">Помогите нам улучшить перевод приложения на ваш язык. Вы можете сделать это, переведя приложение на Crowdin.</string>
+    <string name="not_installed_email_client">Не установлен почтовый клиент</string>
+</resources>

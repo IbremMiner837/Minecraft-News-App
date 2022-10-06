@@ -9,7 +9,7 @@
     <string name="JVMFrog" translatable="false">https://vk.com/jvmfrog</string>
     <string name="GOOGLE_PLAY" translatable="false">https://play.google.com/store/apps/dev?id=8551876312630719902</string>
 
-    <string name="YOUTUBE_API_KEY">AIzaSyC0-QuSGQA31mwQAlNwyLghxdMaNIaYjdc</string>
+    <string name="YOUTUBE_API_KEY" translatable="false">AIzaSyC0-QuSGQA31mwQAlNwyLghxdMaNIaYjdc</string>
 
     <!-- AppUpdate -->
     <string name="new_update_availability">New Update Available</string>
@@ -45,7 +45,7 @@
     <string name="download_translation_model_error_title">Error downloading translation model</string>
     <string name="download_translation_model_error_message">An error occurred while downloading the translation model. Please try again later.</string>
     <string name="delete_translation_model_title">Delete translation model</string>
-    <string name="delete_translation_model_message">To save space on your device, we recommend deleting the translation model if you don\'t use translation.</string>
+    <string name="delete_translation_model_message">To save space on your device, we recommend deleting the translation model if you do not use the changelog translation feature.</string>
     <string name="translation_model_removed">Translation model removed</string>
     <string name="model">Model</string>
     <string name="was_deleted">was deleted</string>
