@@ -1,5 +1,6 @@
 package com.mcbedrock.minecraftnews.ui.fragment;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -8,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,10 +17,10 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.RequestOptions;
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.databinding.FragmentArticleBinding;
 import com.mcbedrock.minecraftnews.utils.DialogsUtil;
+import com.mcbedrock.minecraftnews.utils.NewTranslationHelper;
 import com.mcbedrock.minecraftnews.utils.SharedPreferencesUtil;
 import com.mcbedrock.minecraftnews.utils.TranslationHelper;
 import com.mcbedrock.minecraftnews.utils.ContentHelper;
@@ -52,11 +52,11 @@ public class ArticleFragment extends Fragment {
             binding.translateBtn.setVisibility(View.GONE);
         }
 
-        if (!TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
+        /*if (!TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
             binding.translateBtn.setIcon(getContext().getDrawable(R.drawable.ic_round_error_outline_24));
-            binding.translateBtn.setIconTint(getContext().getColorStateList(R.color.design_default_color_error));
+            binding.translateBtn.setIconTint(getContext().getColorStateList(R.color.md_theme_dark_error));
             binding.translateBtn.setText(getContext().getString(R.string.model_not_downloaded));
-            binding.translateBtn.setTextColor(getContext().getColor(R.color.design_default_color_error));
+            binding.translateBtn.setTextColor(getContext().getColor(R.color.md_theme_dark_error));
             //binding.translateBtn.setEnabled(false);
 
             binding.translateBtn.setOnClickListener(v -> {
@@ -78,7 +78,11 @@ public class ArticleFragment extends Fragment {
                     }
                 }
             });
-        }
+        }*/
+
+        binding.translateBtn.setOnClickListener(v -> {
+
+        });
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(

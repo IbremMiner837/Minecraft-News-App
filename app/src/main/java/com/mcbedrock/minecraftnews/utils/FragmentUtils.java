@@ -2,6 +2,7 @@ package com.mcbedrock.minecraftnews.utils;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -17,6 +18,9 @@ public class FragmentUtils {
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         transaction.commit();
     }
+
+    //replace fragment with backstack
+
 
     public static void changeFragmentWithBackStack(FragmentActivity activity, Fragment to, int frameId, String backstack, Bundle bundle) {
         to.setArguments(bundle);

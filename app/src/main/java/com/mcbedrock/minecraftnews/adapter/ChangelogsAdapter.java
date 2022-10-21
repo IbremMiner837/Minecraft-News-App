@@ -1,7 +1,6 @@
 package com.mcbedrock.minecraftnews.adapter;
 
 import android.content.Context;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,13 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.button.MaterialButton;
 import com.mcbedrock.minecraftnews.R;
-import com.mcbedrock.minecraftnews.ui.fragment.ArticleFragment;
 import com.mcbedrock.minecraftnews.model.BaseModel;
-import com.mcbedrock.minecraftnews.utils.ContentHelper;
+import com.mcbedrock.minecraftnews.ui.fragment.ArticleFragment;
 import com.mcbedrock.minecraftnews.utils.FragmentUtils;
 
 import java.util.List;
@@ -63,7 +60,7 @@ public class ChangelogsAdapter extends RecyclerView.Adapter<ChangelogsAdapter.Vi
                     (FragmentActivity) context,
                     new ArticleFragment(),
                     R.id.frame,
-                    "ContentFragment",
+                    "back",
                     finalBundle);
         });
     }
