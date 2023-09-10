@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/news"
+        android:id="@+id/newsFragment"
         android:enabled="true"
         android:title="@string/news"
         android:icon="@drawable/ic_round_article_24"/>
     <item
-        android:id="@+id/changeloges"
+        android:id="@+id/mainFragment"
         android:title="@string/changelogs"
         android:enabled="true"
         android:icon="@drawable/ic_round_notes_24"/>
     <item
-        android:id="@+id/videos"
+        android:id="@+id/videosFragment"
         android:enabled="true"
         android:title="@string/videos"
         android:icon="@drawable/ic_round_video_library_24"/>

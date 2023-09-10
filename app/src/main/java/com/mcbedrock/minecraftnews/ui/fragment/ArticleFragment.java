@@ -1,6 +1,5 @@
 package com.mcbedrock.minecraftnews.ui.fragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -9,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,13 +17,9 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.RequestOptions;
-import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.databinding.FragmentArticleBinding;
-import com.mcbedrock.minecraftnews.utils.DialogsUtil;
-import com.mcbedrock.minecraftnews.utils.NewTranslationHelper;
+import com.mcbedrock.minecraftnews.utils.ContentManager;
 import com.mcbedrock.minecraftnews.utils.SharedPreferencesUtil;
-import com.mcbedrock.minecraftnews.utils.TranslationHelper;
-import com.mcbedrock.minecraftnews.utils.ContentHelper;
 
 import org.json.JSONException;
 
@@ -103,7 +99,7 @@ public class ArticleFragment extends Fragment {
                         RequestOptions requestOptions = new RequestOptions();
                         requestOptions = requestOptions.transform(new CenterCrop());
                         Glide.with(this)
-                                .load(ContentHelper.CONTENT + response.getJSONObject("image").getString("url"))
+                                .load(ContentManager.CONTENT + response.getJSONObject("image").getString("url"))
                                 .apply(requestOptions)
                                 .into(binding.ImageView);
                     } catch (JSONException e) {
@@ -115,5 +111,11 @@ public class ArticleFragment extends Fragment {
         queue.add(jsonObjectRequest);
         
         return binding.getRoot();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

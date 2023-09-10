@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -17,18 +16,17 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.button.MaterialButton;
 import com.mcbedrock.minecraftnews.R;
-import com.mcbedrock.minecraftnews.model.BaseModel;
-import com.mcbedrock.minecraftnews.ui.fragment.ArticleFragment;
-import com.mcbedrock.minecraftnews.utils.FragmentUtils;
+import com.mcbedrock.minecraftnews.model.ChangelogsModel;
 
 import java.util.List;
 
 public class ChangelogsAdapter extends RecyclerView.Adapter<ChangelogsAdapter.ViewHolder> {
 
-    private final Context context;
-    private List<BaseModel> models;
 
-    public ChangelogsAdapter(Context context, List<BaseModel> models) {
+    private final Context context;
+    private List<ChangelogsModel> models;
+
+    public ChangelogsAdapter(Context context, List<ChangelogsModel> models) {
         this.context = context;
         this.models = models;
     }
@@ -56,12 +54,6 @@ public class ChangelogsAdapter extends RecyclerView.Adapter<ChangelogsAdapter.Vi
         holder.actionButton.setOnClickListener(view -> {
             Bundle finalBundle = new Bundle();
             finalBundle.putString("URL", models.get(position).getUrl());
-            FragmentUtils.changeFragmentWithBackStack(
-                    (FragmentActivity) context,
-                    new ArticleFragment(),
-                    R.id.frame,
-                    "back",
-                    finalBundle);
         });
     }
 

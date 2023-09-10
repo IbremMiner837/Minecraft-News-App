@@ -20,11 +20,11 @@ import com.mcbedrock.minecraftnews.R;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class TranslationHelper {
+public class MLKitTranslationUtils {
 
     private static Context context;
 
-    public TranslationHelper(Context context) {
+    public MLKitTranslationUtils(Context context) {
         this.context = context;
     }
 

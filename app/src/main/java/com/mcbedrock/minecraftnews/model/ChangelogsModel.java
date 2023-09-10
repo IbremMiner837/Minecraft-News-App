@@ -1,13 +1,13 @@
 package com.mcbedrock.minecraftnews.model;
 
-public class BaseModel {
+public class ChangelogsModel {
     String title, version, image, url;
 
-    public BaseModel() {
+    public ChangelogsModel() {
         //
     }
 
-    public BaseModel(String title, String version, String image, String url) {
+    public ChangelogsModel(String title, String version, String image, String url) {
         this.title = title;
         this.version = version;
         this.image = image;

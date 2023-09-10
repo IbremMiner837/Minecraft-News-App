@@ -54,12 +54,6 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.View
         holder.itemView.setOnClickListener(view -> {
             Bundle bundle = new Bundle();
             bundle.putInt("contentType", position);
-            FragmentUtils.changeFragmentWithBackStack(
-                    (FragmentActivity) context,
-                    new ContentFragment(),
-                    R.id.frame,
-                    "back",
-                    bundle);
         });
     }
 

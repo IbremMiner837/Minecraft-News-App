@@ -15,13 +15,13 @@ import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.databinding.FragmentSettingsBinding;
 import com.mcbedrock.minecraftnews.utils.DialogsUtil;
 import com.mcbedrock.minecraftnews.utils.SharedPreferencesUtil;
-import com.mcbedrock.minecraftnews.utils.TranslationHelper;
+import com.mcbedrock.minecraftnews.utils.MLKitTranslationUtils;
 
 public class SettingsFragment extends Fragment {
 
     private FragmentSettingsBinding binding;
 
-    private TranslationHelper translationHelper;
+    private MLKitTranslationUtils translationHelper;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,25 +33,25 @@ public class SettingsFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentSettingsBinding.inflate(inflater, container, false);
 
-        translationHelper = new TranslationHelper(getContext());
+        translationHelper = new MLKitTranslationUtils(getContext());
 
         binding.enableTranslationSwitch.setChecked(SharedPreferencesUtil.getBooleanFromSharedPreferences(getContext(), "enable_translation"));
         binding.enableTranslationSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferencesUtil.saveBooleanToSharedPreferences(getContext(), "enable_translation", isChecked);
             if (isChecked) {
-                if (TranslationHelper.isLanguageDownloaded("en") && TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
+                if (MLKitTranslationUtils.isLanguageDownloaded("en") && MLKitTranslationUtils.isLanguageDownloaded(MLKitTranslationUtils.getSystemLanguage())) {
                     //new DialogsUtil().downloadTranslateModel(getContext());
                 } else {
                     new DialogsUtil().downloadTranslateModel(getContext());
                 }
             } else {
-                if (TranslationHelper.isLanguageDownloaded("en") && TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
+                if (MLKitTranslationUtils.isLanguageDownloaded("en") && MLKitTranslationUtils.isLanguageDownloaded(MLKitTranslationUtils.getSystemLanguage())) {
                     new DialogsUtil().deleteTranslationModel(getContext());
                 }
             }
         });
 
-        if (TranslationHelper.isLanguageDownloaded("en") && TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
+        if (MLKitTranslationUtils.isLanguageDownloaded("en") && MLKitTranslationUtils.isLanguageDownloaded(MLKitTranslationUtils.getSystemLanguage())) {
             binding.isModelDownloadedText.setText(R.string.model_downloaded);
             binding.downloadModelBtn.setVisibility(View.GONE);
         } else {

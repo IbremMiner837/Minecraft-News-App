@@ -51,7 +51,7 @@ public class DialogsUtil {
                 .setMessage(R.string.delete_translation_model_message)
                 .setNegativeButton(R.string.cancel, null)
                 .setPositiveButton(R.string.delete, (dialogInterface, i) -> {
-                    TranslationHelper.deleteModelTranslateRemoteModel();
+                    MLKitTranslationUtils.deleteModelTranslateRemoteModel();
                 })
                 .show();
     }
@@ -62,7 +62,7 @@ public class DialogsUtil {
                 .setTitle(context.getString(R.string.download_translation_model_title) + "?")
                 .setMessage(R.string.download_translation_model_message)
                 .setPositiveButton(R.string.OK, ((dialogInterface, i) -> {
-                    TranslationHelper.downloadModel();
+                    MLKitTranslationUtils.downloadModel();
                 }))
                 .setNegativeButton("Позже", null)
                 .show();
