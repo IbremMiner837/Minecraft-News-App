@@ -40,7 +40,7 @@ public class MainFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         RequestOptions requestOptions = new RequestOptions();
-        requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(16));
+        requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(28));
         Glide.with(this)
                 .load(R.drawable.minecraft_vanilla_poster)
                 .apply(requestOptions)

@@ -1,26 +1,20 @@
 package com.mcbedrock.minecraftnews.ui.fragment;
 
 import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.adapter.VideoAdapter;
 import com.mcbedrock.minecraftnews.databinding.FragmentVideosBinding;
-import com.mcbedrock.minecraftnews.utils.MainViewModel;
+import com.mcbedrock.minecraftnews.viewmodel.MainViewModel;
 import com.mcbedrock.minecraftnews.utils.NetworkCheckHelper;
 import com.prof.youtubeparser.models.videos.Video;
 

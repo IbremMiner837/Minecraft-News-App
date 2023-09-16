@@ -18,7 +18,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.mcbedrock.minecraftnews.databinding.FragmentArticleBinding;
-import com.mcbedrock.minecraftnews.utils.ContentManager;
+import com.mcbedrock.minecraftnews.repository.ChangelogsRepository;
 import com.mcbedrock.minecraftnews.utils.SharedPreferencesUtil;
 
 import org.json.JSONException;
@@ -99,7 +99,7 @@ public class ArticleFragment extends Fragment {
                         RequestOptions requestOptions = new RequestOptions();
                         requestOptions = requestOptions.transform(new CenterCrop());
                         Glide.with(this)
-                                .load(ContentManager.CONTENT + response.getJSONObject("image").getString("url"))
+                                .load(ChangelogsRepository.CONTENT + response.getJSONObject("image").getString("url"))
                                 .apply(requestOptions)
                                 .into(binding.ImageView);
                     } catch (JSONException e) {

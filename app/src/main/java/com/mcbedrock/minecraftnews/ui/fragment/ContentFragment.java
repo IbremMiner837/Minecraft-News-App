@@ -8,13 +8,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.mcbedrock.minecraftnews.adapter.ChangelogsAdapter;
 import com.mcbedrock.minecraftnews.databinding.FragmentContentBinding;
-import com.mcbedrock.minecraftnews.utils.ContentManager;
+import com.mcbedrock.minecraftnews.viewmodel.ChangelogsViewModel;
 
 public class ContentFragment extends Fragment {
-
     private FragmentContentBinding binding;
+    private ChangelogsViewModel changelogsViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,33 +58,22 @@ public class ContentFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.shimmerLayout.setVisibility(View.VISIBLE);
-        binding.recview.setVisibility(View.GONE);
-
         Bundle bundle = new Bundle();
         bundle.putAll(getArguments());
-        /*if (bundle.getInt("contentType") == 0) {
-            ContentManager.getChangelogs(
-                    getActivity(),
-                    ContentManager.JAVA_PATCH_NOTES,
-                    binding.recview,
-                    binding.shimmerLayout
-            );
-        } else if (bundle.getInt("contentType") == 1) {
-            ContentManager.getChangelogs(
-                    getActivity(),
-                    ContentManager.BEDROCK_PATCH_NOTES,
-                    binding.recview,
-                    binding.shimmerLayout
-            );
-        }  else if (bundle.getInt("contentType") == 2) {
-            ContentManager.getChangelogs(
-                    getActivity(),
-                    ContentManager.DUNGEONS_PATCH_NOTES,
-                    binding.recview,
-                    binding.shimmerLayout
-            );
-        }*/
+
+        changelogsViewModel = new ViewModelProvider(this).get(ChangelogsViewModel.class);
+        changelogsViewModel.getChangelogs().observe(getViewLifecycleOwner(), changelogsItems -> {
+            binding.recview.setLayoutManager(new LinearLayoutManager(requireActivity()));
+            binding.recview.setAdapter(new ChangelogsAdapter(requireActivity(), changelogsItems));
+            binding.recview.setVisibility(View.VISIBLE);
+            binding.shimmerLayout.stopShimmer();
+            binding.shimmerLayout.setVisibility(View.GONE);
+        });
+
+        binding.recview.setVisibility(View.GONE);
+        binding.shimmerLayout.setVisibility(View.VISIBLE);
+        binding.shimmerLayout.startShimmer();
+        changelogsViewModel.loadChangelogs(requireActivity(), bundle.getInt("contentType"));
     }
 
     @Override

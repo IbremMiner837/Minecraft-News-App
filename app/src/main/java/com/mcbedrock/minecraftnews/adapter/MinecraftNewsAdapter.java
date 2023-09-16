@@ -16,7 +16,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.button.MaterialButton;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.model.NewsModel;
-import com.mcbedrock.minecraftnews.utils.ContentManager;
+import com.mcbedrock.minecraftnews.repository.ChangelogsRepository;
 import com.mcbedrock.minecraftnews.utils.CustomTabUtil;
 
 import java.util.List;
@@ -47,7 +47,7 @@ public class MinecraftNewsAdapter extends RecyclerView.Adapter<MinecraftNewsAdap
         holder.title.setText(models.get(position).getTitle());
         holder.textView.setText(models.get(position).getText());
         Glide.with(holder.image.getContext())
-                .load(ContentManager.CONTENT + models.get(position).getImage())
+                .load(ChangelogsRepository.CONTENT + models.get(position).getImage())
                 .apply(requestOptions)
                 .into(holder.image);
 

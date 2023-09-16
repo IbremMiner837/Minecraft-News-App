@@ -1,5 +1,6 @@
 package com.mcbedrock.minecraftnews.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -17,8 +19,6 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.mcbedrock.minecraftnews.R;
-import com.mcbedrock.minecraftnews.ui.fragment.ContentFragment;
-import com.mcbedrock.minecraftnews.utils.FragmentUtils;
 
 public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.ViewHolder> {
 
@@ -51,9 +51,12 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.View
                 .apply(requestOptions)
                 .into(holder.image);
 
+        NavController navController = Navigation.findNavController((Activity) context, R.id.nav_host_fragment_content_main);
+
         holder.itemView.setOnClickListener(view -> {
             Bundle bundle = new Bundle();
             bundle.putInt("contentType", position);
+            navController.navigate(R.id.action_mainFragment_to_contentFragment, bundle);
         });
     }
 
