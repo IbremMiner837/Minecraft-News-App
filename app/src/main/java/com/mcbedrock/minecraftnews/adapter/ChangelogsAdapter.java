@@ -43,7 +43,7 @@ public class ChangelogsAdapter extends RecyclerView.Adapter<ChangelogsAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+        NavController navController = Navigation.findNavController((Activity) context, R.id.nav_host_fragment_content_main);
         RequestOptions requestOptions = new RequestOptions();
         requestOptions = requestOptions.transform(new CenterCrop());
 
@@ -57,6 +57,7 @@ public class ChangelogsAdapter extends RecyclerView.Adapter<ChangelogsAdapter.Vi
         holder.actionButton.setOnClickListener(view -> {
             Bundle finalBundle = new Bundle();
             finalBundle.putString("URL", models.get(position).getUrl());
+            navController.navigate(R.id.action_contentFragment_to_articleFragment, finalBundle);
         });
     }
 

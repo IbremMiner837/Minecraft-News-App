@@ -11,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.mcbedrock.minecraftnews.R;
 import com.mcbedrock.minecraftnews.databinding.ActivityMainBinding;
+import com.mcbedrock.minecraftnews.utils.TranslationHelper;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;

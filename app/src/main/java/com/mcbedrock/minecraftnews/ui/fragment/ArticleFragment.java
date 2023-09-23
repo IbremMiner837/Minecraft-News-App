@@ -20,6 +20,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.mcbedrock.minecraftnews.databinding.FragmentArticleBinding;
 import com.mcbedrock.minecraftnews.repository.ChangelogsRepository;
 import com.mcbedrock.minecraftnews.utils.SharedPreferencesUtil;
+import com.mcbedrock.minecraftnews.utils.TranslationHelper;
 
 import org.json.JSONException;
 
@@ -37,46 +38,27 @@ public class ArticleFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentArticleBinding.inflate(inflater, container, false);
+        TranslationHelper translationHelper = new TranslationHelper();
 
         Bundle finalBundle = new Bundle();
         finalBundle.putAll(getArguments());
         String URL = finalBundle.getString("URL");
 
-        if (SharedPreferencesUtil.getBooleanFromSharedPreferences(getContext(), "enable_translation")) {
-            binding.translateBtn.setVisibility(View.VISIBLE);
-        } else {
-            binding.translateBtn.setVisibility(View.GONE);
-        }
-
-        /*if (!TranslationHelper.isLanguageDownloaded(TranslationHelper.getSystemLanguage())) {
-            binding.translateBtn.setIcon(getContext().getDrawable(R.drawable.ic_round_error_outline_24));
-            binding.translateBtn.setIconTint(getContext().getColorStateList(R.color.md_theme_dark_error));
-            binding.translateBtn.setText(getContext().getString(R.string.model_not_downloaded));
-            binding.translateBtn.setTextColor(getContext().getColor(R.color.md_theme_dark_error));
-            //binding.translateBtn.setEnabled(false);
-
-            binding.translateBtn.setOnClickListener(v -> {
-                new DialogsUtil().downloadTranslateModel(getContext());
-            });
-        } else {
-            binding.translateBtn.setOnClickListener(v -> {
-                if (!TranslationHelper.isTranslated()) {
-                    TranslationHelper.isTranslated = true;
-                    TranslationHelper.translateArticle(html, binding.TextView, binding.translateBtn);
-                } else {
-                    TranslationHelper.isTranslated = false;
-                    binding.translateBtn.setText(R.string.translate);
-                    binding.TextView.setMovementMethod(LinkMovementMethod.getInstance());
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                        binding.TextView.setText(Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY, null, null));
-                    } else {
-                        binding.TextView.setText(Html.fromHtml(html));
-                    }
-                }
-            });
-        }*/
-
         binding.translateBtn.setOnClickListener(v -> {
+            String originalText = binding.TextView.getText().toString();
+            String fromLanguage = "en";  // Assuming the original text is in English
+            String toLanguage = "ru";    // Assuming you want to translate to Russian
+
+            // Set up the translation callback to update the UI with translated text
+            TranslationHelper.setTranslationCallback(translatedText -> {
+                // Update the UI with the translated text
+                getActivity().runOnUiThread(() -> {
+                    binding.TextView.setText(translatedText);
+                });
+            });
+
+            // Perform translation
+            TranslationHelper.translate(originalText, fromLanguage, toLanguage);
 
         });
 
@@ -88,13 +70,8 @@ public class ArticleFragment extends Fragment {
                 response -> {
                     try {
                         html = response.getString("body");
-
                         binding.TextView.setMovementMethod(LinkMovementMethod.getInstance());
-                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                            binding.TextView.setText(Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY, null, null));
-                        } else {
-                            binding.TextView.setText(Html.fromHtml(html));
-                        }
+                        binding.TextView.setText(Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY, null, null));
 
                         RequestOptions requestOptions = new RequestOptions();
                         requestOptions = requestOptions.transform(new CenterCrop());
