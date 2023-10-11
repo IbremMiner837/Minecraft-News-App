@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/newsFragment"
-        android:name="com.mcbedrock.minecraftnews.ui.fragment.NewsFragment"
+        android:name="com.mcbedrock.app.ui.fragment.NewsFragment"
         android:label="fragment_news"
         tools:layout="@layout/fragment_news" />
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.mcbedrock.minecraftnews.ui.fragment.MainFragment"
+        android:name="com.mcbedrock.app.ui.fragment.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/contentFragment"
-        android:name="com.mcbedrock.minecraftnews.ui.fragment.ContentFragment"
+        android:name="com.mcbedrock.app.ui.fragment.ContentFragment"
         android:label="fragment_content"
         tools:layout="@layout/fragment_content" >
         <action
@@ -30,22 +30,22 @@
     </fragment>
     <fragment
         android:id="@+id/articleFragment"
-        android:name="com.mcbedrock.minecraftnews.ui.fragment.ArticleFragment"
+        android:name="com.mcbedrock.app.ui.fragment.ArticleFragment"
         android:label="fragment_article"
         tools:layout="@layout/fragment_article" />
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.mcbedrock.minecraftnews.ui.fragment.AboutFragment"
+        android:name="com.mcbedrock.app.ui.fragment.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/videosFragment"
-        android:name="com.mcbedrock.minecraftnews.ui.fragment.VideosFragment"
+        android:name="com.mcbedrock.app.ui.fragment.VideosFragment"
         android:label="fragment_videos"
         tools:layout="@layout/fragment_videos" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.mcbedrock.minecraftnews.ui.fragment.SettingsFragment"
+        android:name="com.mcbedrock.app.ui.fragment.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>
